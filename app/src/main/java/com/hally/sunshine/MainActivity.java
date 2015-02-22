@@ -1,7 +1,6 @@
 package com.hally.sunshine;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends Activity
@@ -69,6 +71,21 @@ public class MainActivity extends Activity
 								 Bundle savedInstanceState)
 		{
 			View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+			//ArrayList<String> forecastList = new ArrayList<String>();
+			//forecastList.add("Today - Sunny - 88/63");
+
+			String[] forecastArray = {
+				"Today - Sunny - 88/63",
+					"Tomorrow - Foggy - 70/40",
+					"Mon - Cloudy - 72/63",
+					"Tue - Asteroids - 88/63",
+					"Wed - Rein - 88/63",
+					"Thu - Heavy Rein - 88/63",
+					"Fri - Sunny - 88/63"
+			};
+
+			List<String> weekForecast = new ArrayList<String>(Arrays.asList(forecastArray));
 			return rootView;
 		}
 	}
