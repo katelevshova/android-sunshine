@@ -66,6 +66,7 @@ public class FetchWeekWeatherTask extends AsyncTask<Void, Void, Void>
 				return null;
 			}
 			forecastJsonStr = buffer.toString();
+			Log.d(CLASS_NAME, "forecastJsonStr= "+forecastJsonStr);
 		}
 		catch (IOException e)
 		{
