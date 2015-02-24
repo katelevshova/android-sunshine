@@ -33,10 +33,6 @@ public class ForecastFragment extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState)
 	{
-
-		//ArrayList<String> forecastList = new ArrayList<String>();
-		//forecastList.add("Today - Sunny - 88/63");
-
 		String[] forecastArray = {
 				"Mon 6/23 - Sunny - 31/17",
 				"Tue 6/24 - Foggy - 21/8",
@@ -47,10 +43,10 @@ public class ForecastFragment extends Fragment
 				"Sun 6/29 - Sunny - 20/7"
 		};
 
-		List<String> weekForecast = new ArrayList<String>(Arrays.asList(forecastArray));
+		List<String> weekForecastArrayList = new ArrayList<String>(Arrays.asList(forecastArray));
 
 		ArrayAdapter<String> forecastAdapter = new ArrayAdapter<String>(getActivity(),
-				R.layout.list_item_forecast, R.id.list_item_forecast_textview, weekForecast);
+				R.layout.list_item_forecast, R.id.list_item_forecast_textview, weekForecastArrayList);
 
 		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
@@ -58,7 +54,7 @@ public class ForecastFragment extends Fragment
 				.listview_forecast);
 		listViewForecast.setAdapter(forecastAdapter);
 
-		//Get7DaysForecastTask get7DaysForecastTask = new Get7DaysForecastTask();
+		//FetchWeekWeatherTask get7DaysForecastTask = new FetchWeekWeatherTask();
 		//get7DaysForecastTask.execute();
 		return rootView;
 	}
