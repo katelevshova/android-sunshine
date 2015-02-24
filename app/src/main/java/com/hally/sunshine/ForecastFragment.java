@@ -21,6 +21,8 @@ import java.util.List;
  */
 public class ForecastFragment extends Fragment
 {
+	public final String MOUNTAINVIEW_POSTAL_CODE = "94043";
+
 	public ForecastFragment()
 	{
 		// Required empty public constructor
@@ -79,7 +81,7 @@ public class ForecastFragment extends Fragment
 		if (id == R.id.action_refresh)
 		{
 			FetchWeekWeatherTask fetchWeekWeatherTask = new FetchWeekWeatherTask();
-			fetchWeekWeatherTask.execute();
+			fetchWeekWeatherTask.execute(MOUNTAINVIEW_POSTAL_CODE);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

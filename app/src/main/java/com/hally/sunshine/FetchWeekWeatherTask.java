@@ -1,5 +1,6 @@
 package com.hally.sunshine;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -14,12 +15,12 @@ import java.net.URL;
  * @author Kateryna Levshova
  * @date 24.02.2015
  */
-public class FetchWeekWeatherTask extends AsyncTask<Void, Void, Void>
+public class FetchWeekWeatherTask extends AsyncTask<String, Void, Void>
 {
 	private final String CLASS_NAME = FetchWeekWeatherTask.class.getSimpleName();
 
 	@Override
-	protected Void doInBackground(Void... params)
+	protected Void doInBackground(String... params)
 	{
 
 		// These two need to be declared outside the try/catch
@@ -29,13 +30,38 @@ public class FetchWeekWeatherTask extends AsyncTask<Void, Void, Void>
 		// Will contain the raw JSON response as a string.
 		String forecastJsonStr = null;
 
+		String format = "json";
+		String units = "metrics";
+		int numDays = 7;
+
 		try
 		{
 			// Construct the URL for the OpenWeatherMap query
 			// Possible parameters are avaiable at OWM's forecast API page, at
 			// http://openweathermap.org/API#forecast
-			URL url =
-					new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7");
+
+			/*URL url =
+					new URL("http://api.openweathermap.org/data/2" +
+				".5/forecast/daily?q=94043&mode=json&units=metric&cnt=7");
+			*/
+			final String FORECSE_BASE_URL = "http://api.openweathermap.org/data/2" +
+					".5/forecast/daily?";
+			final String QUERY_PARAM = "q";
+			final String FORMAT_PARAM = "mode";
+			final String UNITS_PARAM = "units";
+			final String DAYS_PARAM = "cnt";
+			String postalCode = params[0];
+
+			Uri builtUri = Uri.parse(FORECSE_BASE_URL).buildUpon()
+					.appendQueryParameter(QUERY_PARAM, postalCode)
+					.appendQueryParameter(FORMAT_PARAM, format)
+					.appendQueryParameter(UNITS_PARAM, units)
+					.appendQueryParameter(DAYS_PARAM, Integer.toString(numDays)).build();
+
+			URL url = new URL(builtUri.toString());
+			Log.v(CLASS_NAME, "builtUri= "+builtUri);
+
+
 			// Create the request to OpenWeatherMap, and open the connection
 			urlConnection = (HttpURLConnection) url.openConnection();
 			urlConnection.setRequestMethod("GET");
@@ -66,7 +92,7 @@ public class FetchWeekWeatherTask extends AsyncTask<Void, Void, Void>
 				return null;
 			}
 			forecastJsonStr = buffer.toString();
-			Log.d(CLASS_NAME, "forecastJsonStr= "+forecastJsonStr);
+			Log.d(CLASS_NAME, "forecastJsonStr= " + forecastJsonStr);
 		}
 		catch (IOException e)
 		{
