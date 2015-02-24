@@ -54,8 +54,8 @@ public class ForecastFragment extends Fragment
 				.listview_forecast);
 		listViewForecast.setAdapter(forecastAdapter);
 
-		//FetchWeekWeatherTask get7DaysForecastTask = new FetchWeekWeatherTask();
-		//get7DaysForecastTask.execute();
+		//FetchWeekWeatherTask fetchWeekWeatherTask = new FetchWeekWeatherTask();
+		//fetchWeekWeatherTask.execute();
 		return rootView;
 	}
 }

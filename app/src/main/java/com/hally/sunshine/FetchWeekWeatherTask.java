@@ -16,6 +16,7 @@ import java.net.URL;
  */
 public class FetchWeekWeatherTask extends AsyncTask<Void, Void, Void>
 {
+	private final String CLASS_NAME = FetchWeekWeatherTask.class.getSimpleName();
 
 	@Override
 	protected Void doInBackground(Void... params)
@@ -68,7 +69,7 @@ public class FetchWeekWeatherTask extends AsyncTask<Void, Void, Void>
 		}
 		catch (IOException e)
 		{
-			Log.e("PlaceholderFragment", "Error ", e);
+			Log.e(CLASS_NAME, "Error ", e);
 			// If the code didn't successfully get the weather data, there's no point in attemping
 			// to parse it.
 			return null;
@@ -87,7 +88,7 @@ public class FetchWeekWeatherTask extends AsyncTask<Void, Void, Void>
 				}
 				catch (final IOException e)
 				{
-					Log.e("PlaceholderFragment", "Error closing stream", e);
+					Log.e(CLASS_NAME, "Error closing stream", e);
 				}
 			}
 		}
