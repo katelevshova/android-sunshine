@@ -30,6 +30,7 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, Void>
 		// Will contain the raw JSON response as a string.
 		String forecastJsonStr = null;
 
+		//TODO: move this to special utility class later (UriBuilder.java)
 		String format = "json";
 		String units = "metrics";
 		int numDays = 7;
