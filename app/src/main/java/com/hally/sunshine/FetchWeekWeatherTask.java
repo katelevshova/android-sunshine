@@ -67,6 +67,21 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, String[]>
 		return highLowStr;
 	}
 
+	@Override
+	protected void onPostExecute(String[] result)
+	{
+		super.onPostExecute(result);
+
+		if(result != null)
+		{
+			_forecastAdapter.clear();
+			for (String dayForecastStr: result)
+			{
+				_forecastAdapter.add(dayForecastStr);
+			}
+		}
+	}
+
 	/**
 	 * Take the String representing the complete forecast in JSON Format and pull out the data we
 	 * need to construct the Strings needed for the wireframes.
@@ -135,10 +150,10 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, String[]>
 			resultStrs[i] = day + " - " + description + " - " + highAndLow;
 		}
 
-		for (String s : resultStrs)
+		/*for (String s : resultStrs)
 		{
 			TraceUtil.logV(CLASS_NAME, "getWeatherDataFromJson", "Forecast entry: " + s);
-		}
+		}*/
 		return resultStrs;
 	}
 
@@ -253,7 +268,7 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, String[]>
 		}
 		catch (JSONException e)
 		{
-			TraceUtil.logE(CLASS_NAME,"doInBackground", e.getMessage(), e);
+			TraceUtil.logE(CLASS_NAME, "doInBackground", e.getMessage(), e);
 			e.printStackTrace();
 		}
 
