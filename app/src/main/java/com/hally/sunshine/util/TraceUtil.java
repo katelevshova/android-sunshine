@@ -119,6 +119,24 @@ public class TraceUtil
 		}
 	}
 
+	public static void logV(String className, String methodName, String msg)
+	{
+		if (IS_DEBUG_MODE_ENABLED)
+		{
+			Log.v(classSeparator1 + className + classSeparator2 + methodSeparator + methodName,
+					msg);
+		}
+	}
+
+	public static void logV(String className, String methodName, String msg, Throwable tr)
+	{
+		if (IS_DEBUG_MODE_ENABLED)
+		{
+			Log.v(classSeparator1 + className + classSeparator2 + methodSeparator + methodName, msg,
+					tr);
+		}
+	}
+
 	@SuppressLint("LongLogTag")
 	private void TraceUtil()
 	{
