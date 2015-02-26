@@ -24,7 +24,7 @@ public class ForecastFragment extends Fragment
 	public final String MOUNTAINVIEW_POSTAL_CODE = "94043";
 	private ArrayAdapter<String> _forecastAdapter;
 
-	public ArrayAdapter<String> get_forecastAdapter()
+	public ArrayAdapter<String> getForecastAdapter()
 	{
 		return _forecastAdapter;
 	}
@@ -86,7 +86,8 @@ public class ForecastFragment extends Fragment
 
 		if (id == R.id.action_refresh)
 		{
-			FetchWeekWeatherTask fetchWeekWeatherTask = new FetchWeekWeatherTask();
+
+			FetchWeekWeatherTask fetchWeekWeatherTask = new FetchWeekWeatherTask(_forecastAdapter);
 			fetchWeekWeatherTask.execute(MOUNTAINVIEW_POSTAL_CODE);
 			return true;
 		}

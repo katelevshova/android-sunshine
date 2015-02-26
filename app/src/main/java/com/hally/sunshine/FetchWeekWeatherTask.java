@@ -3,6 +3,7 @@ package com.hally.sunshine;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +19,12 @@ import java.net.URL;
 public class FetchWeekWeatherTask extends AsyncTask<String, Void, Void>
 {
 	private final String CLASS_NAME = FetchWeekWeatherTask.class.getSimpleName();
+	private ArrayAdapter<String> _forecastAdapter;
+
+	public FetchWeekWeatherTask(ArrayAdapter<String> forecastAdapter)
+	{
+		_forecastAdapter = forecastAdapter;
+	}
 
 	@Override
 	protected Void doInBackground(String... params)
