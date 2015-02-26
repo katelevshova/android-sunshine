@@ -22,6 +22,12 @@ import java.util.List;
 public class ForecastFragment extends Fragment
 {
 	public final String MOUNTAINVIEW_POSTAL_CODE = "94043";
+	private ArrayAdapter<String> _forecastAdapter;
+
+	public ArrayAdapter<String> get_forecastAdapter()
+	{
+		return _forecastAdapter;
+	}
 
 	public ForecastFragment()
 	{
@@ -51,7 +57,7 @@ public class ForecastFragment extends Fragment
 
 		List<String> weekForecastArrayList = new ArrayList<String>(Arrays.asList(forecastArray));
 
-		ArrayAdapter<String> forecastAdapter = new ArrayAdapter<String>(getActivity(),
+		_forecastAdapter = new ArrayAdapter<String>(getActivity(),
 				R.layout.list_item_forecast, R.id.list_item_forecast_textview,
 				weekForecastArrayList);
 
@@ -59,7 +65,7 @@ public class ForecastFragment extends Fragment
 
 		ListView listViewForecast = (ListView) rootView.findViewById(R.id
 				.listview_forecast);
-		listViewForecast.setAdapter(forecastAdapter);
+		listViewForecast.setAdapter(_forecastAdapter);
 
 		return rootView;
 	}
