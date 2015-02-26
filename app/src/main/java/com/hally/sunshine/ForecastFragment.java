@@ -69,19 +69,21 @@ public class ForecastFragment extends Fragment
 				.listview_forecast);
 		listViewForecast.setAdapter(_forecastAdapter);
 
-		listViewForecast.setOnItemClickListener(new AdapterView.OnItemClickListener()
-		{
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-			{
-				String forecastText = _forecastAdapter.getItem(position);
-				Toast toast = Toast.makeText(getActivity(), forecastText, Toast.LENGTH_SHORT);
-				toast.show();
-			}
-		});
+		listViewForecast.setOnItemClickListener(onForecastItemClickListener);
 
 		return rootView;
 	}
+
+	private AdapterView.OnItemClickListener onForecastItemClickListener = new AdapterView.OnItemClickListener()
+	{
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+		{
+			String forecastText = _forecastAdapter.getItem(position);
+			Toast toast = Toast.makeText(getActivity(), forecastText, Toast.LENGTH_SHORT);
+			toast.show();
+		}
+	};
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
