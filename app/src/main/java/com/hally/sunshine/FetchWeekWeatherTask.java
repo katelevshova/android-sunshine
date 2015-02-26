@@ -75,10 +75,7 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, String[]>
 		if(result != null)
 		{
 			_forecastAdapter.clear();
-			for (String dayForecastStr: result)
-			{
-				_forecastAdapter.add(dayForecastStr);
-			}
+			_forecastAdapter.addAll(result); // for HoneyComb and above
 		}
 	}
 
