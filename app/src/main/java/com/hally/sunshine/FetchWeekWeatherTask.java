@@ -2,8 +2,9 @@ package com.hally.sunshine;
 
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.ArrayAdapter;
+
+import com.hally.sunshine.util.TraceUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -67,7 +68,7 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, Void>
 					.appendQueryParameter(DAYS_PARAM, Integer.toString(numDays)).build();
 
 			URL url = new URL(builtUri.toString());
-			Log.v(CLASS_NAME, "builtUri= "+builtUri);
+			TraceUtil.logD(CLASS_NAME, "doInBackground", "builtUri= " + builtUri);
 
 
 			// Create the request to OpenWeatherMap, and open the connection
@@ -100,11 +101,11 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, Void>
 				return null;
 			}
 			forecastJsonStr = buffer.toString();
-			Log.d(CLASS_NAME, "forecastJsonStr= " + forecastJsonStr);
+			TraceUtil.logD(CLASS_NAME, "doInBackground", "forecastJsonStr= " + forecastJsonStr);
 		}
 		catch (IOException e)
 		{
-			Log.e(CLASS_NAME, "Error ", e);
+			TraceUtil.logE(CLASS_NAME, "doInBackground", "Error ", e);
 			// If the code didn't successfully get the weather data, there's no point in attemping
 			// to parse it.
 			return null;
@@ -123,7 +124,7 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, Void>
 				}
 				catch (final IOException e)
 				{
-					Log.e(CLASS_NAME, "Error closing stream", e);
+					TraceUtil.logE(CLASS_NAME, "doInBackground", "Error closing stream", e);
 				}
 			}
 		}
