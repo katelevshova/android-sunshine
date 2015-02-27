@@ -1,6 +1,7 @@
 package com.hally.sunshine.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,6 +45,7 @@ public class DetailActivity extends Activity
 		//noinspection SimplifiableIfStatement
 		if (id == R.id.item_settings)
 		{
+			startActivity(new Intent(this, SettingsDetailActivity.class));
 			return true;
 		}
 
