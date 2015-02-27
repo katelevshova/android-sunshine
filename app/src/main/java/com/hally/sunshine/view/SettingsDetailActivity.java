@@ -6,6 +6,8 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
+import com.hally.sunshine.R;
+
 /**
  * A {@link PreferenceActivity} that presents a set of application settings.
  * <p/>
@@ -21,10 +23,11 @@ public class SettingsDetailActivity extends PreferenceActivity
 	{
 		super.onCreate(savedInstanceState);
 		// Add 'general' preferences, defined in the XML file
-		// TODO: Add preferences from XML
+		addPreferencesFromResource(R.xml.settings_pref_general);
+
 		// For all preferences, attach an OnPreferenceChangeListener so the UI summary can be
 		// updated when the preference changes.
-		// TODO: Add preferences
+		bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_location_key)));
 	}
 
 	/**
@@ -49,8 +52,8 @@ public class SettingsDetailActivity extends PreferenceActivity
 		String stringValue = value.toString();
 		if (preference instanceof ListPreference)
 		{
-	// For list preferences, look up the correct display value in
-	// the preference's 'entries' list (since they have separate labels/values).
+			// For list preferences, look up the correct display value in
+			// the preference's 'entries' list (since they have separate labels/values).
 			ListPreference listPreference = (ListPreference) preference;
 			int prefIndex = listPreference.findIndexOfValue(stringValue);
 			if (prefIndex >= 0)
