@@ -111,15 +111,31 @@ public class MainForecastFragment extends Fragment
 
 		if (id == R.id.item_refresh)
 		{
-			FetchWeekWeatherTask fetchWeekWeatherTask = new FetchWeekWeatherTask(_forecastAdapter);
-			fetchWeekWeatherTask.execute(getLocation());
+			updateWeather();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
 	/**
-	 * Checks SharedPreferences. Returns Location defined in settings_pref_general.xml.
+	 * Updates weather information in the ListView using <code>FetchWeekWeatherTask</> class
+	 */
+	private void updateWeather()
+	{
+		FetchWeekWeatherTask fetchWeekWeatherTask = new FetchWeekWeatherTask(_forecastAdapter);
+		fetchWeekWeatherTask.execute(getLocation());
+	}
+
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+		updateWeather();
+	}
+
+	/**
+	 * Checks shared preferences. Returns Location defined in settings_pref_general.xml.
+	 *
 	 * @return Location String
 	 */
 	private String getLocation()
