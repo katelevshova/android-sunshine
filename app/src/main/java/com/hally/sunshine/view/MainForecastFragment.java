@@ -2,7 +2,9 @@ package com.hally.sunshine.view;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -77,20 +79,21 @@ public class MainForecastFragment extends Fragment
 		return rootView;
 	}
 
-	private AdapterView.OnItemClickListener onForecastItemClickListener = new AdapterView.OnItemClickListener()
-	{
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-		{
-			String forecastText = _forecastAdapter.getItem(position);
+	private AdapterView.OnItemClickListener onForecastItemClickListener =
+			new AdapterView.OnItemClickListener()
+			{
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+				{
+					String forecastText = _forecastAdapter.getItem(position);
 			/*Toast toast = Toast.makeText(getActivity(), forecastText, Toast.LENGTH_SHORT);
 			toast.show();*/
 
-			Intent launchDetailActivity = new Intent(getActivity(), DetailActivity.class);
-			launchDetailActivity.putExtra(Intent.EXTRA_TEXT, forecastText);
-			startActivity(launchDetailActivity);
-		}
-	};
+					Intent launchDetailActivity = new Intent(getActivity(), DetailActivity.class);
+					launchDetailActivity.putExtra(Intent.EXTRA_TEXT, forecastText);
+					startActivity(launchDetailActivity);
+				}
+			};
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
@@ -108,12 +111,26 @@ public class MainForecastFragment extends Fragment
 
 		if (id == R.id.item_refresh)
 		{
-
 			FetchWeekWeatherTask fetchWeekWeatherTask = new FetchWeekWeatherTask(_forecastAdapter);
-			fetchWeekWeatherTask.execute(MOUNTAINVIEW_POSTAL_CODE);
+			fetchWeekWeatherTask.execute(getLocation());
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * Checks SharedPreferences. Returns Location defined in settings_pref_general.xml.
+	 * @return Location String
+	 */
+	private String getLocation()
+	{
+		SharedPreferences preferences =
+				PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+		String key = getString(R.string.pref_location_key);
+		String defaultLocation = getString(R.string.pref_location_default);
+
+		return preferences.getString(key, defaultLocation);
 	}
 }
 
