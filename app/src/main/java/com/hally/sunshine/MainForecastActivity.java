@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends Activity
+public class MainForecastActivity extends Activity
 {
 
 	@Override
@@ -17,7 +17,7 @@ public class MainActivity extends Activity
 		if (savedInstanceState == null)
 		{
 			getFragmentManager().beginTransaction()
-					.add(R.id.container, new ForecastFragment())
+					.add(R.id.container, new MainForecastFragment())
 					.commit();
 		}
 	}

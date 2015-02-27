@@ -21,7 +21,7 @@ import java.util.List;
 /**
  *
  */
-public class ForecastFragment extends Fragment
+public class MainForecastFragment extends Fragment
 {
 	public final String MOUNTAINVIEW_POSTAL_CODE = "94043";
 	private ArrayAdapter<String> _forecastAdapter;
@@ -31,7 +31,7 @@ public class ForecastFragment extends Fragment
 		return _forecastAdapter;
 	}
 
-	public ForecastFragment()
+	public MainForecastFragment()
 	{
 		// Required empty public constructor
 	}
