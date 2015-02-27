@@ -1,4 +1,4 @@
-package com.hally.sunshine;
+package com.hally.sunshine.view;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.hally.sunshine.FetchWeekWeatherTask;
+import com.hally.sunshine.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
