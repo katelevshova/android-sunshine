@@ -8,6 +8,7 @@ import org.json.JSONObject;
  * @author Kateryna Levshova
  * @date 24.02.2015
  */
+//TODO: currently is not used. Refactor FetchWeekWeatherTask
 public class WeatherDataParser
 {
 	/**
