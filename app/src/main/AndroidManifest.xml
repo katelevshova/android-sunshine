@@ -7,7 +7,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:title="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".view.MainForecastActivity"
@@ -22,6 +22,14 @@
             android:name=".view.DetailActivity"
             android:label="@string/title_activity_detail"
             android:parentActivityName=".view.MainForecastActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.MainForecastActivity" />
+        </activity>
+        <activity
+            android:name=".view.SettingsDetailActivity"
+            android:title="@string/title_activity_settings_detail"
+            android:parentActivityName=".view.DetailActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.MainForecastActivity" />

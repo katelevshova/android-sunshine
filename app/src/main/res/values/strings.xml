@@ -1,6 +1,5 @@
 <resources>
 	<string name="app_name">Sunshine</string>
-	<string name="title_activity_detail">DetailActivity</string>
+	<string name="title_activity_detail">Details for one day</string>
 	<string name="hello_world">Hello world!</string>
-	<string name="action_settings">Settings</string>
 </resources>
