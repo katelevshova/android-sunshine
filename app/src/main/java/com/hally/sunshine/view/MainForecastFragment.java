@@ -103,6 +103,7 @@ public class MainForecastFragment extends Fragment
 			updateWeather();
 			return true;
 		}
+
 		return super.onOptionsItemSelected(item);
 	}
 

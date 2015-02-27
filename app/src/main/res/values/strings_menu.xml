@@ -2,4 +2,5 @@
 <resources>
 	<string name="item_settings">Settings</string>
 	<string name="item_refresh" translatable="false">Refresh</string>
+	<string name="item_map" translatable="false">Map</string>
 </resources>
