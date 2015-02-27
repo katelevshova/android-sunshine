@@ -78,7 +78,7 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, String[]>
 			high = (high * 1.8) + 32;
 			low = (low * 1.8) + 32;
 		}
-		else if (!unitType.equals(_forecastFragment.getString(R.string.pref_units_imperial)))
+		else if (!unitType.equals(_forecastFragment.getString(R.string.pref_units_metric)))
 		{
 			TraceUtil.logD(CLASS_NAME, "formatHighLows", "Unit type not found: " + unitType);
 		}

@@ -87,7 +87,7 @@ public class MainForecastFragment extends Fragment
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
-		inflater.inflate(R.menu.menu_forecastfragment, menu);
+		inflater.inflate(R.menu.menu_main_f_fragment, menu);
 	}
 
 	@Override
