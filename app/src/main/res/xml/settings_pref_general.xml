@@ -8,7 +8,7 @@
         android:defaultValue="@string/pref_location_default"
         android:inputType="text"
         android:singleLine="true"
-         />
+         /><!--MountainView postal code 94043-->
 
 	<ListPreference
 		android:key="@string/pref_temp_units_key"

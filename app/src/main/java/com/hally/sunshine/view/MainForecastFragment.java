@@ -26,9 +26,12 @@ import java.util.ArrayList;
  */
 public class MainForecastFragment extends Fragment
 {
-	public final String MOUNTAINVIEW_POSTAL_CODE = "94043";
 	private ArrayAdapter<String> _forecastAdapter;
 
+	/**
+	 * Returns forecast array adapter strings
+	 * @return _forecastAdapter
+	 */
 	public ArrayAdapter<String> getForecastAdapter()
 	{
 		return _forecastAdapter;
@@ -108,7 +111,7 @@ public class MainForecastFragment extends Fragment
 	 */
 	private void updateWeather()
 	{
-		FetchWeekWeatherTask fetchWeekWeatherTask = new FetchWeekWeatherTask(_forecastAdapter);
+		FetchWeekWeatherTask fetchWeekWeatherTask = new FetchWeekWeatherTask(this);
 		fetchWeekWeatherTask.execute(getLocation());
 	}
 

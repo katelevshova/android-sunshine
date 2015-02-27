@@ -1,11 +1,13 @@
 package com.hally.sunshine;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.text.format.Time;
-import android.widget.ArrayAdapter;
 
 import com.hally.sunshine.util.TraceUtil;
+import com.hally.sunshine.view.MainForecastFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,16 +28,16 @@ import java.text.SimpleDateFormat;
 public class FetchWeekWeatherTask extends AsyncTask<String, Void, String[]>
 {
 	private final String CLASS_NAME = FetchWeekWeatherTask.class.getSimpleName();
-	private ArrayAdapter<String> _forecastAdapter;
+	private MainForecastFragment _forecastFragment;
 
 	/**
 	 * Constructor
 	 *
-	 * @param forecastAdapter
+	 * @param forecastFragment
 	 */
-	public FetchWeekWeatherTask(ArrayAdapter<String> forecastAdapter)
+	public FetchWeekWeatherTask(MainForecastFragment forecastFragment)
 	{
-		_forecastAdapter = forecastAdapter;
+		_forecastFragment = forecastFragment;
 	}
 
 	/**
@@ -60,7 +62,27 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, String[]>
 	 */
 	private String formatHighLows(double high, double low)
 	{
-		// For presentation, assume the user doesn't care about tenths of a degree.
+		// Data is fetched in Celsius by default.
+		// If user prefers to see in Fahrenheit, convert the values here.
+		// We do this rather than fetching in Fahrenheit so that the user can
+		// change this option without us having to re-fetch the data once
+		// we start storing the values in a database.
+
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences
+				(_forecastFragment.getActivity());
+		String unitType = preferences.getString(_forecastFragment.getString(R.string
+				.pref_temp_units_key), _forecastFragment.getString(R.string.pref_units_metric));
+
+		if(unitType.equals(_forecastFragment.getString(R.string.pref_units_imperial)))
+		{
+			high = (high * 1.8) + 32;
+			low = (low * 1.8) + 32;
+		}
+		else if (!unitType.equals(_forecastFragment.getString(R.string.pref_units_imperial)))
+		{
+			TraceUtil.logD(CLASS_NAME, "formatHighLows", "Unit type not found: " + unitType);
+		}
+
 		long roundedHigh = Math.round(high);
 		long roundedLow = Math.round(low);
 		String highLowStr = roundedHigh + "/" + roundedLow;
@@ -74,8 +96,8 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, String[]>
 
 		if(result != null)
 		{
-			_forecastAdapter.clear();
-			_forecastAdapter.addAll(result); // for HoneyComb and above
+			_forecastFragment.getForecastAdapter().clear();
+			_forecastFragment.getForecastAdapter().addAll(result); // for HoneyComb and above
 		}
 	}
 

@@ -16,6 +16,10 @@ import com.hally.sunshine.R;
  */
 public class DetailFragment extends Fragment
 {
+	static final String FORECAST_STRING = "forecastForOneDay";
+	private String _forecastStr;
+
+
 	public DetailFragment()
 	{
 	}
@@ -27,12 +31,40 @@ public class DetailFragment extends Fragment
 		Intent intent = getActivity().getIntent();
 		View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
-		if(intent != null && intent.hasExtra(Intent.EXTRA_TEXT))
+		if (intent != null && intent.hasExtra(Intent.EXTRA_TEXT))
 		{
-			String forecastStr = intent.getStringExtra(Intent.EXTRA_TEXT);
-			((TextView) rootView.findViewById(R.id.detail_text)).setText(forecastStr);
+			_forecastStr = intent.getStringExtra(Intent.EXTRA_TEXT);
+			((TextView) rootView.findViewById(R.id.detail_text)).setText(_forecastStr);
 		}
 
 		return rootView;
+	}
+
+	//TODO: fix later - need to restore _forecastStr
+
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState)
+	{
+		savedInstanceState.putString(FORECAST_STRING, _forecastStr);
+		super.onSaveInstanceState(savedInstanceState);
+	}
+
+	//@Override
+	/*public void onViewStateRestored(Bundle savedInstanceState)
+	{
+		super.onViewStateRestored(savedInstanceState);
+
+		if (savedInstanceState != null)
+		{
+			setForecastString(savedInstanceState.getString(FORECAST_STRING));
+		}
+	}*/
+
+
+
+	private void setForecastString(String str)
+	{
+		((TextView) getActivity().findViewById(R.id.detail_text))
+				.setText(str);
 	}
 }
