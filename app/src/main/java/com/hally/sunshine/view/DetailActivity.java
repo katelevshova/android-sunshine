@@ -1,17 +1,16 @@
 package com.hally.sunshine.view;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.hally.sunshine.R;
 
 
-public class DetailActivity extends Activity
+public class DetailActivity extends ActionBarActivity
 {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -19,12 +18,11 @@ public class DetailActivity extends Activity
 		setContentView(R.layout.activity_detail);
 		if (savedInstanceState == null)
 		{
-			getFragmentManager().beginTransaction()
+			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new DetailFragment())
 					.commit();
 		}
 	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)

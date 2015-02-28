@@ -1,0 +1,38 @@
+http://forums.udacity.com/questions/100207323/incovertible-types-required-shareactionprovider-found-actionprovider
+
+    1.Share_Menu.xml.
+    Make sure you have a custom namespace and the actionProvider class is from that custome namespace as well as the correct value: android.support.v7.widget.ShareActionProvider
+
+    <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:myapp="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_share" android:title="@string/action_detail_share" myapp:showasaction="always" myapp:actionproviderclass="android.support.v7.widget.ShareActionProvider"></item>
+    </menu>
+
+    2.Detail_Activity.java
+    2.1. Inherit from ActionBarActivity instead of Activity
+    2.2. Add the correct imports
+
+    import android.support.v4.app.Fragment;
+    import android.support.v4.view.MenuItemCompat;
+    import android.support.v7.app.ActionBarActivity;
+    import android.support.v7.widget.ShareActionProvider;
+
+    3. AndroidManifest.xml
+    Add the android:theme="@style/Theme.AppCompat.Light"
+
+---------------------My notes------------------------------------
+4.2. Make sure that you have the following compile section in dependencies
+
+compile 'com.android.support:appcompat-v7:21.0.+'
+
+
+DetailActivity.java
+
+used getSupportFragmentManager().beginTransaction()
+     					.add(R.id.container, new DetailFragment())
+     					.commit();
+
+     					instead of
+
+     getFragmentManager().beginTransaction()
+      					.add(R.id.container, new DetailFragment())
+       					.commit();
