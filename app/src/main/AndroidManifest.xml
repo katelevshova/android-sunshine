@@ -14,10 +14,12 @@
 			android:theme="@style/Theme.AppCompat.Light">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
-
 				<category android:name="android.intent.category.LAUNCHER"/>
-				<action android:name="android.intent.action.view"/>
+			</intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
 				<data android:scheme="geo"/>
+				<category android:name="android.intent.category.DEFAULT"/>
 			</intent-filter>
 		</activity>
 		<!-- Without @style/Theme.AppCompat.Light you will not see Share menuItem!-->
