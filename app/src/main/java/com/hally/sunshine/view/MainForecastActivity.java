@@ -1,11 +1,11 @@
 package com.hally.sunshine.view;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,7 +13,7 @@ import com.hally.sunshine.R;
 import com.hally.sunshine.util.TraceUtil;
 
 
-public class MainForecastActivity extends Activity
+public class MainForecastActivity extends ActionBarActivity
 {
 	private final String CLASS_NAME = MainForecastActivity.class.getSimpleName();
 
@@ -24,7 +24,7 @@ public class MainForecastActivity extends Activity
 		setContentView(R.layout.activity_main);
 		if (savedInstanceState == null)
 		{
-			getFragmentManager().beginTransaction()
+			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new MainForecastFragment())
 					.commit();
 		}

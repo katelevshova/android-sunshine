@@ -10,7 +10,8 @@
 		android:label="@string/app_name"
 		android:theme="@style/AppTheme">
 		<activity
-			android:name=".view.MainForecastActivity">
+			android:name=".view.MainForecastActivity"
+			android:theme="@style/Theme.AppCompat.Light">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 
@@ -32,7 +33,7 @@
 		<activity
 			android:name=".view.SettingsDetailActivity"
 			android:label="@string/title_activity_settings_detail"
-			android:parentActivityName=".view.DetailActivity">
+			android:parentActivityName=".view.MainForecastActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".view.MainForecastActivity"/>
