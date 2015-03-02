@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,14 +28,6 @@ public class MainForecastActivity extends ActionBarActivity
 					.add(R.id.container, new MainForecastFragment())
 					.commit();
 		}
-
-		getSupportActionBar().setDisplayShowCustomEnabled(true);
-
-		getSupportActionBar().setDisplayOptions(
-				ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-
-		getSupportActionBar().setIcon(R.mipmap.ic_launcher);
-		getSupportActionBar().setDisplayUseLogoEnabled(true);
 	}
 
 	@Override
@@ -62,7 +53,7 @@ public class MainForecastActivity extends ActionBarActivity
 			return true;
 		}
 
-		if(id == R.id.item_map)
+		if (id == R.id.item_map)
 		{
 			openPreferredLocationMap();
 			return true;
