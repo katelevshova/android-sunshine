@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Set;
 
 /*
-	Students: These are functions and some test data to make it easier to test your database and
+	These are functions and some test data to make it easier to test your database and
     Content Provider.  Note that you'll want your WeatherContract class to exactly match the one
     in our solution to use these as-given.
  */
@@ -46,8 +46,8 @@ public class TestUtilities extends AndroidTestCase
 		}
 	}
 
-	/*
-		Students: Use this to create some default weather values for your database tests.
+	/**
+		Use this to create some default weather values for your database tests.
 	 */
 	static ContentValues createWeatherValues(long locationRowId)
 	{
@@ -66,22 +66,19 @@ public class TestUtilities extends AndroidTestCase
 		return weatherValues;
 	}
 
-    /*
-		Students: You can uncomment this helper function once you have finished creating the
-        LocationEntry part of the WeatherContract.
-     */
-//    static ContentValues createNorthPoleLocationValues() {
-//        // Create a new map of values, where column names are the keys
-//        ContentValues testValues = new ContentValues();
-//        testValues.put(WeatherContract.LocationEntry.COLUMN_LOCATION_SETTING, TEST_LOCATION);
-//        testValues.put(WeatherContract.LocationEntry.COLUMN_CITY_NAME, "North Pole");
-//        testValues.put(WeatherContract.LocationEntry.COLUMN_COORD_LAT, 64.7488);
-//        testValues.put(WeatherContract.LocationEntry.COLUMN_COORD_LONG, -147.353);
-//
-//        return testValues;
-//    }
+	static ContentValues createNorthPoleLocationValues()
+	{
+		// Create a new map of values, where column names are the keys
+		ContentValues testValues = new ContentValues();
+		testValues.put(WeatherContract.LocationEntry.COLUMN_LOCATION_SETTING, TEST_LOCATION);
+		testValues.put(WeatherContract.LocationEntry.COLUMN_CITY_NAME, "North Pole");
+		testValues.put(WeatherContract.LocationEntry.COLUMN_COORD_LAT, 64.7488);
+		testValues.put(WeatherContract.LocationEntry.COLUMN_COORD_LONG, -147.353);
 
-    /*
+		return testValues;
+	}
+
+    /**
 		Students: You can uncomment this function once you have finished creating the
         LocationEntry part of the WeatherContract as well as the WeatherDbHelper.
      */
