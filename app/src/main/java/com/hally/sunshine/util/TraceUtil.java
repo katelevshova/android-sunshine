@@ -11,7 +11,7 @@ import android.util.Log;
  */
 public class TraceUtil
 {
-	private static final String CLASS_NAME = "TraceUtil";
+	private static final String CLASS_NAME = TraceUtil.class.getSimpleName();
 	private static final String methodSeparator = "->";
 	private static final String classSeparator1 = " [";
 	private static final String classSeparator2 = "]";
