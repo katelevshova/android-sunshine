@@ -34,7 +34,7 @@ public class WeatherContract
 
 
 	// Possible paths (appended to base content URI for possible URI's)
-	// For instance, content://com.example.android.sunshine.app/weather/
+	// For instance, content://com.hally.sunshine/weather/
 	public static final String PATH_LOCATION = "location";
 	public static final String PATH_WEATHER = "weather";
 
