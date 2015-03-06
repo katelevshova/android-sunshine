@@ -108,10 +108,10 @@ public class WeatherProvider extends ContentProvider
 	}
 
 	/**
-		Students: Here is where you need to create the UriMatcher. This UriMatcher will
-		match each URI to the WEATHER, WEATHER_WITH_LOCATION, WEATHER_WITH_LOCATION_AND_DATE,
-		and LOCATION integer constants defined above.  You can test this by uncommenting the
-		testUriMatcher test within TestUriMatcher.
+	 * Students: Here is where you need to create the UriMatcher. This UriMatcher will match each
+	 * URI to the WEATHER, WEATHER_WITH_LOCATION, WEATHER_WITH_LOCATION_AND_DATE, and LOCATION
+	 * integer constants defined above.  You can test this by uncommenting the testUriMatcher test
+	 * within TestUriMatcher.
 	 */
 	static UriMatcher buildUriMatcher()
 	{
@@ -126,7 +126,8 @@ public class WeatherProvider extends ContentProvider
 		uriMatcher.addURI(authority, WeatherContract.PATH_WEATHER + "/*", WEATHER_WITH_LOCATION);
 		// * - because we are using Location first which is a string, # - because the second is a
 		// date
-		uriMatcher.addURI(authority, WeatherContract.PATH_WEATHER + "/*/#", WEATHER_WITH_LOCATION_AND_DATE);
+		uriMatcher.addURI(authority, WeatherContract.PATH_WEATHER + "/*/#",
+				WEATHER_WITH_LOCATION_AND_DATE);
 		uriMatcher.addURI(authority, WeatherContract.PATH_LOCATION, LOCATION);
 
 		// 3) Return the new matcher!
@@ -158,10 +159,10 @@ public class WeatherProvider extends ContentProvider
 
 		switch (match)
 		{
-            case WEATHER_WITH_LOCATION_AND_DATE:
-				return  WeatherContract.WeatherEntry.CONTENT_ITEM_TYPE;
-            case WEATHER_WITH_LOCATION:
-				return  WeatherContract.WeatherEntry.CONTENT_TYPE;
+			case WEATHER_WITH_LOCATION_AND_DATE:
+				return WeatherContract.WeatherEntry.CONTENT_ITEM_TYPE;
+			case WEATHER_WITH_LOCATION:
+				return WeatherContract.WeatherEntry.CONTENT_TYPE;
 			case WEATHER:
 				return WeatherContract.WeatherEntry.CONTENT_TYPE;
 			case LOCATION:
@@ -195,13 +196,29 @@ public class WeatherProvider extends ContentProvider
 			// "weather"
 			case WEATHER:
 			{
-				retCursor = null;
+				retCursor = mOpenHelper.getReadableDatabase().query(
+						WeatherContract.WeatherEntry.TABLE_NAME,
+						projection,
+						selection,
+						selectionArgs,
+						null,
+						null,
+						sortOrder
+				);
 				break;
 			}
 			// "location"
 			case LOCATION:
 			{
-				retCursor = null;
+				retCursor = mOpenHelper.getReadableDatabase().query(
+						WeatherContract.LocationEntry.TABLE_NAME,
+						projection,
+						selection,
+						selectionArgs,
+						null,
+						null,
+						sortOrder
+				);
 				break;
 			}
 
@@ -231,6 +248,19 @@ public class WeatherProvider extends ContentProvider
 				if (_id > 0)
 				{
 					returnUri = WeatherContract.WeatherEntry.buildWeatherUri(_id);
+				}
+				else
+				{
+					throw new android.database.SQLException("Failed to insert row into " + uri);
+				}
+				break;
+			}
+			case LOCATION:
+			{
+				long _id = db.insert(WeatherContract.LocationEntry.TABLE_NAME, null, values);
+				if (_id > 0)
+				{
+					returnUri = WeatherContract.LocationEntry.buildLocationUri(_id);
 				}
 				else
 				{
