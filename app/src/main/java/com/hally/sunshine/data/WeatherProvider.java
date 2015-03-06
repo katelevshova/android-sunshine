@@ -271,6 +271,7 @@ public class WeatherProvider extends ContentProvider
 			default:
 				throw new UnsupportedOperationException("Unknown uri: " + uri);
 		}
+		//notify any registered observers
 		getContext().getContentResolver().notifyChange(uri, null);
 		return returnUri;
 	}
@@ -279,17 +280,38 @@ public class WeatherProvider extends ContentProvider
 	public int delete(Uri uri, String selection, String[] selectionArgs)
 	{
 		// Student: Start by getting a writable database
+		final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
 
 		// Student: Use the uriMatcher to match the WEATHER and LOCATION URI's we are going to
 		// handle.  If it doesn't match these, throw an UnsupportedOperationException.
+		final int match = sUriMatcher.match(uri);
+		int rowsDeleted;
 
-		// Student: A null value deletes all rows.  In my implementation of this, I only notified
-		// the uri listeners (using the content resolver) if the rowsDeleted != 0 or the selection
-		// is null.
-		// Oh, and you should notify the listeners here.
+		//this makes delete all rows return the umber of rows deleted
+		if( selection == null)
+		{
+			selection = "1";
+		}
 
-		// Student: return the actual rows deleted
-		return 0;
+		switch (match)
+		{
+			case WEATHER:
+				rowsDeleted = db.delete(WeatherContract.WeatherEntry.TABLE_NAME, selection,
+						selectionArgs);
+				break;
+			case LOCATION:
+				rowsDeleted = db.delete(WeatherContract.LocationEntry.TABLE_NAME, selection,
+						selectionArgs);
+				break;
+			default:
+				throw new UnsupportedOperationException("Unknown uri: " + uri);
+		}
+		//because a mull deletes all rows
+		if(rowsDeleted != 0)
+		{
+			getContext().getContentResolver().notifyChange(uri, null);
+		}
+		return rowsDeleted;
 	}
 
 	private void normalizeDate(ContentValues values)
@@ -304,12 +326,41 @@ public class WeatherProvider extends ContentProvider
 	}
 
 	@Override
-	public int update(
-			Uri uri, ContentValues values, String selection, String[] selectionArgs)
+	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs)
 	{
-		// Student: This is a lot like the delete function.  We return the number of rows impacted
-		// by the update.
-		return 0;
+		// Student: Start by getting a writable database
+		final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+
+		// Student: Use the uriMatcher to match the WEATHER and LOCATION URI's we are going to
+		// handle.  If it doesn't match these, throw an UnsupportedOperationException.
+		final int match = sUriMatcher.match(uri);
+		int rowsUpdated;
+
+		//this makes delete all rows return the umber of rows deleted
+		if( selection == null)
+		{
+			selection = "1";
+		}
+
+		switch (match)
+		{
+			case WEATHER:
+				rowsUpdated = db.update(WeatherContract.WeatherEntry.TABLE_NAME, values, selection,
+						selectionArgs);
+				break;
+			case LOCATION:
+				rowsUpdated = db.update(WeatherContract.LocationEntry.TABLE_NAME,values, selection,
+						selectionArgs);
+				break;
+			default:
+				throw new UnsupportedOperationException("Unknown uri: " + uri);
+		}
+		//because a mull deletes all rows
+		if(rowsUpdated != 0)
+		{
+			getContext().getContentResolver().notifyChange(uri, null);
+		}
+		return rowsUpdated;
 	}
 
 	@Override
@@ -339,6 +390,7 @@ public class WeatherProvider extends ContentProvider
 				{
 					db.endTransaction();
 				}
+				//notify any registered observers
 				getContext().getContentResolver().notifyChange(uri, null);
 				return returnCount;
 			default:
