@@ -355,7 +355,7 @@ public class WeatherProvider extends ContentProvider
 			default:
 				throw new UnsupportedOperationException("Unknown uri: " + uri);
 		}
-		//because a mull deletes all rows
+		//because a mull deletes all rows notify only if something is updated
 		if(rowsUpdated != 0)
 		{
 			getContext().getContentResolver().notifyChange(uri, null);
