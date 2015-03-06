@@ -36,10 +36,10 @@ import com.hally.sunshine.data.WeatherContract.WeatherEntry;
     Students: Uncomment the tests in this class as you implement the functionality in your
     ContentProvider to make sure that you've implemented things reasonably correctly.
  */
-public class TestProvider extends AndroidTestCase
+public class TestWeatherProvider extends AndroidTestCase
 {
 
-	public static final String LOG_TAG = TestProvider.class.getSimpleName();
+	public static final String LOG_TAG = TestWeatherProvider.class.getSimpleName();
 
 	/*
 	   This helper function deletes all records from both database tables using the ContentProvider.
