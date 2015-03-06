@@ -112,7 +112,7 @@ public class MainForecastFragment extends Fragment
 	 */
 	private void updateWeather()
 	{
-		FetchWeekWeatherTask fetchWeekWeatherTask = new FetchWeekWeatherTask(this);
+		FetchWeekWeatherTask fetchWeekWeatherTask = new FetchWeekWeatherTask(getActivity(), _forecastAdapter);
 		fetchWeekWeatherTask.execute(getLocation());
 	}
 

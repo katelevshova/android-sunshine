@@ -1,13 +1,14 @@
 package com.hally.sunshine;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.text.format.Time;
+import android.widget.ArrayAdapter;
 
 import com.hally.sunshine.util.TraceUtil;
-import com.hally.sunshine.view.MainForecastFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,16 +29,37 @@ import java.text.SimpleDateFormat;
 public class FetchWeekWeatherTask extends AsyncTask<String, Void, String[]>
 {
 	private final String CLASS_NAME = FetchWeekWeatherTask.class.getSimpleName();
-	private MainForecastFragment _forecastFragment;
+	private Context _context;
+	private ArrayAdapter<String> _forecastAdapter;
 
 	/**
 	 * Constructor
 	 *
-	 * @param forecastFragment
+	 * @param context
+	 * @param forecastAdapter
 	 */
-	public FetchWeekWeatherTask(MainForecastFragment forecastFragment)
+	public FetchWeekWeatherTask(Context context, ArrayAdapter<String> forecastAdapter)
 	{
-		_forecastFragment = forecastFragment;
+		this._context = context;
+		this._forecastAdapter = forecastAdapter;
+	}
+
+	/**
+	 * Helper method to handle insertion of a new location in the weather database.
+	 *
+	 * @param locationSetting The location string used to request updates from the server.
+	 * @param cityName        A human-readable city name, e.g "Mountain View"
+	 * @param lat             the latitude of the city
+	 * @param lon             the longitude of the city
+	 * @return the row ID of the added location.
+	 */
+	long addLocation(String locationSetting, String cityName, double lat, double lon)
+	{
+		// Students: First, check if the location with this city name exists in the db
+		// If it exists, return the current ID
+		// Otherwise, insert it using the content resolver and the base URI
+
+		return -1;
 	}
 
 	/**
@@ -68,17 +90,16 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, String[]>
 		// change this option without us having to re-fetch the data once
 		// we start storing the values in a database.
 
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences
-				(_forecastFragment.getActivity());
-		String unitType = preferences.getString(_forecastFragment.getString(R.string
-				.pref_temp_units_key), _forecastFragment.getString(R.string.pref_units_metric));
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(_context);
+		String unitType = preferences.getString(_context.getString(R.string
+				.pref_temp_units_key), _context.getString(R.string.pref_units_metric));
 
-		if(unitType.equals(_forecastFragment.getString(R.string.pref_units_imperial)))
+		if (unitType.equals(_context.getString(R.string.pref_units_imperial)))
 		{
 			high = (high * 1.8) + 32;
 			low = (low * 1.8) + 32;
 		}
-		else if (!unitType.equals(_forecastFragment.getString(R.string.pref_units_metric)))
+		else if (!unitType.equals(_context.getString(R.string.pref_units_metric)))
 		{
 			TraceUtil.logD(CLASS_NAME, "formatHighLows", "Unit type not found: " + unitType);
 		}
@@ -94,10 +115,10 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, String[]>
 	{
 		super.onPostExecute(result);
 
-		if(result != null)
+		if (result != null)
 		{
-			_forecastFragment.getForecastAdapter().clear();
-			_forecastFragment.getForecastAdapter().addAll(result); // for HoneyComb and above
+			_forecastAdapter.clear();
+			_forecastAdapter.addAll(result); // for HoneyComb and above
 		}
 	}
 
