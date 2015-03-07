@@ -36,7 +36,7 @@ public class TestFetchWeatherTask extends AndroidTestCase
 		getContext().getContentResolver().delete(WeatherContract.LocationEntry.CONTENT_URI,
 				WeatherContract.LocationEntry.COLUMN_LOCATION_SETTING + " = ?",
 				new String[]{ADD_LOCATION_SETTING});
-		FetchWeekWeatherTask fetchWeatherTask = new FetchWeekWeatherTask(getContext(), null);
+		FetchWeatherTask fetchWeatherTask = new FetchWeatherTask(getContext(), null);
 		long locationId = fetchWeatherTask.addLocation(ADD_LOCATION_SETTING, ADD_LOCATION_CITY,
 				ADD_LOCATION_LAT, ADD_LOCATION_LON);
 

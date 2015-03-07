@@ -15,7 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.hally.sunshine.FetchWeekWeatherTask;
+import com.hally.sunshine.FetchWeatherTask;
 import com.hally.sunshine.R;
 
 import java.util.ArrayList;
@@ -108,12 +108,12 @@ public class MainForecastFragment extends Fragment
 	}
 
 	/**
-	 * Updates weather information in the ListView using <code>FetchWeekWeatherTask</> class
+	 * Updates weather information in the ListView using <code>FetchWeatherTask</> class
 	 */
 	private void updateWeather()
 	{
-		FetchWeekWeatherTask fetchWeekWeatherTask = new FetchWeekWeatherTask(getActivity(), _forecastAdapter);
-		fetchWeekWeatherTask.execute(getLocation());
+		FetchWeatherTask fetchWeatherTask = new FetchWeatherTask(getActivity(), _forecastAdapter);
+		fetchWeatherTask.execute(getLocation());
 	}
 
 	@Override

@@ -32,9 +32,9 @@ import java.util.Vector;
  * @author Kateryna Levshova
  * @date 24.02.2015
  */
-public class FetchWeekWeatherTask extends AsyncTask<String, Void, String[]>
+public class FetchWeatherTask extends AsyncTask<String, Void, String[]>
 {
-	private final String CLASS_NAME = FetchWeekWeatherTask.class.getSimpleName();
+	private final String CLASS_NAME = FetchWeatherTask.class.getSimpleName();
 	private Context _context;
 	private ArrayAdapter<String> _forecastAdapter;
 
@@ -44,7 +44,7 @@ public class FetchWeekWeatherTask extends AsyncTask<String, Void, String[]>
 	 * @param context
 	 * @param forecastAdapter
 	 */
-	public FetchWeekWeatherTask(Context context, ArrayAdapter<String> forecastAdapter)
+	public FetchWeatherTask(Context context, ArrayAdapter<String> forecastAdapter)
 	{
 		this._context = context;
 		this._forecastAdapter = forecastAdapter;
