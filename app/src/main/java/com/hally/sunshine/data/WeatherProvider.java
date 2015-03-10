@@ -27,20 +27,20 @@ public class WeatherProvider extends ContentProvider
 {
 
 	// The URI Matcher used by this content provider.
-	private static final UriMatcher sUriMatcher = buildUriMatcher();
-	private WeatherDbHelper mOpenHelper;
+	private static final UriMatcher _uriMatcher = buildUriMatcher();
+	private WeatherDbHelper _weatherDbHelper;
 
 	static final int WEATHER = 100;
 	static final int WEATHER_WITH_LOCATION = 101;
 	static final int WEATHER_WITH_LOCATION_AND_DATE = 102;
 	static final int LOCATION = 300;
 
-	private static final SQLiteQueryBuilder sWeatherByLocationSettingQueryBuilder;
+	private static final SQLiteQueryBuilder _weatherByLocationSettingQueryBuilder;
 
 	static
 	{
-		sWeatherByLocationSettingQueryBuilder = new SQLiteQueryBuilder();
-		sWeatherByLocationSettingQueryBuilder.setTables(
+		_weatherByLocationSettingQueryBuilder = new SQLiteQueryBuilder();
+		_weatherByLocationSettingQueryBuilder.setTables(
 				WeatherContract.WeatherEntry.TABLE_NAME + " INNER JOIN " +
 						WeatherContract.LocationEntry.TABLE_NAME +
 						" ON " + WeatherContract.WeatherEntry.TABLE_NAME +
@@ -81,7 +81,7 @@ public class WeatherProvider extends ContentProvider
 			selection = sLocationSettingWithStartDateSelection;
 		}
 
-		return sWeatherByLocationSettingQueryBuilder.query(mOpenHelper.getReadableDatabase(),
+		return _weatherByLocationSettingQueryBuilder.query(_weatherDbHelper.getReadableDatabase(),
 				projection,
 				selection,
 				selectionArgs,
@@ -97,7 +97,7 @@ public class WeatherProvider extends ContentProvider
 		String locationSetting = WeatherContract.WeatherEntry.getLocationSettingFromUri(uri);
 		long date = WeatherContract.WeatherEntry.getDateFromUri(uri);
 
-		return sWeatherByLocationSettingQueryBuilder.query(mOpenHelper.getReadableDatabase(),
+		return _weatherByLocationSettingQueryBuilder.query(_weatherDbHelper.getReadableDatabase(),
 				projection,
 				sLocationSettingAndDaySelection,
 				new String[]{locationSetting, Long.toString(date)},
@@ -141,7 +141,7 @@ public class WeatherProvider extends ContentProvider
 	@Override
 	public boolean onCreate()
 	{
-		mOpenHelper = new WeatherDbHelper(getContext());
+		_weatherDbHelper = new WeatherDbHelper(getContext());
 		return true;
 	}
 
@@ -155,7 +155,7 @@ public class WeatherProvider extends ContentProvider
 	{
 
 		// Use the Uri Matcher to determine what kind of URI this is.
-		final int match = sUriMatcher.match(uri);
+		final int match = _uriMatcher.match(uri);
 
 		switch (match)
 		{
@@ -179,7 +179,7 @@ public class WeatherProvider extends ContentProvider
 		// Here's the switch statement that, given a URI, will determine what kind of request it is,
 		// and query the database accordingly.
 		Cursor retCursor;
-		switch (sUriMatcher.match(uri))
+		switch (_uriMatcher.match(uri))
 		{
 			// "weather/*/*"
 			case WEATHER_WITH_LOCATION_AND_DATE:
@@ -196,7 +196,7 @@ public class WeatherProvider extends ContentProvider
 			// "weather"
 			case WEATHER:
 			{
-				retCursor = mOpenHelper.getReadableDatabase().query(
+				retCursor = _weatherDbHelper.getReadableDatabase().query(
 						WeatherContract.WeatherEntry.TABLE_NAME,
 						projection,
 						selection,
@@ -210,7 +210,7 @@ public class WeatherProvider extends ContentProvider
 			// "location"
 			case LOCATION:
 			{
-				retCursor = mOpenHelper.getReadableDatabase().query(
+				retCursor = _weatherDbHelper.getReadableDatabase().query(
 						WeatherContract.LocationEntry.TABLE_NAME,
 						projection,
 						selection,
@@ -235,8 +235,8 @@ public class WeatherProvider extends ContentProvider
 	@Override
 	public Uri insert(Uri uri, ContentValues values)
 	{
-		final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-		final int match = sUriMatcher.match(uri);
+		final SQLiteDatabase db = _weatherDbHelper.getWritableDatabase();
+		final int match = _uriMatcher.match(uri);
 		Uri returnUri;
 
 		switch (match)
@@ -280,11 +280,11 @@ public class WeatherProvider extends ContentProvider
 	public int delete(Uri uri, String selection, String[] selectionArgs)
 	{
 		// Student: Start by getting a writable database
-		final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+		final SQLiteDatabase db = _weatherDbHelper.getWritableDatabase();
 
 		// Student: Use the uriMatcher to match the WEATHER and LOCATION URI's we are going to
 		// handle.  If it doesn't match these, throw an UnsupportedOperationException.
-		final int match = sUriMatcher.match(uri);
+		final int match = _uriMatcher.match(uri);
 		int rowsDeleted;
 
 		//this makes delete all rows return the umber of rows deleted
@@ -329,11 +329,11 @@ public class WeatherProvider extends ContentProvider
 	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs)
 	{
 		// Student: Start by getting a writable database
-		final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+		final SQLiteDatabase db = _weatherDbHelper.getWritableDatabase();
 
 		// Student: Use the uriMatcher to match the WEATHER and LOCATION URI's we are going to
 		// handle.  If it doesn't match these, throw an UnsupportedOperationException.
-		final int match = sUriMatcher.match(uri);
+		final int match = _uriMatcher.match(uri);
 		int rowsUpdated;
 
 		//this makes delete all rows return the umber of rows deleted
@@ -366,8 +366,8 @@ public class WeatherProvider extends ContentProvider
 	@Override
 	public int bulkInsert(Uri uri, ContentValues[] values)
 	{
-		final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-		final int match = sUriMatcher.match(uri);
+		final SQLiteDatabase db = _weatherDbHelper.getWritableDatabase();
+		final int match = _uriMatcher.match(uri);
 		switch (match)
 		{
 			case WEATHER:
