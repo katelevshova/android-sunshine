@@ -28,9 +28,11 @@ public class TestDb extends AndroidTestCase
 	public static final String LOG_TAG = TestDb.class.getSimpleName();
 
 	// Since we want each test to start with a clean slate
-	void deleteTheDatabase()
+	boolean deleteTheDatabase()
 	{
-		mContext.deleteDatabase(WeatherDbHelper.DATABASE_NAME);
+		SQLiteDatabase db = WeatherDbHelper.getInstance(mContext).getWritableDatabase();
+		db.close();
+		return mContext.deleteDatabase(WeatherDbHelper.DATABASE_NAME);
 	}
 
 	/*
@@ -57,8 +59,11 @@ public class TestDb extends AndroidTestCase
 		tableNameHashSet.add(WeatherContract.WeatherEntry.TABLE_NAME);
 
 		mContext.deleteDatabase(WeatherDbHelper.DATABASE_NAME);
-		SQLiteDatabase db = new WeatherDbHelper(
-				this.mContext).getWritableDatabase();
+
+		assertEquals(true, deleteTheDatabase());
+
+		SQLiteDatabase db = WeatherDbHelper.getInstance(mContext).getWritableDatabase();
+
 		assertEquals(true, db.isOpen());
 
 		// have we created the tables we want?
@@ -192,7 +197,7 @@ public class TestDb extends AndroidTestCase
 	public long insertLocation()
 	{
 		// First step: Get reference to writable database
-		WeatherDbHelper weatherDbHelper = new WeatherDbHelper(getContext());
+		WeatherDbHelper weatherDbHelper = WeatherDbHelper.getInstance(getContext());
 		SQLiteDatabase database = weatherDbHelper.getWritableDatabase();
 
 		// Second step: Create ContentValues of what you want to insert

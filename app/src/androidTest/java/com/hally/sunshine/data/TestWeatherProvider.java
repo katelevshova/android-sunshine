@@ -94,7 +94,7 @@ public class TestWeatherProvider extends AndroidTestCase
 	 */
 	public void deleteAllRecordsFromDB()
 	{
-		WeatherDbHelper dbHelper = new WeatherDbHelper(mContext);
+		WeatherDbHelper dbHelper =  WeatherDbHelper.getInstance(mContext);
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
 		db.delete(WeatherEntry.TABLE_NAME, null, null);
@@ -201,7 +201,7 @@ public class TestWeatherProvider extends AndroidTestCase
 	public void testBasicWeatherQuery()
 	{
 		// insert our test records into the database
-		WeatherDbHelper dbHelper = new WeatherDbHelper(mContext);
+		WeatherDbHelper dbHelper = WeatherDbHelper.getInstance(mContext);
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
 		ContentValues testValues = TestUtilities.createNorthPoleLocationValues();
@@ -236,7 +236,7 @@ public class TestWeatherProvider extends AndroidTestCase
 	public void testBasicLocationQueries()
 	{
 		// insert our test records into the database
-		WeatherDbHelper dbHelper = new WeatherDbHelper(mContext);
+		WeatherDbHelper dbHelper = WeatherDbHelper.getInstance(mContext);
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
 		ContentValues testValues = TestUtilities.createNorthPoleLocationValues();
