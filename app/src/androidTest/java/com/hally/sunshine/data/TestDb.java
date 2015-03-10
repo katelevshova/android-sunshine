@@ -25,7 +25,7 @@ import java.util.HashSet;
 public class TestDb extends AndroidTestCase
 {
 
-	public static final String LOG_TAG = TestDb.class.getSimpleName();
+	public static final String CLASS_NAME = TestDb.class.getSimpleName();
 
 	// Since we want each test to start with a clean slate
 	boolean deleteTheDatabase()
