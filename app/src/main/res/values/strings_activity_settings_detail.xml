@@ -8,12 +8,12 @@
 	<string name="pref_location_key" translatable="false">location</string>
 
 	<!-- Pick your units -->
-	<string name="pref_temp_units_label">Pick your units</string>
+	<string name="pref_units_label">Pick your units</string>
 	<string name="pref_units_label_metric">Metric</string>
 	<string name="pref_units_label_imperial">Imperial</string>
-	<string name="pref_temp_units_default" translatable="false">@string/pref_units_label_metric</string>
+	<string name="pref_units_default" translatable="false">@string/pref_units_label_metric</string>
 	<!--Key name for temperature unit preference in SharedPreferences-->
-	<string name="pref_temp_units_key" translatable="false">units</string>
+	<string name="pref_units_key" translatable="false">units</string>
 
 	<string name="pref_units_metric">metric</string>
 	<string name="pref_units_imperial">imperial</string>
