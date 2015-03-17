@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.hally.sunshine.R;
 import com.hally.sunshine.util.FormatUtil;
+import com.hally.sunshine.view.MainForecastFragment;
 
 /**
  * {@link ForecastAdapter} exposes a list of weather forecasts from a {@link
@@ -39,16 +40,12 @@ public class ForecastAdapter extends CursorAdapter
 	*/
 	private String convertCursorRowToUXFormat(Cursor cursor)
 	{
-		// get row indices for our cursor
-		int idx_max_temp = cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_MAX_TEMP);
-		int idx_min_temp = cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_MIN_TEMP);
-		int idx_date = cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_DATE);
-		int idx_short_desc = cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_SHORT_DESC);
 		String highAndLow = formatHighLows(
-				cursor.getDouble(idx_max_temp),
-				cursor.getDouble(idx_min_temp));
-		return FormatUtil.formatDate(cursor.getLong(idx_date)) +
-				" - " + cursor.getString(idx_short_desc) +
+				cursor.getDouble(MainForecastFragment.COL_WEATHER_MAX_TEMP),
+				cursor.getDouble(MainForecastFragment.COL_WEATHER_MIN_TEMP));
+
+		return FormatUtil.formatDate(cursor.getLong(MainForecastFragment.COL_WEATHER_DATE)) +
+				" - " + cursor.getString(MainForecastFragment.COL_WEATHER_DESC) +
 				" - " + highAndLow;
 	}
 

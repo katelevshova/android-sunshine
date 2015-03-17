@@ -143,7 +143,8 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]>
 			double cityLongitude = cityCoord.getDouble(OWM_LONGITUDE);
 			long locationId = addLocation(locationSetting, cityName, cityLatitude, cityLongitude);
 			// Insert the new weather information into the database
-			Vector<ContentValues> contentValuesVector = new Vector<ContentValues>(weatherArray.length());
+			Vector<ContentValues> contentValuesVector =
+					new Vector<ContentValues>(weatherArray.length());
 			// OWM returns daily forecasts based upon the local time of the city that is being
 			// asked for, which means that we need to know the GMT offset to translate this data
 			// properly.
