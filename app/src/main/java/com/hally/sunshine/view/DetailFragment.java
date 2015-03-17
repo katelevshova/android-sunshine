@@ -41,34 +41,14 @@ public class DetailFragment extends Fragment
 		Intent intent = getActivity().getIntent();
 		View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
-		if (intent != null && intent.hasExtra(Intent.EXTRA_TEXT))
+		if (intent != null)
 		{
-			_forecastStr = intent.getStringExtra(Intent.EXTRA_TEXT);
+			_forecastStr = intent.getDataString();
 			((TextView) rootView.findViewById(R.id.detail_text)).setText(_forecastStr);
 		}
 
 		return rootView;
 	}
-
-	//TODO: fix later - need to restore _forecastStr
-
-	@Override
-	public void onSaveInstanceState(Bundle savedInstanceState)
-	{
-		savedInstanceState.putString(FORECAST_STRING, _forecastStr);
-		super.onSaveInstanceState(savedInstanceState);
-	}
-
-	//@Override
-	/*public void onViewStateRestored(Bundle savedInstanceState)
-	{
-		super.onViewStateRestored(savedInstanceState);
-
-		if (savedInstanceState != null)
-		{
-			setForecastString(savedInstanceState.getString(FORECAST_STRING));
-		}
-	}*/
 
 	/**
 	 * Sets text to <code>detail_text</code>

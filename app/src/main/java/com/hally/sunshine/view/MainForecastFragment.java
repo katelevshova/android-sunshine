@@ -1,5 +1,6 @@
 package com.hally.sunshine.view;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.hally.sunshine.FetchWeatherTask;
@@ -111,25 +113,29 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 				.listview_forecast);
 		listViewForecast.setAdapter(_forecastAdapter);
 
-		//listViewForecast.setOnItemClickListener(onForecastItemClickListener);
+		listViewForecast.setOnItemClickListener(onForecastItemClickListener);
 
 		return rootView;
 	}
 
-	/**private AdapterView.OnItemClickListener onForecastItemClickListener =
-	 new AdapterView.OnItemClickListener()
-	 {
-	 @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-	 {
-	 String forecastText = _forecastAdapter.getItem(position);
-	 /*Toast toast = Toast.makeText(getActivity(), forecastText, Toast.LENGTH_SHORT);
-	 toast.show();*/
+	private AdapterView.OnItemClickListener onForecastItemClickListener =
+			new AdapterView.OnItemClickListener()
+	{
+		@Override
+		public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
+		{
+			/*Toast toast = Toast.makeText(getActivity(), forecastText, Toast.LENGTH_SHORT);
+			toast.show();*/
+			String locationStr = FormatUtil.getPreferredLocation(getActivity());
+			Cursor cursor = (Cursor)adapterView.getItemAtPosition(position);
 
-	/**
-	 * Intent launchDetailActivity = new Intent(getActivity(), DetailActivity.class);
-	 * launchDetailActivity.putExtra(Intent.EXTRA_TEXT, forecastText);
-	 * startActivity(launchDetailActivity); } };
-	 */
+			Intent launchDetailActivity = new Intent(getActivity(), DetailActivity.class);
+			launchDetailActivity.setData(WeatherContract.WeatherEntry
+					.buildWeatherLocationWithDate(locationStr, cursor.getLong(COL_WEATHER_DATE)));
+			startActivity(launchDetailActivity);
+		}
+	};
+
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
@@ -186,7 +192,8 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 		String sortOrder = WeatherContract.WeatherEntry.COLUMN_DATE + " ASC";
 		Uri weatherForLocationUri = WeatherContract.WeatherEntry.buildWeatherLocationWithStartDate(
 				locationSetting, System.currentTimeMillis());
-		return new CursorLoader(getActivity(), weatherForLocationUri, FORECAST_COLUMNS, null, null, sortOrder);
+		return new CursorLoader(getActivity(), weatherForLocationUri, FORECAST_COLUMNS, null, null,
+				sortOrder);
 	}
 
 	@Override
