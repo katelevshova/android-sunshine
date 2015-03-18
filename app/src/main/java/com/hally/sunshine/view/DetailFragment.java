@@ -1,8 +1,12 @@
 package com.hally.sunshine.view;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.ShareActionProvider;
 import android.view.LayoutInflater;
@@ -14,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hally.sunshine.R;
+import com.hally.sunshine.data.WeatherContract;
+import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.TraceUtil;
 
 import org.apache.http.protocol.HTTP;
@@ -22,12 +28,28 @@ import org.apache.http.protocol.HTTP;
  * @author Kateryna Levshova
  * @date 26.02.2015
  */
-public class DetailFragment extends Fragment
+public class DetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>
 {
 	private final String CLASS_NAME = DetailFragment.class.getSimpleName();
-	static final String FORECAST_STRING = "forecastForOneDay";
 	private static final String FORECAST_SHARE_HASHTAG = "#SunshineApp";
 	private String _forecastStr;
+	private ShareActionProvider _shareActionProvider;
+
+	private static final String[] FORECAST_COLUMNS = {
+			WeatherContract.WeatherEntry.TABLE_NAME + "." + WeatherContract.WeatherEntry._ID,
+			WeatherContract.WeatherEntry.COLUMN_DATE,
+			WeatherContract.WeatherEntry.COLUMN_SHORT_DESC,
+			WeatherContract.WeatherEntry.COLUMN_MAX_TEMP,
+			WeatherContract.WeatherEntry.COLUMN_MIN_TEMP,
+	};
+	// these constants correspond to the projection defined above, and must change if the
+	// projection changes
+	private static final int COL_WEATHER_ID = 0;
+	private static final int COL_WEATHER_DATE = 1;
+	private static final int COL_WEATHER_DESC = 2;
+	private static final int COL_WEATHER_MAX_TEMP = 3;
+	private static final int COL_WEATHER_MIN_TEMP = 4;
+
 
 	public DetailFragment()
 	{
@@ -52,6 +74,7 @@ public class DetailFragment extends Fragment
 
 	/**
 	 * Sets text to <code>detail_text</code>
+	 *
 	 * @param str
 	 */
 	private void setForecastString(String str)
@@ -62,6 +85,7 @@ public class DetailFragment extends Fragment
 
 	/**
 	 * Creates share intent with "text/plain" MIME type and forecast extra text
+	 *
 	 * @return
 	 */
 	private Intent createShareForecastIntent()
@@ -94,5 +118,59 @@ public class DetailFragment extends Fragment
 		{
 			TraceUtil.logD(CLASS_NAME, "onCreateOptionsMenu", "Share Action provider is null?");
 		}
+	}
+
+	@Override
+	public Loader<Cursor> onCreateLoader(int id, Bundle args)
+	{
+		TraceUtil.logV(CLASS_NAME, "onCreateLoader", "");
+		Intent intent = getActivity().getIntent();
+		if (intent == null)
+		{
+			return null;
+		}
+
+		// Now create and return a CursorLoader that will take care of
+		// creating a Cursor for the data being displayed.
+		return new CursorLoader(
+				getActivity(),
+				intent.getData(),
+				FORECAST_COLUMNS,
+				null,
+				null,
+				null
+		);
+	}
+
+	@Override
+	public void onLoadFinished(Loader<Cursor> loader, Cursor data)
+	{
+		TraceUtil.logV(CLASS_NAME, "onLoadFinished", "");
+
+		if (!data.moveToFirst())
+		{
+			return;
+		}
+
+		String dateString = FormatUtil.formatDate(data.getLong(COL_WEATHER_DATE));
+		String weatherDescription = data.getString(COL_WEATHER_DESC);
+		boolean isMetric = FormatUtil.isMetric(getActivity());
+		String high = FormatUtil.formatTemperature(data.getDouble(COL_WEATHER_MAX_TEMP), isMetric);
+		String low = FormatUtil.formatTemperature(data.getDouble(COL_WEATHER_MIN_TEMP), isMetric);
+		_forecastStr = String.format("%s - %s - %s/%s", dateString, weatherDescription, high, low);
+		TextView detailTextView = (TextView) getView().findViewById(R.id.detail_text);
+		detailTextView.setText(_forecastStr);
+
+		// If onCreateOptionsMenu has already happened, we need to update the share intent now.
+		if (_shareActionProvider != null)
+		{
+			_shareActionProvider.setShareIntent(createShareForecastIntent());
+		}
+	}
+
+	@Override
+	public void onLoaderReset(Loader<Cursor> loader)
+	{
+
 	}
 }
