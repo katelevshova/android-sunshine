@@ -119,19 +119,21 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	}
 
 	private AdapterView.OnItemClickListener onForecastItemClickListener =
-			new AdapterView.OnItemClickListener()
+	new AdapterView.OnItemClickListener()
 	{
 		@Override
-		public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
+		public void onItemClick(AdapterView<?> adapterView, View view, int position,
+								long id)
 		{
-			/*Toast toast = Toast.makeText(getActivity(), forecastText, Toast.LENGTH_SHORT);
-			toast.show();*/
+	/*Toast toast = Toast.makeText(getActivity(), forecastText, Toast.LENGTH_SHORT);
+	toast.show();*/
 			String locationStr = FormatUtil.getPreferredLocation(getActivity());
-			Cursor cursor = (Cursor)adapterView.getItemAtPosition(position);
+			Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
 
 			Intent launchDetailActivity = new Intent(getActivity(), DetailActivity.class);
 			launchDetailActivity.setData(WeatherContract.WeatherEntry
-					.buildWeatherLocationWithDate(locationStr, cursor.getLong(COL_WEATHER_DATE)));
+					.buildWeatherLocationWithDate(locationStr,
+							cursor.getLong(COL_WEATHER_DATE)));
 			startActivity(launchDetailActivity);
 		}
 	};
@@ -170,11 +172,11 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 		fetchWeatherTask.execute(location);
 	}
 
-	@Override
-	public void onStart()
+	// since we read the location when we create the loader, all we need to do is restart things
+	void onLocationChanged()
 	{
-		super.onStart();
 		updateWeather();
+		getLoaderManager().restartLoader(FORECAST_LOADER_ID, null, this);
 	}
 
 	@Override

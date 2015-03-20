@@ -1,31 +1,34 @@
 package com.hally.sunshine.view;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.hally.sunshine.R;
+import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.TraceUtil;
 
 
 public class MainForecastActivity extends ActionBarActivity
 {
 	private final String CLASS_NAME = MainForecastActivity.class.getSimpleName();
+	private final String FORECASTFRAGMENT_TAG = "FFTAG";
+	private String _location;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		_location = FormatUtil.getPreferredLocation(this);
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		if (savedInstanceState == null)
 		{
 			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new MainForecastFragment())
+					.add(R.id.container, new MainForecastFragment(), FORECASTFRAGMENT_TAG)
 					.commit();
 		}
 	}
@@ -64,9 +67,7 @@ public class MainForecastActivity extends ActionBarActivity
 
 	private void openPreferredLocationMap()
 	{
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-		String location = preferences.getString(getString(R.string.pref_location_key),
-				getString(R.string.pref_location_default));
+		String location = FormatUtil.getPreferredLocation(this);
 
 		// Using the URI scheme for showing a location found on a map. This super-handy
 		// intent can is detailed in the "Common Intents" page of Android's developer site:
@@ -88,5 +89,23 @@ public class MainForecastActivity extends ActionBarActivity
 					"Couldn't call " + location + ", no receiving apps installed!");
 		}
 
+	}
+
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+		String location = FormatUtil.getPreferredLocation(this);
+// update the location in our second pane using the fragment manager
+		if (location != null && !location.equals(_location))
+		{
+			MainForecastFragment mainForecastFragment = (MainForecastFragment) getSupportFragmentManager()
+					.findFragmentByTag(FORECASTFRAGMENT_TAG);
+			if (mainForecastFragment != null)
+			{
+				mainForecastFragment.onLocationChanged();
+			}
+			_location = location;
+		}
 	}
 }
