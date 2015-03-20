@@ -3,6 +3,7 @@ package com.hally.sunshine.view;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -34,6 +35,8 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 	private static final String FORECAST_SHARE_HASHTAG = "#SunshineApp";
 	private String _forecastStr;
 	private ShareActionProvider _shareActionProvider;
+	private static final int DETAIL_LOADER_ID = 0;
+
 
 	private static final String[] FORECAST_COLUMNS = {
 			WeatherContract.WeatherEntry.TABLE_NAME + "." + WeatherContract.WeatherEntry._ID,
@@ -60,27 +63,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState)
 	{
-		Intent intent = getActivity().getIntent();
-		View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
-
-		if (intent != null)
-		{
-			_forecastStr = intent.getDataString();
-			((TextView) rootView.findViewById(R.id.detail_text)).setText(_forecastStr);
-		}
-
-		return rootView;
-	}
-
-	/**
-	 * Sets text to <code>detail_text</code>
-	 *
-	 * @param str
-	 */
-	private void setForecastString(String str)
-	{
-		((TextView) getActivity().findViewById(R.id.detail_text))
-				.setText(str);
+		return inflater.inflate(R.layout.fragment_detail, container, false);
 	}
 
 	/**
@@ -118,6 +101,13 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 		{
 			TraceUtil.logD(CLASS_NAME, "onCreateOptionsMenu", "Share Action provider is null?");
 		}
+	}
+
+	@Override
+	public void onActivityCreated(@Nullable Bundle savedInstanceState)
+	{
+		getLoaderManager().initLoader(DETAIL_LOADER_ID, null, this);
+		super.onActivityCreated(savedInstanceState);
 	}
 
 	@Override
