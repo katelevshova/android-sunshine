@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.hally.sunshine.R;
 import com.hally.sunshine.data.WeatherContract;
 import com.hally.sunshine.util.FormatUtil;
+import com.hally.sunshine.util.ImageResouceUtil;
 import com.hally.sunshine.util.TraceUtil;
 
 import org.apache.http.protocol.HTTP;
@@ -178,7 +179,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 			int weatherId = data.getInt(COL_WEATHER_CONDITION_ID);
 			
 			// Use placeholder Image
-			_iconView.setImageResource(R.mipmap.ic_launcher);
+			_iconView.setImageResource(ImageResouceUtil.getArtResourceForWeatherCondition(weatherId));
 			
 			// Read date from cursor and update views for day of week and date
 			long date = data.getLong(COL_WEATHER_DATE);

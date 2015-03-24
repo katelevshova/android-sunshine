@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.hally.sunshine.R;
 import com.hally.sunshine.util.FormatUtil;
+import com.hally.sunshine.util.ImageResouceUtil;
 import com.hally.sunshine.util.ListItemViewHolder;
 import com.hally.sunshine.view.MainForecastFragment;
 
@@ -102,8 +103,19 @@ public class ForecastAdapter extends CursorAdapter
 	public void bindView(View view, Context context, Cursor cursor)
 	{
 		ListItemViewHolder listItemViewHolder = (ListItemViewHolder) view.getTag();
+		int weatherId = cursor.getInt(MainForecastFragment.COL_WEATHER_CONDITION_ID);
 
-		listItemViewHolder.iconView.setImageResource(R.mipmap.ic_launcher);
+		int viewType = getItemViewType(cursor.getPosition());
+
+		switch (viewType)
+		{
+			case VIEW_TYPE_TODAY:
+				listItemViewHolder.iconView.setImageResource(ImageResouceUtil.getArtResourceForWeatherCondition(weatherId));
+				break;
+			case VIEW_TYPE_FUTURE_DAY:
+				listItemViewHolder.iconView.setImageResource(ImageResouceUtil.getIconResourceForWeatherCondition(weatherId));
+				break;
+		}
 
 		// Read date from cursor
 		long dateInMillis = cursor.getLong(MainForecastFragment.COL_WEATHER_DATE);
