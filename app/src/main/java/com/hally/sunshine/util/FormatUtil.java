@@ -114,6 +114,8 @@ public class FormatUtil
 		}
 	}
 
+
+
 	public static String getFormattedWind(Context context, float windSpeed, float degrees)
 	{
 		int windFormat;
