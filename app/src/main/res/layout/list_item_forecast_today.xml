@@ -2,64 +2,53 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
-			  android:paddingLeft="@dimen/today_item_left_margin"
+			  android:background="@color/today_item_background"
 			  android:minHeight="?android:attr/listPreferredItemHeight"
 			  android:orientation="horizontal"
-			  android:background="@color/today_item_background">
+			  android:paddingLeft="@dimen/today_item_left_margin">
 
 	<LinearLayout android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:orientation="vertical"
+				  android:layout_weight="1"
 				  android:gravity="left|center_horizontal"
-		android:layout_weight="1"
-		>
+				  android:orientation="vertical">
 
 		<TextView android:id="@+id/list_item_date_textview"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
 				  android:text="Today, June 24"
-				  android:textColor="#ffffffff"
-				  android:textSize="22sp"
-			/>
+				  android:theme="@style/SansSerifCondensed.White.General"/>
 
 		<TextView android:id="@+id/list_item_high_textview"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
 				  android:text="81"
-				  android:textColor="#ffffffff"
-				  android:textSize="72sp"/>
+				  android:theme="@style/SansSerifLight.White.Max"/>
 
 		<TextView android:id="@+id/list_item_low_textview"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:text="30"
-				  android:textColor="#ffffffff"
-				  android:textSize="36sp"
-			/>
+				  android:theme="@style/SansSerifLight.White.Min"
+				  android:text="30"/>
 	</LinearLayout>
 
 	<LinearLayout android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:orientation="vertical"
-				  android:gravity="center_horizontal"
+				  android:layout_gravity="center_vertical"
 				  android:layout_weight="0"
-				  android:layout_gravity="center_vertical">
+				  android:gravity="center_horizontal"
+				  android:orientation="vertical">
 
 		<ImageView android:id="@+id/list_item_icon"
 				   android:layout_width="@dimen/art_image_size"
 				   android:layout_height="@dimen/art_image_size"
-				   android:src="@mipmap/art_clear"
-			/>
+				   android:src="@mipmap/art_clear"/>
 
 		<TextView android:id="@+id/list_item_forecast_textview"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:text="Clear"
-				  android:textColor="#ffffffff"
-				  android:textSize="22sp"
-			/>
-
-
+				  android:theme="@style/SansSerifCondensed.White.General"
+				  android:text="Clear"/>
 	</LinearLayout>
 
 </LinearLayout>

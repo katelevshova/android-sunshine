@@ -34,7 +34,7 @@
 		<item name="android:textSize">@dimen/max_temp_today</item>
 	</style>
 
-	<style name="SansSerifCondensed.White.Min" >
+	<style name="SansSerifLight.White.Min" >
 		<item name="android:textSize">@dimen/min_temp_today</item>
 	</style>
 
