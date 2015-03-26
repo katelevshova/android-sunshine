@@ -24,13 +24,15 @@
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
 				  android:text="Tomorrow"
-				  android:textSize="22sp"/>
+				  android:textSize="22sp"
+				  android:textColor="#ff313131"/>
 
 		<TextView android:id="@+id/list_item_forecast_textview"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
 				  android:text="Clear"
-				  android:textSize="14sp"/>
+				  android:textSize="14sp"
+				  android:textColor="#646464"/>
 
 	</LinearLayout>
 
@@ -45,13 +47,15 @@
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
 				  android:text="81"
-				  android:textSize="22sp"/>
+				  android:textSize="22sp"
+				  android:textColor="#ff313131"/>
 
 		<TextView android:id="@+id/list_item_low_textview"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
 				  android:text="30"
-				  android:textSize="14sp"/>
+				  android:textSize="14sp"
+				  android:textColor="#646464"/>
 
 	</LinearLayout>
 

@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
-			  android:padding="@dimen/activity_vertical_margin"
+			  android:paddingLeft="@dimen/today_item_left_margin"
 			  android:minHeight="?android:attr/listPreferredItemHeight"
 			  android:orientation="horizontal"
-			  android:background="#ff1da9f6">
+			  android:background="@color/today_item_background">
 
 	<LinearLayout android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
@@ -19,7 +19,8 @@
 				  android:layout_height="wrap_content"
 				  android:text="Today, June 24"
 				  android:textColor="#ffffffff"
-				  android:textSize="22sp"/>
+				  android:textSize="22sp"
+			/>
 
 		<TextView android:id="@+id/list_item_high_textview"
 				  android:layout_width="wrap_content"
@@ -33,7 +34,8 @@
 				  android:layout_height="wrap_content"
 				  android:text="30"
 				  android:textColor="#ffffffff"
-				  android:textSize="36sp"/>
+				  android:textSize="36sp"
+			/>
 	</LinearLayout>
 
 	<LinearLayout android:layout_width="wrap_content"
@@ -44,8 +46,8 @@
 				  android:layout_gravity="center_vertical">
 
 		<ImageView android:id="@+id/list_item_icon"
-				   android:layout_width="wrap_content"
-				   android:layout_height="wrap_content"
+				   android:layout_width="@dimen/art_image_size"
+				   android:layout_height="@dimen/art_image_size"
 				   android:src="@mipmap/art_clear"
 			/>
 

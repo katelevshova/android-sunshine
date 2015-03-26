@@ -5,4 +5,41 @@
 		<!-- Customize your theme here. -->
 	</style>
 
+	<style name="SansSerifLight" >
+		<item name="android:fontFamily">sans-serif-light</item>
+	</style>
+
+	<style name="SansSerifCondensed" >
+		<item name="android:fontFamily">sans-serif-condensed</item>
+	</style>
+
+	<style name="SansSerifLight.White">
+		<item name="android:textColor">@color/today_item_text_color</item>
+	</style>
+
+	<style name="SansSerifCondensed.White" >
+		<item name="android:textColor">@color/today_item_text_color</item>
+	</style>
+
+	<style name="SansSerifLight.DarkGeneral">
+		<item name="android:textColor">@color/general_text_color</item>
+	</style>
+
+	<style name="SansSerifCondensed.DarkGeneral" >
+		<item name="android:textColor">@color/additional_text_color</item>
+	</style>
+
+
+	<style name="SansSerifLight.White.Max">
+		<item name="android:textSize">@dimen/max_temp_today</item>
+	</style>
+
+	<style name="SansSerifCondensed.White.Min" >
+		<item name="android:textSize">@dimen/min_temp_today</item>
+	</style>
+
+	<style name="SansSerifCondensed.White.General" >
+		<item name="android:textSize">@dimen/general_info</item>
+	</style>
+
 </resources>
