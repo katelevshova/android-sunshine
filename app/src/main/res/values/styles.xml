@@ -13,33 +13,70 @@
 		<item name="android:fontFamily">sans-serif-condensed</item>
 	</style>
 
+	<!-- For MainForecastFragment and its list_item_forecast_today elements-->
+
 	<style name="SansSerifLight.White">
-		<item name="android:textColor">@color/today_item_text_color</item>
+		<item name="android:textColor">@color/tc_today_item</item>
 	</style>
 
 	<style name="SansSerifCondensed.White" >
-		<item name="android:textColor">@color/today_item_text_color</item>
+		<item name="android:textColor">@color/tc_today_item</item>
 	</style>
-
-	<style name="SansSerifLight.DarkGeneral">
-		<item name="android:textColor">@color/general_text_color</item>
-	</style>
-
-	<style name="SansSerifCondensed.DarkGeneral" >
-		<item name="android:textColor">@color/additional_text_color</item>
-	</style>
-
 
 	<style name="SansSerifLight.White.Max">
-		<item name="android:textSize">@dimen/max_temp_today</item>
+		<item name="android:textSize">@dimen/ts_max_temp_today</item>
 	</style>
 
 	<style name="SansSerifLight.White.Min" >
-		<item name="android:textSize">@dimen/min_temp_today</item>
+		<item name="android:textSize">@dimen/ts_min_temp_today</item>
 	</style>
 
 	<style name="SansSerifCondensed.White.General" >
-		<item name="android:textSize">@dimen/general_info</item>
+		<item name="android:textSize">@dimen/ts_general_info</item>
 	</style>
+
+	<!-- For MainForecastFragment and its list_item_forecast elements-->
+
+	<style name="SansSerifCondensed.Black" >
+		<item name="android:textColor">@color/tc_general</item>
+	</style>
+
+	<style name="SansSerifCondensed.Black.General" >
+		<item name="android:textSize">@dimen/ts_general_info</item>
+	</style>
+
+	<style name="SansSerifCondensed.Grey" >
+		<item name="android:textColor">@color/tc_additional</item>
+	</style>
+
+	<style name="SansSerifCondensed.Grey.GeneralMainForeccast" >
+		<item name="android:textSize">@dimen/ts_additional_info</item>
+	</style>
+
+	<!-- For DetailFragment -->
+	<style name="SansSerifLight.Black" >
+		<item name="android:textColor">@color/tc_general</item>
+	</style>
+
+	<style name="SansSerifLight.Black.Max" >
+		<item name="android:textSize">@dimen/ts_max_temp_details</item>
+	</style>
+
+	<style name="SansSerifLight.Grey" >
+		<item name="android:textColor">@color/tc_additional</item>
+	</style>
+
+	<style name="SansSerifLight.Grey.Min" >
+		<item name="android:textSize">@dimen/ts_min_temp_details</item>
+	</style>
+
+	<style name="SansSerifLight.General" >
+		<item name="android:textSize">@dimen/ts_general_info</item>
+	</style>
+
+	<style name="SansSerifCondensed.Grey.GeneralDetails" >
+		<item name="android:textSize">@dimen/ts_forecast</item>
+	</style>
+
 
 </resources>

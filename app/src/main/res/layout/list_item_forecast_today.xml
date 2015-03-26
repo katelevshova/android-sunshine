@@ -22,14 +22,14 @@
 		<TextView android:id="@+id/list_item_high_textview"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:text="81"
+				  android:text="81°"
 				  android:theme="@style/SansSerifLight.White.Max"/>
 
 		<TextView android:id="@+id/list_item_low_textview"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
 				  android:theme="@style/SansSerifLight.White.Min"
-				  android:text="30"/>
+				  android:text="30°"/>
 	</LinearLayout>
 
 	<LinearLayout android:layout_width="wrap_content"

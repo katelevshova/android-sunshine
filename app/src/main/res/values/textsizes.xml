@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="ts_max_temp_today">72sp</dimen>
+	<dimen name="ts_min_temp_today">36sp</dimen>
+	<dimen name="ts_max_temp_details">92sp</dimen>
+	<dimen name="ts_min_temp_details">48sp</dimen>
+	<dimen name="ts_general_info">22sp</dimen>
+	<dimen name="ts_additional_info">14sp</dimen>
+	<dimen name="ts_details_today_header">24sp</dimen>
+	<dimen name="ts_details_date">16sp</dimen>
+	<dimen name="ts_forecast">22sp</dimen>
+</resources>

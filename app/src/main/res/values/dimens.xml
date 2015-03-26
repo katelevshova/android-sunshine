@@ -4,11 +4,5 @@
 	<dimen name="activity_vertical_margin">16dp</dimen>
 	<dimen name="art_image_size">100dp</dimen>
 	<dimen name="today_item_left_margin">60dp</dimen>
-
-	<dimen name="max_temp_today">72sp</dimen>
-	<dimen name="min_temp_today">36sp</dimen>
-	<dimen name="max_temp_details">92sp</dimen>
-	<dimen name="min_temp_details">48sp</dimen>
-	<dimen name="general_info">22sp</dimen>
-	<dimen name="additional_info">14sp</dimen>
+	<dimen name="details_marginBottom">4dp</dimen>
 </resources>

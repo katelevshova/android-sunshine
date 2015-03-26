@@ -16,16 +16,16 @@
 			android:id="@+id/detail_day_textview"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Tomorrow"
-			android:textSize="24sp"
-			android:textColor="#ff313131"/>
+			android:theme="@style/SansSerifCondensed.Black"
+			android:textSize="@dimen/ts_details_today_header"
+			android:text="Tomorrow"/>
 		<TextView
 			android:id="@+id/detail_date_textview"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="June 24"
-			android:textSize="16sp"
-			android:textColor="#646464"/>
+			android:theme="@style/SansSerifCondensed.Grey"
+			android:textSize="@dimen/ts_details_date"
+			android:text="June 24"/>
 
 		<!-- Main content: high, low, art, weather state -->
 		<LinearLayout
@@ -45,16 +45,14 @@
 					android:id="@+id/detail_high_textview"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="21°"
-					android:textSize="92sp"
-					android:textColor="#ff313131"/>
+					android:theme="@style/SansSerifLight.Black.Max"
+					android:text="21°"/>
 				<TextView
 					android:id="@+id/detail_low_textview"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="11°"
-					android:textSize="48sp"
-					android:textColor="#646464"/>
+					android:theme="@style/SansSerifLight.Grey.Min"
+					android:text="11°"/>
 
 			</LinearLayout>
 
@@ -73,9 +71,8 @@
 					android:id="@+id/detail_forecast_textview"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Clear"
-					android:textSize="22sp"
-					android:textColor="#646464"/>
+					android:theme="@style/SansSerifCondensed.Grey.GeneralDetails"
+					android:text="Clear"/>
 			</LinearLayout>
 		</LinearLayout>
 
@@ -84,24 +81,24 @@
 			android:id="@+id/detail_humidity_textview"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="48%"
-			android:textSize="22sp"
-			android:layout_marginBottom="4dp"/>
+			android:theme="@style/SansSerifLight.General"
+			android:layout_marginBottom="@dimen/details_marginBottom"
+			android:text="Humidity: 48%"/>
 
 		<TextView
 			android:id="@+id/detail_wind_textview"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="6 km/h NW"
-			android:textSize="22sp"
-			android:layout_marginBottom="4dp"/>
+			android:theme="@style/SansSerifLight.General"
+			android:layout_marginBottom="@dimen/details_marginBottom"
+			android:text="Wind: 6 km/h NW"/>
 
 		<TextView
 			android:id="@+id/detail_pressure_textview"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="1014"
-			android:textSize="22sp"/>
+			android:theme="@style/SansSerifLight.General"
+			android:text="Pressure: 1014 hPa"/>
 	</LinearLayout>
 
 </ScrollView>
