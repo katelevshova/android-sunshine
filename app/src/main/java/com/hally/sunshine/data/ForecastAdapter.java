@@ -110,10 +110,13 @@ public class ForecastAdapter extends CursorAdapter
 		switch (viewType)
 		{
 			case VIEW_TYPE_TODAY:
-				listItemViewHolder.iconView.setImageResource(ImageResouceUtil.getArtResourceForWeatherCondition(weatherId));
+				listItemViewHolder.iconView.setImageResource(
+						ImageResouceUtil.getArtResourceForWeatherCondition(weatherId));
 				break;
 			case VIEW_TYPE_FUTURE_DAY:
-				listItemViewHolder.iconView.setImageResource(ImageResouceUtil.getIconResourceForWeatherCondition(weatherId));
+				listItemViewHolder.iconView
+						.setImageResource(ImageResouceUtil.getIconResourceForWeatherCondition(
+								weatherId));
 				break;
 		}
 
@@ -134,11 +137,13 @@ public class ForecastAdapter extends CursorAdapter
 
 		// Read high temperature from cursor
 		double high = cursor.getDouble(MainForecastFragment.COL_WEATHER_MAX_TEMP);
-		listItemViewHolder.highTempView.setText(FormatUtil.formatTemperature(context, high, isMetric));
+		listItemViewHolder.highTempView
+				.setText(FormatUtil.formatTemperature(context, high, isMetric));
 
 		// Read low temperature from cursor
 		double low = cursor.getDouble(MainForecastFragment.COL_WEATHER_MIN_TEMP);
-		listItemViewHolder.lowTempView.setText(FormatUtil.formatTemperature(context, low, isMetric));
+		listItemViewHolder.lowTempView
+				.setText(FormatUtil.formatTemperature(context, low, isMetric));
 	}
 }
 
