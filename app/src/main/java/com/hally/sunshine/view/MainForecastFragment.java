@@ -92,20 +92,7 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState)
 	{
-		String locationSetting = FormatUtil.getPreferredLocation(getActivity());
-		// Sort order: Ascending, by date.
-		String sortOrder = WeatherContract.WeatherEntry.COLUMN_DATE + " ASC";
-		Uri weatherForLocationUri = WeatherContract.WeatherEntry.buildWeatherLocationWithStartDate(
-				locationSetting, System.currentTimeMillis());
-		Cursor cursor = getActivity().getContentResolver().query(weatherForLocationUri,
-				null, null, null, sortOrder);
-
-
-		// The CursorAdapter will take data from our cursor and populate the ListView
-		// However, we cannot use FLAG_AUTO_REQUERY since it is deprecated, so we will end
-		// up with an empty list the first time we run.
 		_forecastAdapter = new ForecastAdapter(getActivity(), null, 0);
-
 
 		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
@@ -137,7 +124,6 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 			startActivity(launchDetailActivity);
 		}
 	};
-
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
