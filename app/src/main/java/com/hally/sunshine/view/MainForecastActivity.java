@@ -15,21 +15,37 @@ import com.hally.sunshine.util.TraceUtil;
 public class MainForecastActivity extends ActionBarActivity
 {
 	private final String CLASS_NAME = MainForecastActivity.class.getSimpleName();
-	private final String FORECASTFRAGMENT_TAG = "FFTAG";
+	private static final String DETAILFRAGMENT_TAG = "DFTAG";
 	private String _location;
+	private boolean _isTwoPane = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		super.onCreate(savedInstanceState);
 		_location = FormatUtil.getPreferredLocation(this);
 
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		if (savedInstanceState == null)
+
+		if (findViewById(R.id.detail_container) != null)
 		{
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new MainForecastFragment(), FORECASTFRAGMENT_TAG)
-					.commit();
+			// The detail container view will be present only in the large-screen layouts
+			// (res/layout-sw600dp). If this view is present, then the activity should be
+			// in two-pane mode.
+			_isTwoPane = true;
+			// In two-pane mode, show the detail view in this activity by
+			// adding or replacing the detail fragment using a
+			// fragment transaction.
+			if (savedInstanceState == null)
+			{
+				getSupportFragmentManager().beginTransaction()
+						.replace(R.id.detail_container, new DetailFragment(), DETAILFRAGMENT_TAG)
+						.commit();
+			}
+		}
+		else
+		{
+			_isTwoPane = false;
 		}
 	}
 
@@ -96,11 +112,14 @@ public class MainForecastActivity extends ActionBarActivity
 	{
 		super.onResume();
 		String location = FormatUtil.getPreferredLocation(this);
-// update the location in our second pane using the fragment manager
+
+		// update the location in our second pane using the fragment manager
 		if (location != null && !location.equals(_location))
 		{
-			MainForecastFragment mainForecastFragment = (MainForecastFragment) getSupportFragmentManager()
-					.findFragmentByTag(FORECASTFRAGMENT_TAG);
+			MainForecastFragment mainForecastFragment =
+					(MainForecastFragment) getSupportFragmentManager()
+							.findFragmentById(R.id.fragment_main);
+
 			if (mainForecastFragment != null)
 			{
 				mainForecastFragment.onLocationChanged();

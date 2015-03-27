@@ -151,7 +151,8 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 	{
 		TraceUtil.logV(CLASS_NAME, "onCreateLoader", "");
 		Intent intent = getActivity().getIntent();
-		if (intent == null)
+
+		if (intent == null || intent.getData() == null)
 		{
 			return null;
 		}
