@@ -1,6 +1,5 @@
 package com.hally.sunshine.view;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +21,7 @@ import com.hally.sunshine.FetchWeatherTask;
 import com.hally.sunshine.R;
 import com.hally.sunshine.data.ForecastAdapter;
 import com.hally.sunshine.data.WeatherContract;
+import com.hally.sunshine.model.IForecastFragmentCallback;
 import com.hally.sunshine.util.FormatUtil;
 
 ;
@@ -112,16 +112,17 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 		public void onItemClick(AdapterView<?> adapterView, View view, int position,
 								long id)
 		{
-	/*Toast toast = Toast.makeText(getActivity(), forecastText, Toast.LENGTH_SHORT);
-	toast.show();*/
-			String locationStr = FormatUtil.getPreferredLocation(getActivity());
+			// CursorAdapter returns a cursor at the correct position for getItem(), or null
+			// if it cannot seek to that position.
 			Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
 
-			Intent launchDetailActivity = new Intent(getActivity(), DetailActivity.class);
-			launchDetailActivity.setData(WeatherContract.WeatherEntry
-					.buildWeatherLocationWithDate(locationStr,
-							cursor.getLong(COL_WEATHER_DATE)));
-			startActivity(launchDetailActivity);
+			if (cursor != null)
+			{
+				String locationSetting = FormatUtil.getPreferredLocation(getActivity());
+				((IForecastFragmentCallback) getActivity()).onItemSelected(
+						WeatherContract.WeatherEntry.buildWeatherLocationWithDate(
+								locationSetting, cursor.getLong(COL_WEATHER_DATE)));
+			}
 		}
 	};
 

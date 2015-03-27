@@ -8,11 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.hally.sunshine.R;
+import com.hally.sunshine.model.IForecastFragmentCallback;
 import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.TraceUtil;
 
 
-public class MainForecastActivity extends ActionBarActivity
+public class MainForecastActivity extends ActionBarActivity implements IForecastFragmentCallback
 {
 	private final String CLASS_NAME = MainForecastActivity.class.getSimpleName();
 	private static final String DETAILFRAGMENT_TAG = "DFTAG";
@@ -124,7 +125,38 @@ public class MainForecastActivity extends ActionBarActivity
 			{
 				mainForecastFragment.onLocationChanged();
 			}
+
+			DetailFragment detailFragment = (DetailFragment) getSupportFragmentManager()
+					.findFragmentByTag(DETAILFRAGMENT_TAG);
+
+			if (detailFragment != null)
+			{
+				detailFragment.onLocationChanged(location);
+			}
+
 			_location = location;
 		}
+	}
+
+	@Override
+	public void onItemSelected(Uri dateUri)
+	{
+		if (_isTwoPane)
+		{
+			Bundle args = new Bundle();
+			args.putParcelable(DetailFragment.DETAIL_URI, dateUri);
+
+			DetailFragment detailFragment = new DetailFragment();
+			detailFragment.setArguments(args);
+
+			getSupportFragmentManager().beginTransaction().replace(R.id.detail_container,
+					detailFragment, DETAILFRAGMENT_TAG).commit();
+		}
+		else
+		{
+			Intent startIntent = new Intent(this, DetailActivity.class).setData(dateUri);
+			startActivity(startIntent);
+		}
+
 	}
 }
