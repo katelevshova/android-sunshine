@@ -4,4 +4,7 @@
 	<color name="tc_today_item">#ffffffff</color>
 	<color name="tc_general">#ff313131</color>
 	<color name="tc_additional">#646464</color>
+	<color name="grey">#cccccc</color>
+	<color name="light_blue">#ff64c2f4</color>
+	<color name="red">#ff0000</color>
 </resources>

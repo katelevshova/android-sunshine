@@ -16,14 +16,14 @@
 			android:id="@+id/detail_day_textview"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:theme="@style/SansSerifCondensed.Black"
+			style="@style/SansSerifCondensed.Black"
 			android:textSize="@dimen/ts_details_today_header"
 			android:text="Tomorrow"/>
 		<TextView
 			android:id="@+id/detail_date_textview"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:theme="@style/SansSerifCondensed.Grey"
+			style="@style/SansSerifCondensed.Grey"
 			android:textSize="@dimen/ts_details_date"
 			android:text="June 24"/>
 
@@ -45,13 +45,13 @@
 					android:id="@+id/detail_high_textview"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:theme="@style/SansSerifLight.Black.Max"
+					style="@style/SansSerifLight.Black.Max"
 					android:text="21°"/>
 				<TextView
 					android:id="@+id/detail_low_textview"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:theme="@style/SansSerifLight.Grey.Min"
+					style="@style/SansSerifLight.Grey.Min"
 					android:text="11°"/>
 
 			</LinearLayout>
@@ -71,7 +71,7 @@
 					android:id="@+id/detail_forecast_textview"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:theme="@style/SansSerifCondensed.Grey.GeneralDetails"
+					style="@style/SansSerifCondensed.Grey.GeneralDetails"
 					android:text="Clear"/>
 			</LinearLayout>
 		</LinearLayout>
@@ -81,7 +81,7 @@
 			android:id="@+id/detail_humidity_textview"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:theme="@style/SansSerifLight.General"
+			style="@style/SansSerifLight.General"
 			android:layout_marginBottom="@dimen/details_marginBottom"
 			android:text="Humidity: 48%"/>
 
@@ -89,7 +89,7 @@
 			android:id="@+id/detail_wind_textview"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:theme="@style/SansSerifLight.General"
+			style="@style/SansSerifLight.General"
 			android:layout_marginBottom="@dimen/details_marginBottom"
 			android:text="Wind: 6 km/h NW"/>
 
@@ -97,7 +97,7 @@
 			android:id="@+id/detail_pressure_textview"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:theme="@style/SansSerifLight.General"
+			style="@style/SansSerifLight.General"
 			android:text="Pressure: 1014 hPa"/>
 	</LinearLayout>
 

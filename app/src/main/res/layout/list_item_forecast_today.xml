@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
-			  android:background="@color/today_item_background"
 			  android:minHeight="?android:attr/listPreferredItemHeight"
 			  android:orientation="horizontal"
-			  android:paddingLeft="@dimen/today_item_left_margin">
+			  android:paddingLeft="@dimen/today_item_left_margin"
+			  android:background="@drawable/forecast_list_touch_selector">
 
 	<LinearLayout android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
@@ -14,21 +14,21 @@
 				  android:orientation="vertical">
 
 		<TextView android:id="@+id/list_item_date_textview"
+				  style="@style/SansSerifCondensed.White.General"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:text="Today, June 24"
-				  android:theme="@style/SansSerifCondensed.White.General"/>
+				  android:text="Today, June 24"/>
 
 		<TextView android:id="@+id/list_item_high_textview"
+				  style="@style/SansSerifLight.White.Max"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:text="81°"
-				  android:theme="@style/SansSerifLight.White.Max"/>
+				  android:text="81°"/>
 
 		<TextView android:id="@+id/list_item_low_textview"
+				  style="@style/SansSerifLight.White.Min"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:theme="@style/SansSerifLight.White.Min"
 				  android:text="30°"/>
 	</LinearLayout>
 
@@ -45,9 +45,9 @@
 				   android:src="@mipmap/art_clear"/>
 
 		<TextView android:id="@+id/list_item_forecast_textview"
+				  style="@style/SansSerifCondensed.White.General"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:theme="@style/SansSerifCondensed.White.General"
 				  android:text="Clear"/>
 	</LinearLayout>
 

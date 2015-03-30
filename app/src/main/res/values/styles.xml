@@ -78,5 +78,7 @@
 		<item name="android:textSize">@dimen/ts_forecast</item>
 	</style>
 
-
+	<style name="ForecastListStyle">
+		<item name="android:choiceMode">singleChoice</item>
+	</style>
 </resources>
