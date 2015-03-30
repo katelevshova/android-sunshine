@@ -51,6 +51,11 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 		}
 	}
 
+	public boolean getIsTwoPane()
+	{
+		return _isTwoPane;
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{

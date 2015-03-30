@@ -219,7 +219,14 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 		{
 			_listViewForecast.setItemChecked(_selectedPosition, true); // needs for first startup
 			_listViewForecast.smoothScrollToPosition(_selectedPosition);
-			showForecastDetails(cursor);
+
+			MainForecastActivity mainForecastActivity = (MainForecastActivity)getActivity();
+			boolean isTwoPain = mainForecastActivity.getIsTwoPane();
+
+			if(isTwoPain)
+			{
+				showForecastDetails(cursor);
+			}
 		}
 	}
 
