@@ -66,6 +66,10 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	public static final int COL_COORD_LAT = 7;
 	public static final int COL_COORD_LONG = 8;
 
+	private int _selectedPosition = 0;
+	private ListView _listViewForecast;
+	public static final String SELECTED_KEY = "selectedKey";
+
 	/**
 	 * Returns forecast adapter
 	 *
@@ -96,11 +100,16 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 
 		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-		ListView listViewForecast = (ListView) rootView.findViewById(R.id
+		_listViewForecast = (ListView) rootView.findViewById(R.id
 				.listview_forecast);
-		listViewForecast.setAdapter(_forecastAdapter);
+		_listViewForecast.setAdapter(_forecastAdapter);
 
-		listViewForecast.setOnItemClickListener(onForecastItemClickListener);
+		_listViewForecast.setOnItemClickListener(onForecastItemClickListener);
+
+		if(savedInstanceState != null && savedInstanceState.containsKey(SELECTED_KEY))
+		{
+			_selectedPosition = savedInstanceState.getInt(SELECTED_KEY);
+		}
 
 		return rootView;
 	}
@@ -116,15 +125,31 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 			// if it cannot seek to that position.
 			Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
 
-			if (cursor != null)
-			{
-				String locationSetting = FormatUtil.getPreferredLocation(getActivity());
-				((IForecastFragmentCallback) getActivity()).onItemSelected(
-						WeatherContract.WeatherEntry.buildWeatherLocationWithDate(
-								locationSetting, cursor.getLong(COL_WEATHER_DATE)));
-			}
+			showForecastDetails(cursor);
+			_selectedPosition = position;
 		}
 	};
+
+	@Override
+	public void onSaveInstanceState(Bundle outState)
+	{
+		if(_selectedPosition != ListView.INVALID_POSITION)
+		{
+			outState.putInt(SELECTED_KEY, _selectedPosition);
+		}
+		super.onSaveInstanceState(outState);
+	}
+
+	private void showForecastDetails(Cursor cursor)
+	{
+		if (cursor != null)
+		{
+			String locationSetting = FormatUtil.getPreferredLocation(getActivity());
+			((IForecastFragmentCallback) getActivity()).onItemSelected(
+					WeatherContract.WeatherEntry.buildWeatherLocationWithDate(
+							locationSetting, cursor.getLong(COL_WEATHER_DATE)));
+		}
+	}
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
@@ -189,6 +214,11 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor)
 	{
 		_forecastAdapter.swapCursor(cursor);
+
+		if(_selectedPosition != ListView.INVALID_POSITION)
+		{
+			_listViewForecast.smoothScrollToPosition(_selectedPosition);
+		}
 	}
 
 	@Override
