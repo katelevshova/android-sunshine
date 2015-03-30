@@ -3,6 +3,7 @@ package com.hally.sunshine.view;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -149,8 +150,11 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 			DetailFragment detailFragment = new DetailFragment();
 			detailFragment.setArguments(args);
 
-			getSupportFragmentManager().beginTransaction().replace(R.id.detail_container,
-					detailFragment, DETAILFRAGMENT_TAG).commit();
+			FragmentTransaction fragmentTransaction = getSupportFragmentManager()
+					.beginTransaction();
+			fragmentTransaction.replace(R.id.detail_container, detailFragment,
+					DETAILFRAGMENT_TAG);
+			fragmentTransaction.commitAllowingStateLoss();
 		}
 		else
 		{

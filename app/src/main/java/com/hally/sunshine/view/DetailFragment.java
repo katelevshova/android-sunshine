@@ -110,8 +110,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 		_windView = (TextView) rootView.findViewById(R.id.detail_wind_textview);
 		_pressureView = (TextView) rootView.findViewById(R.id.detail_pressure_textview);
 
-
-
+		clearDetails();
 
 		return rootView;
 	}
@@ -167,7 +166,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
 		// Now create and return a CursorLoader that will take care of
 		// creating a Cursor for the data being displayed.
-		if(_uri != null)
+		if (_uri != null)
 		{
 			return new CursorLoader(
 					getActivity(),
@@ -179,7 +178,20 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 			);
 		}
 
-		return  null;
+		return null;
+	}
+
+	private void clearDetails()
+	{
+		_iconView.setImageResource(-1);
+		_dateView.setText("");
+		_friendlyDateView.setText("");
+		_descriptionView.setText("");
+		_highTempView.setText("");
+		_lowTempView.setText("");
+		_humidityView.setText("");
+		_windView.setText("");
+		_pressureView.setText("");
 	}
 
 	@Override

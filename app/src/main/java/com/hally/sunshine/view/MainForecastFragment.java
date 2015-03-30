@@ -217,7 +217,9 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 
 		if(_selectedPosition != ListView.INVALID_POSITION)
 		{
+			_listViewForecast.setItemChecked(_selectedPosition, true); // needs for first startup
 			_listViewForecast.smoothScrollToPosition(_selectedPosition);
+			showForecastDetails(cursor);
 		}
 	}
 
