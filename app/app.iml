@@ -18,7 +18,7 @@
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res/values-sw600dp-port;file://$MODULE_DIR$/src/main/res/drawable-v21;file://$MODULE_DIR$/src/main/res/drawable;file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/src/main/res/layout-large;file://$MODULE_DIR$/src/main/res/values-sw600dp" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res/values-sw600dp-port;file://$MODULE_DIR$/src/main/res/values-land;file://$MODULE_DIR$/src/main/res/drawable-v21;file://$MODULE_DIR$/src/main/res/drawable;file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/src/main/res/layout-large;file://$MODULE_DIR$/src/main/res/values-sw600dp" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
     </facet>
