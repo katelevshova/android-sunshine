@@ -14,13 +14,11 @@
 				 android:layout_height="wrap_content">
 
 		<ImageView android:id="@+id/list_item_icon"
-				   android:layout_width="@dimen/icon_image_size"
-				   android:layout_height="@dimen/icon_image_size"
-				   android:src="@mipmap/art_clear"
-				   android:layout_gravity="center"/>
-
+				   android:layout_width="@dimen/icon_listitem_size"
+				   android:layout_height="@dimen/icon_listitem_size"
+				   android:layout_gravity="center"
+				   android:src="@mipmap/art_clear"/>
 	</FrameLayout>
-
 
 	<LinearLayout android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
