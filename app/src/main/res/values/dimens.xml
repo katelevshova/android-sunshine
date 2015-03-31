@@ -3,7 +3,7 @@
 	<dimen name="activity_horizontal_margin">16dp</dimen>
 	<dimen name="activity_vertical_margin">16dp</dimen>
 	<dimen name="art_image_size">100dp</dimen>
-	<dimen name="icon_image_size">32dp</dimen>
+	<dimen name="icon_image_size">36dp</dimen>
 	<dimen name="today_item_left_margin">60dp</dimen>
 	<dimen name="details_marginBottom">4dp</dimen>
 </resources>

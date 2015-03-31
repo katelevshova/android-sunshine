@@ -1,4 +1,5 @@
 <resources>
 	<dimen name="art_image_size">144dp</dimen>
 	<dimen name="icon_image_size">48dp</dimen>
+	<dimen name="today_item_left_margin">70dp</dimen>
 </resources>

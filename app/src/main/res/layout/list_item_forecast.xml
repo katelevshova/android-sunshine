@@ -3,18 +3,24 @@
 			  xmlns:android="http://schemas.android.com/apk/res/android"
 			  android:layout_width="match_parent"
 			  android:layout_height="wrap_content"
+			  android:background="@drawable/forecast_list_touch_selector"
 			  android:clickable="false"
 			  android:gravity="center_vertical"
 			  android:minHeight="?android:attr/listPreferredItemHeight"
 			  android:orientation="horizontal"
-			  android:padding="@dimen/activity_vertical_margin"
-			  android:background="@drawable/forecast_list_touch_selector">
+			  android:paddingRight="@dimen/activity_vertical_margin">
 
-	<ImageView android:id="@+id/list_item_icon"
-			   android:layout_width="@dimen/icon_image_size"
-			   android:layout_height="@dimen/icon_image_size"
-			   android:layout_weight="0"
-			   android:src="@mipmap/art_clear"/>
+	<FrameLayout android:layout_width="@dimen/today_item_left_margin"
+				 android:layout_height="wrap_content">
+
+		<ImageView android:id="@+id/list_item_icon"
+				   android:layout_width="@dimen/icon_image_size"
+				   android:layout_height="@dimen/icon_image_size"
+				   android:src="@mipmap/art_clear"
+				   android:layout_gravity="center"/>
+
+	</FrameLayout>
+
 
 	<LinearLayout android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
@@ -22,15 +28,15 @@
 				  android:orientation="vertical">
 
 		<TextView android:id="@+id/list_item_date_textview"
+				  style="@style/SansSerifCondensed.Black.General"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:text="Tomorrow"
-				  style="@style/SansSerifCondensed.Black.General"/>
+				  android:text="Tomorrow"/>
 
 		<TextView android:id="@+id/list_item_forecast_textview"
+				  style="@style/SansSerifCondensed.Grey.GeneralMainForeccast"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  style="@style/SansSerifCondensed.Grey.GeneralMainForeccast"
 				  android:text="Clear"/>
 
 	</LinearLayout>
@@ -42,15 +48,15 @@
 				  android:orientation="vertical">
 
 		<TextView android:id="@+id/list_item_high_textview"
+				  style="@style/SansSerifCondensed.Black.General"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  style="@style/SansSerifCondensed.Black.General"
 				  android:text="81°"/>
 
 		<TextView android:id="@+id/list_item_low_textview"
+				  style="@style/SansSerifCondensed.Grey.GeneralMainForeccast"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  style="@style/SansSerifCondensed.Grey.GeneralMainForeccast"
 				  android:text="30°"/>
 
 	</LinearLayout>
