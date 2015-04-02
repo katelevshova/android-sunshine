@@ -12,7 +12,8 @@
 
 		<LinearLayout android:layout_width="wrap_content"
 					  android:layout_height="wrap_content"
-					  android:orientation="vertical">
+					  android:orientation="vertical"
+					  android:layout_weight="1">
 			<!-- Header: Day, Date -->
 			<TextView
 				android:id="@+id/detail_day_textview"
@@ -34,7 +35,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="@dimen/activity_horizontal_margin"
-			android:layout_weight="1"
+			android:layout_weight="2"
 			android:orientation="vertical"
 			android:layout_gravity="top">
 
@@ -79,7 +80,8 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			>
 
 			<!-- icon, forecast -->
 			<ImageView
