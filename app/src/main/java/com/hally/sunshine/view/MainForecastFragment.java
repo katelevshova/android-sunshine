@@ -114,6 +114,14 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 		return rootView;
 	}
 
+	public void setUseTodayItem(boolean flag)
+	{
+		if(_forecastAdapter != null)
+		{
+			_forecastAdapter.setIsTodayItemNecessary(flag);
+		}
+	}
+
 	private AdapterView.OnItemClickListener onForecastItemClickListener =
 	new AdapterView.OnItemClickListener()
 	{
@@ -210,6 +218,12 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 				sortOrder);
 	}
 
+	private boolean hasTwoPane()
+	{
+		MainForecastActivity mainForecastActivity = (MainForecastActivity)getActivity();
+		return mainForecastActivity.getHasTwoPane();
+	}
+
 	@Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor)
 	{
@@ -220,10 +234,7 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 			_listViewForecast.setItemChecked(_selectedPosition, true); // needs for first startup
 			_listViewForecast.smoothScrollToPosition(_selectedPosition);
 
-			MainForecastActivity mainForecastActivity = (MainForecastActivity)getActivity();
-			boolean isTwoPain = mainForecastActivity.getIsTwoPane();
-
-			if(isTwoPain)
+			if(hasTwoPane())
 			{
 				showForecastDetails(cursor);
 			}

@@ -22,6 +22,7 @@ public class ForecastAdapter extends CursorAdapter
 	private static final int VIEW_TYPE_COUNT = 2;
 	private static final int VIEW_TYPE_TODAY = 0;
 	private static final int VIEW_TYPE_FUTURE_DAY = 1;
+	private boolean _showTodayItem = true;
 
 	public ForecastAdapter(Context context, Cursor c, int flags)
 	{
@@ -39,10 +40,16 @@ public class ForecastAdapter extends CursorAdapter
 		return highLowStr;
 	}
 
+	public void setIsTodayItemNecessary(boolean flag)
+	{
+		_showTodayItem = flag;
+	}
+
 	@Override
 	public int getItemViewType(int position)
 	{
-		return position == 0 ? VIEW_TYPE_TODAY : VIEW_TYPE_FUTURE_DAY;
+		return (position == VIEW_TYPE_TODAY && _showTodayItem) ? VIEW_TYPE_TODAY :
+			VIEW_TYPE_FUTURE_DAY;
 	}
 
 	@Override

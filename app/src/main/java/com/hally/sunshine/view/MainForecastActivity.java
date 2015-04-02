@@ -19,7 +19,7 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 	private final String CLASS_NAME = MainForecastActivity.class.getSimpleName();
 	private static final String DETAILFRAGMENT_TAG = "DFTAG";
 	private String _location;
-	private boolean _isTwoPane = false;
+	private boolean _hasTwoPane = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -34,7 +34,7 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 			// The detail container view will be present only in the large-screen layouts
 			// (res/layout-sw600dp). If this view is present, then the activity should be
 			// in two-pane mode.
-			_isTwoPane = true;
+			_hasTwoPane = true;
 			// In two-pane mode, show the detail view in this activity by
 			// adding or replacing the detail fragment using a
 			// fragment transaction.
@@ -47,13 +47,24 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 		}
 		else
 		{
-			_isTwoPane = false;
+			_hasTwoPane = false;
 		}
+
+		setUseTodayItemElement();
 	}
 
-	public boolean getIsTwoPane()
+	private void setUseTodayItemElement()
 	{
-		return _isTwoPane;
+		MainForecastFragment mainForecastFragment =
+				(MainForecastFragment) getSupportFragmentManager()
+						.findFragmentById(R.id.fragment_main);
+
+		mainForecastFragment.setUseTodayItem(!_hasTwoPane);
+	}
+
+	public boolean getHasTwoPane()
+	{
+		return _hasTwoPane;
 	}
 
 	@Override
@@ -147,7 +158,7 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 	@Override
 	public void onItemSelected(Uri dateUri)
 	{
-		if (_isTwoPane)
+		if (_hasTwoPane)
 		{
 			Bundle args = new Bundle();
 			args.putParcelable(DetailFragment.DETAIL_URI, dateUri);
