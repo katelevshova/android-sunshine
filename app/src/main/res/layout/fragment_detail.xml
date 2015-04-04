@@ -103,10 +103,6 @@
 			android:layout_height="wrap_content"
 			android:text="Pressure: 1014 hPa"/>
 
-		<com.hally.sunshine.view.CircleCustomView android:id="@+id/exampleCircle"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:contentDescription="@string/exampleViewDescription"/>
 	</LinearLayout>
 
 </ScrollView>

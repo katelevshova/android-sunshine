@@ -10,7 +10,7 @@
 			  android:orientation="horizontal"
 			  android:paddingRight="@dimen/activity_vertical_margin">
 
-	<FrameLayout android:layout_width="wrap_content"
+	<FrameLayout android:layout_width="@dimen/today_item_left_margin"
 				 android:layout_height="wrap_content">
 
 		<ImageView android:id="@+id/list_item_icon"

@@ -43,6 +43,7 @@
 		</activity>
 
 		<provider android:name=".data.WeatherProvider" android:authorities="com.hally.sunshine"/>
+		<service android:name=".service.SunshineService"/>
 
 	</application>
 

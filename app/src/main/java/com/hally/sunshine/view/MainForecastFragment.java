@@ -1,5 +1,6 @@
 package com.hally.sunshine.view;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,11 +18,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.hally.sunshine.FetchWeatherTask;
 import com.hally.sunshine.R;
 import com.hally.sunshine.data.ForecastAdapter;
 import com.hally.sunshine.data.WeatherContract;
 import com.hally.sunshine.model.IForecastFragmentCallback;
+import com.hally.sunshine.service.SunshineService;
 import com.hally.sunshine.util.FormatUtil;
 
 ;
@@ -187,9 +188,10 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	 */
 	private void updateWeather()
 	{
-		FetchWeatherTask fetchWeatherTask = new FetchWeatherTask(getActivity(), _forecastAdapter);
-		String location = FormatUtil.getPreferredLocation(getActivity());
-		fetchWeatherTask.execute(location);
+		Intent intent = new Intent(getActivity(), SunshineService.class);
+		intent.putExtra(SunshineService.LOCATION_QUERY_EXTRA, FormatUtil.getPreferredLocation
+				(getActivity()));
+		getActivity().startService(intent);
 	}
 
 	// since we read the location when we create the loader, all we need to do is restart things
