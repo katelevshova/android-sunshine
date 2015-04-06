@@ -1,9 +1,13 @@
 package com.hally.sunshine.view;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -21,8 +25,8 @@ import android.widget.ListView;
 import com.hally.sunshine.R;
 import com.hally.sunshine.data.ForecastAdapter;
 import com.hally.sunshine.data.WeatherContract;
+import com.hally.sunshine.model.AlarmReceiver;
 import com.hally.sunshine.model.IForecastFragmentCallback;
-import com.hally.sunshine.service.SunshineService;
 import com.hally.sunshine.util.FormatUtil;
 
 ;
@@ -70,6 +74,7 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	private int _selectedPosition = 0;
 	private ListView _listViewForecast;
 	public static final String SELECTED_KEY = "selectedKey";
+	private static final int ALARM_TIME = 5000; // 5 sec
 
 	/**
 	 * Returns forecast adapter
@@ -184,14 +189,18 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	}
 
 	/**
-	 * Updates weather information in the ListView using <code>FetchWeatherTask</> class
+	 * Updates weather information in the ListView using <code>AlarmService</> class
 	 */
 	private void updateWeather()
 	{
-		Intent intent = new Intent(getActivity(), SunshineService.class);
-		intent.putExtra(SunshineService.LOCATION_QUERY_EXTRA, FormatUtil.getPreferredLocation
-				(getActivity()));
-		getActivity().startService(intent);
+		AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService(Context
+				.ALARM_SERVICE);
+		Intent intent = new Intent(getActivity(), AlarmReceiver.class);
+		PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(getActivity(), 0, intent,
+				PendingIntent.FLAG_ONE_SHOT);
+
+		alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() +
+				ALARM_TIME, pendingAlarmIntent);
 	}
 
 	// since we read the location when we create the loader, all we need to do is restart things
