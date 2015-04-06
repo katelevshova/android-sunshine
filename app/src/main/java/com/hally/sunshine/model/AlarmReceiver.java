@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.hally.sunshine.service.SunshineService;
+import com.hally.sunshine.sync.SunshineSyncAdapter;
 import com.hally.sunshine.util.FormatUtil;
 
 /**
@@ -17,7 +18,7 @@ public class AlarmReceiver extends BroadcastReceiver
 	public void onReceive(Context context, Intent intent)
 	{
 		Intent locationQueryIntent = new Intent(context, SunshineService.class);
-		locationQueryIntent.putExtra(SunshineService.LOCATION_QUERY_EXTRA, FormatUtil.getPreferredLocation
+		locationQueryIntent.putExtra(SunshineSyncAdapter.LOCATION_QUERY_EXTRA, FormatUtil.getPreferredLocation
 				(context));
 		context.startService(locationQueryIntent);
 
