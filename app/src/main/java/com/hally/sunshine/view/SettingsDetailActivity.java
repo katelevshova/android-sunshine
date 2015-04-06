@@ -10,6 +10,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
 import com.hally.sunshine.R;
+import com.hally.sunshine.sync.SunshineSyncAdapter;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings.
@@ -77,6 +78,8 @@ public class SettingsDetailActivity extends PreferenceActivity
 			// For other preferences, set the summary to the value's simple string representation.
 			preference.setSummary(stringValue);
 		}
+
+		SunshineSyncAdapter.syncImmediately(getApplicationContext());
 		return true;
 	}
 }

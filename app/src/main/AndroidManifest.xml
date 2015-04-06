@@ -55,8 +55,6 @@
 			android:exported="false"
 			android:syncable="true"/>
 
-		<service android:name=".service.SunshineService"/>
-
 		<service android:name=".sync.SunshineAuthenticatorService">
 			<intent-filter>
 				<action android:name="android.accounts.AccountAuthenticator"/>
@@ -74,8 +72,6 @@
 				android:name="android.content.SyncAdapter"
 				android:resource="@xml/syncadapter"/>
 		</service>
-
-		<receiver android:name=".model.AlarmReceiver" android:enabled="true"/>
 
 	</application>
 

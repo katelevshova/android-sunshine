@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.hally.sunshine.R;
 import com.hally.sunshine.model.IForecastFragmentCallback;
+import com.hally.sunshine.sync.SunshineSyncAdapter;
 import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.TraceUtil;
 
@@ -51,6 +52,8 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 		}
 
 		setUseTodayItemElement();
+
+		SunshineSyncAdapter.initializeSyncAdapter(this);
 	}
 
 	private void setUseTodayItemElement()

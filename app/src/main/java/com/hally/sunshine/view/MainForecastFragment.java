@@ -188,15 +188,6 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	 */
 	private void updateWeather()
 	{
-		/*AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService(Context
-				.ALARM_SERVICE);
-		Intent intent = new Intent(getActivity(), AlarmReceiver.class);
-		PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(getActivity(), 0, intent,
-				PendingIntent.FLAG_ONE_SHOT);
-
-		alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() +
-				ALARM_TIME, pendingAlarmIntent);*/
-
 		SunshineSyncAdapter.syncImmediately(getActivity());
 	}
 
