@@ -1,13 +1,8 @@
 package com.hally.sunshine.view;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -25,8 +20,8 @@ import android.widget.ListView;
 import com.hally.sunshine.R;
 import com.hally.sunshine.data.ForecastAdapter;
 import com.hally.sunshine.data.WeatherContract;
-import com.hally.sunshine.model.AlarmReceiver;
 import com.hally.sunshine.model.IForecastFragmentCallback;
+import com.hally.sunshine.sync.SunshineSyncAdapter;
 import com.hally.sunshine.util.FormatUtil;
 
 ;
@@ -193,14 +188,16 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	 */
 	private void updateWeather()
 	{
-		AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService(Context
+		/*AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService(Context
 				.ALARM_SERVICE);
 		Intent intent = new Intent(getActivity(), AlarmReceiver.class);
 		PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(getActivity(), 0, intent,
 				PendingIntent.FLAG_ONE_SHOT);
 
 		alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() +
-				ALARM_TIME, pendingAlarmIntent);
+				ALARM_TIME, pendingAlarmIntent);*/
+
+		SunshineSyncAdapter.syncImmediately(getActivity());
 	}
 
 	// since we read the location when we create the loader, all we need to do is restart things

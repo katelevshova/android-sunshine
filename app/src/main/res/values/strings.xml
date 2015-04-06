@@ -13,4 +13,8 @@
 	<string name="format_temperature"><xliff:g id="temp">%1.0f</xliff:g>\u00B0</string>
 
 	<string name="exampleViewDescription">Example view description</string>
+
+	<!-- SyncAdapter related -->
+	<string name="sync_account_type">sunshine.hally.com</string>
+	<string name="content_authority">com.hally.sunshine</string>
 </resources>
