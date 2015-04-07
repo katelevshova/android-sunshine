@@ -72,7 +72,6 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	private int _selectedPosition = 0;
 	private ListView _listViewForecast;
 	public static final String SELECTED_KEY = "selectedKey";
-	private static final int ALARM_TIME = 5000; // 5 sec
 
 	/**
 	 * Returns forecast adapter
