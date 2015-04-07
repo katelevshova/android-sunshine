@@ -72,6 +72,10 @@ public class SettingsDetailActivity extends PreferenceActivity
 			{
 				preference.setSummary(listPreference.getEntries()[prefIndex]);
 			}
+			else
+			{
+				listPreference.setValueIndex(0);
+			}
 		}
 		else
 		{
