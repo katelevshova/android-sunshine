@@ -549,8 +549,15 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 						FormatUtil.formatTemperature(context, high),
 						FormatUtil.formatTemperature(context, low));
 
-				//build your notification here.
-				showNotification(iconId, title, contentText);
+				boolean isNotificationOn = prefs.getBoolean(getContext().getString(R.string
+						.pref_enable_notifications_key), Boolean.parseBoolean(getContext()
+						.getString(R.string.pref_enable_notifications_default)));
+
+				if(isNotificationOn)
+				{
+					//build your notification here.
+					showNotification(iconId, title, contentText);
+				}
 
 				//refreshing last sync
 				SharedPreferences.Editor editor = prefs.edit();
