@@ -1,5 +1,6 @@
 package com.hally.sunshine.view;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.hally.sunshine.data.WeatherContract;
 import com.hally.sunshine.model.IForecastFragmentCallback;
 import com.hally.sunshine.sync.SunshineSyncAdapter;
 import com.hally.sunshine.util.FormatUtil;
+import com.hally.sunshine.util.TraceUtil;
 
 ;
 
@@ -32,6 +34,7 @@ import com.hally.sunshine.util.FormatUtil;
  */
 public class MainForecastFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>
 {
+	private final String CLASS_NAME = MainForecastFragment.class.getSimpleName();
 	private ForecastAdapter _forecastAdapter;
 	public static final int FORECAST_LOADER_ID = 0;
 
@@ -180,6 +183,12 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 			return true;
 		}
 
+		if (id == R.id.item_map)
+		{
+			openPreferredLocationMap();
+			return true;
+		}
+
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -244,6 +253,41 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	public void onLoaderReset(Loader loader)
 	{
 		_forecastAdapter.swapCursor(null); // release any resources which we might be using
+	}
+
+	private void openPreferredLocationMap()
+	{
+
+		// Using the URI scheme for showing a location found on a map. This super-handy
+		// intent can is detailed in the "Common Intents" page of Android's developer site:
+		// http://developer.android.com/guide/components/intents-common.html#Maps
+
+		if(_forecastAdapter != null)
+		{
+			Cursor cursor = _forecastAdapter.getCursor();
+
+			if(cursor != null)
+			{
+				cursor.moveToPosition(0);
+
+				String posLat = cursor.getString(COL_COORD_LAT);
+				String posLong = cursor.getString(COL_COORD_LONG);
+
+				Uri geoLocation = Uri.parse("geo:"+posLat+","+posLong);
+
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(geoLocation);
+
+				if(intent.resolveActivity(getActivity().getPackageManager()) != null)
+				{
+					startActivity(intent);
+				}
+				else
+				{
+					TraceUtil.logD(CLASS_NAME, "openPreferredLocationMap", "Couldn't call " + geoLocation.toString() + ", no receiving apps installed!");
+				}
+			}
+		}
 	}
 }
 

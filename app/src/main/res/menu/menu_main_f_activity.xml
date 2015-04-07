@@ -5,8 +5,4 @@
 		  android:title="@string/item_settings"
 		  android:orderInCategory="100"
 		  android:showAsAction="never"/>
-	<item android:id="@+id/item_map"
-		  android:title="@string/item_map"
-		  android:orderInCategory="100"
-		  android:showAsAction="never"/>
 </menu>
