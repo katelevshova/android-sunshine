@@ -337,6 +337,9 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 				cVVector.toArray(cvArray);
 				getContext().getContentResolver()
 						.bulkInsert(WeatherContract.WeatherEntry.CONTENT_URI, cvArray);
+
+				deleteOldData(dayTime, julianStartDay);
+
 				notifyWeather();
 			}
 
@@ -350,6 +353,13 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 			TraceUtil.logE(CLASS_NAME, "getWeatherDataFromJson", e.getMessage(), e);
 			e.printStackTrace();
 		}
+	}
+
+	private void deleteOldData(Time dayTime, int julianStartDay)
+	{
+		getContext().getContentResolver().delete(WeatherContract.WeatherEntry.CONTENT_URI,
+				WeatherContract.WeatherEntry.COLUMN_DATE + " <= ?",
+				new String[]{Long.toString(dayTime.setJulianDay(julianStartDay - 1))});
 	}
 
 	/**
