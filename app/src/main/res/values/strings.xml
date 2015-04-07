@@ -17,4 +17,9 @@
 	<!-- SyncAdapter related -->
 	<string name="sync_account_type">sunshine.hally.com</string>
 	<string name="content_authority">com.hally.sunshine</string>
+
+	<!-- notification -->
+	<string name="notification_format">Forecast: <xliff:g id="condition">%1$s</xliff:g> High: <xliff:g
+		id="high">%2$s</xliff:g> Low: <xliff:g id="low">%3$s</xliff:g></string>
+
 </resources>

@@ -2,24 +2,33 @@ package com.hally.sunshine.sync;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.SyncRequest;
 import android.content.SyncResult;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.text.format.Time;
 
 import com.hally.sunshine.R;
 import com.hally.sunshine.data.WeatherContract;
 import com.hally.sunshine.util.FormatUtil;
+import com.hally.sunshine.util.ImageResouceUtil;
 import com.hally.sunshine.util.TraceUtil;
+import com.hally.sunshine.view.MainForecastActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,8 +46,23 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 {
 	public final static String CLASS_NAME = SunshineSyncAdapter.class.getSimpleName();
 	private static final int NUMBER_DAYS = 14;
-	public static final int SYNC_INTERVAL = 60*180; // 3 hour = 10800
-	public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
+	public static final int SYNC_INTERVAL = 60 * 180; // 3 hour = 10800 sec
+	public static final int SYNC_FLEXTIME = SYNC_INTERVAL / 3;
+
+	private static final String[] NOTIFY_WEATHER_PROJECTION = new String[]{
+			WeatherContract.WeatherEntry.COLUMN_WEATHER_ID,
+			WeatherContract.WeatherEntry.COLUMN_MAX_TEMP,
+			WeatherContract.WeatherEntry.COLUMN_MIN_TEMP,
+			WeatherContract.WeatherEntry.COLUMN_SHORT_DESC
+	};
+	// these indices must match the projection
+	private static final int INDEX_WEATHER_ID = 0;
+	private static final int INDEX_MAX_TEMP = 1;
+	private static final int INDEX_MIN_TEMP = 2;
+	private static final int INDEX_SHORT_DESC = 3;
+
+	private static final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
+	private static final int WEATHER_NOTIFICATION_ID = 3004;
 
 	public SunshineSyncAdapter(Context context, boolean autoInitialize)
 	{
@@ -46,9 +70,23 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 	}
 
 	/**
-	 * Dummy JSON data
-	 * {"cod":"200","message":0.0268,"city":{"id":0,"name":"Mountain View","country":"US","coord":{"lat":37.4056,"lon":-122.0775}},"cnt":14,"list":[{"dt":1428436800,"temp":{"day":9.97,"min":3.24,"max":12.44,"night":3.86,"eve":7.9,"morn":10.38},"pressure":989.22,"humidity":94,"weather":[{"id":501,"main":"Rain","description":"moderate rain","icon":"10d"}],"speed":1.9,"deg":249,"clouds":92,"rain":9.05},{"dt":1428523200,"temp":{"day":12.75,"min":0.92,"max":13.56,"night":0.92,"eve":9.26,"morn":7.43},"pressure":995.15,"humidity":78,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":1.41,"deg":322,"clouds":24,"rain":0.73},{"dt":1428609600,"temp":{"day":17.31,"min":2.58,"max":17.64,"night":3.15,"eve":12.48,"morn":2.58},"pressure":992.46,"humidity":59,"weather":[{"id":801,"main":"Clouds","description":"few clouds","icon":"02d"}],"speed":1.36,"deg":320,"clouds":12},{"dt":1428696000,"temp":{"day":14.02,"min":7,"max":16.48,"night":8.67,"eve":16.48,"morn":7},"pressure":1007.81,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":0.87,"deg":276,"clouds":6},{"dt":1428782400,"temp":{"day":13.69,"min":7.57,"max":14.39,"night":9.66,"eve":14.39,"morn":7.57},"pressure":1010.35,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":1.33,"deg":264,"clouds":91,"rain":1.28},{"dt":1428868800,"temp":{"day":13.58,"min":7.18,"max":15.57,"night":10.26,"eve":15.57,"morn":7.18},"pressure":1013.46,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":4.51,"deg":331,"clouds":0},{"dt":1428955200,"temp":{"day":15.24,"min":7,"max":16.77,"night":10.31,"eve":16.77,"morn":7},"pressure":1011.39,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":3.14,"deg":359,"clouds":0},{"dt":1429041600,"temp":{"day":14.5,"min":6.07,"max":15.51,"night":8.72,"eve":15.51,"morn":6.07},"pressure":1011.2,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":1.03,"deg":220,"clouds":0},{"dt":1429128000,"temp":{"day":14.85,"min":7.01,"max":16.36,"night":10.22,"eve":16.36,"morn":7.01},"pressure":1011.8,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":1.98,"deg":305,"clouds":2},{"dt":1429214400,"temp":{"day":15.11,"min":7.84,"max":16.02,"night":8.86,"eve":16.02,"morn":7.84},"pressure":1010.11,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":2.3,"deg":280,"clouds":0},{"dt":1429300800,"temp":{"day":15.89,"min":6.8,"max":16.96,"night":8.77,"eve":16.96,"morn":6.8},"pressure":1009.03,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":2.15,"deg":276,"clouds":0},{"dt":1429387200,"temp":{"day":13.08,"min":6.68,"max":14.75,"night":10.63,"eve":14.75,"morn":6.68},"pressure":1006.95,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":1.72,"deg":253,"clouds":61,"rain":2.04},{"dt":1429473600,"temp":{"day":12.54,"min":10.75,"max":12.59,"night":11.15,"eve":12.59,"morn":10.75},"pressure":995.58,"humidity":0,"weather":[{"id":502,"main":"Rain","description":"heavy intensity rain","icon":"10d"}],"speed":6.4,"deg":173,"clouds":58,"rain":28.37},{"dt":1429560000,"temp":{"day":12.02,"min":9.96,"max":12.66,"night":9.96,"eve":12.66,"morn":10.15},"pressure":1003.39,"humidity":0,"weather":[{"id":501,"main":"Rain","description":"moderate rain","icon":"10d"}],"speed":3.03,"deg":268,"clouds":44,"rain":4.29}]}
-	*/
+	 * Dummy JSON data {"cod":"200","message":0.0268,"city":{"id":0,"name":"Mountain
+	 * View","country":"US","coord":{"lat":37.4056,"lon":-122.0775}},"cnt":14,"list":[{"dt":1428436800,"temp":{"day":9.97,"min":3.24,"max":12.44,"night":3.86,"eve":7.9,"morn":10.38},"pressure":989.22,"humidity":94,"weather":[{"id":501,"main":"Rain","description":"moderate
+	 * rain","icon":"10d"}],"speed":1.9,"deg":249,"clouds":92,"rain":9.05},{"dt":1428523200,"temp":{"day":12.75,"min":0.92,"max":13.56,"night":0.92,"eve":9.26,"morn":7.43},"pressure":995.15,"humidity":78,"weather":[{"id":500,"main":"Rain","description":"light
+	 * rain","icon":"10d"}],"speed":1.41,"deg":322,"clouds":24,"rain":0.73},{"dt":1428609600,"temp":{"day":17.31,"min":2.58,"max":17.64,"night":3.15,"eve":12.48,"morn":2.58},"pressure":992.46,"humidity":59,"weather":[{"id":801,"main":"Clouds","description":"few
+	 * clouds","icon":"02d"}],"speed":1.36,"deg":320,"clouds":12},{"dt":1428696000,"temp":{"day":14.02,"min":7,"max":16.48,"night":8.67,"eve":16.48,"morn":7},"pressure":1007.81,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky
+	 * is clear","icon":"01d"}],"speed":0.87,"deg":276,"clouds":6},{"dt":1428782400,"temp":{"day":13.69,"min":7.57,"max":14.39,"night":9.66,"eve":14.39,"morn":7.57},"pressure":1010.35,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light
+	 * rain","icon":"10d"}],"speed":1.33,"deg":264,"clouds":91,"rain":1.28},{"dt":1428868800,"temp":{"day":13.58,"min":7.18,"max":15.57,"night":10.26,"eve":15.57,"morn":7.18},"pressure":1013.46,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky
+	 * is clear","icon":"01d"}],"speed":4.51,"deg":331,"clouds":0},{"dt":1428955200,"temp":{"day":15.24,"min":7,"max":16.77,"night":10.31,"eve":16.77,"morn":7},"pressure":1011.39,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky
+	 * is clear","icon":"01d"}],"speed":3.14,"deg":359,"clouds":0},{"dt":1429041600,"temp":{"day":14.5,"min":6.07,"max":15.51,"night":8.72,"eve":15.51,"morn":6.07},"pressure":1011.2,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light
+	 * rain","icon":"10d"}],"speed":1.03,"deg":220,"clouds":0},{"dt":1429128000,"temp":{"day":14.85,"min":7.01,"max":16.36,"night":10.22,"eve":16.36,"morn":7.01},"pressure":1011.8,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light
+	 * rain","icon":"10d"}],"speed":1.98,"deg":305,"clouds":2},{"dt":1429214400,"temp":{"day":15.11,"min":7.84,"max":16.02,"night":8.86,"eve":16.02,"morn":7.84},"pressure":1010.11,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky
+	 * is clear","icon":"01d"}],"speed":2.3,"deg":280,"clouds":0},{"dt":1429300800,"temp":{"day":15.89,"min":6.8,"max":16.96,"night":8.77,"eve":16.96,"morn":6.8},"pressure":1009.03,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light
+	 * rain","icon":"10d"}],"speed":2.15,"deg":276,"clouds":0},{"dt":1429387200,"temp":{"day":13.08,"min":6.68,"max":14.75,"night":10.63,"eve":14.75,"morn":6.68},"pressure":1006.95,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light
+	 * rain","icon":"10d"}],"speed":1.72,"deg":253,"clouds":61,"rain":2.04},{"dt":1429473600,"temp":{"day":12.54,"min":10.75,"max":12.59,"night":11.15,"eve":12.59,"morn":10.75},"pressure":995.58,"humidity":0,"weather":[{"id":502,"main":"Rain","description":"heavy
+	 * intensity rain","icon":"10d"}],"speed":6.4,"deg":173,"clouds":58,"rain":28.37},{"dt":1429560000,"temp":{"day":12.02,"min":9.96,"max":12.66,"night":9.96,"eve":12.66,"morn":10.15},"pressure":1003.39,"humidity":0,"weather":[{"id":501,"main":"Rain","description":"moderate
+	 * rain","icon":"10d"}],"speed":3.03,"deg":268,"clouds":44,"rain":4.29}]}
+	 */
 
 
 	@Override
@@ -299,10 +337,12 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 				cVVector.toArray(cvArray);
 				getContext().getContentResolver()
 						.bulkInsert(WeatherContract.WeatherEntry.CONTENT_URI, cvArray);
+				notifyWeather();
 			}
 
-			TraceUtil.logD(CLASS_NAME, "getWeatherDataFromJson", "Sunshine Service Complete. " + cVVector.size() + " " +
-					"Inserted");
+			TraceUtil.logD(CLASS_NAME, "getWeatherDataFromJson",
+					"Sunshine Service Complete. " + cVVector.size() + " " +
+							"Inserted");
 
 		}
 		catch (JSONException e)
@@ -406,14 +446,14 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 		{
 
         /*
-         * Add the account and account type, no password or user data
+		 * Add the account and account type, no password or user data
          * If successful, return the Account object, otherwise report an error.
          */
 			if (!accountManager.addAccountExplicitly(newAccount, "", null))
 			{
 				return null;
 			}
-            /*
+			/*
              * If you don't set android:syncable="true" in
              * in your <provider> element in the manifest,
              * then call ContentResolver.setIsSyncable(account, AUTHORITY, 1)
@@ -473,5 +513,79 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 		getSyncAccount(context);
 	}
 
+	private void notifyWeather()
+	{
+		Context context = getContext();
+		//checking the last update and notify if it' the first of the day
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String lastNotificationKey = context.getString(R.string.pref_last_notification);
+		long lastSync = prefs.getLong(lastNotificationKey, 0);
+
+		if (System.currentTimeMillis() - lastSync >= DAY_IN_MILLIS)
+		{
+			// Last sync was more than 1 day ago, let's send a notification with the weather.
+			String locationQuery = FormatUtil.getPreferredLocation(context);
+
+			Uri weatherUri = WeatherContract.WeatherEntry
+					.buildWeatherLocationWithDate(locationQuery, System.currentTimeMillis());
+
+			// we'll query our contentProvider, as always
+			Cursor cursor = context.getContentResolver()
+					.query(weatherUri, NOTIFY_WEATHER_PROJECTION, null, null, null);
+
+			if (cursor.moveToFirst())
+			{
+				int weatherId = cursor.getInt(INDEX_WEATHER_ID);
+				double high = cursor.getDouble(INDEX_MAX_TEMP);
+				double low = cursor.getDouble(INDEX_MIN_TEMP);
+				String desc = cursor.getString(INDEX_SHORT_DESC);
+
+				int iconId = ImageResouceUtil.getIconResourceForWeatherCondition(weatherId);
+				String title = context.getString(R.string.app_name);
+
+				// Define the text of the forecast.
+				String contentText = String.format(context.getString(R.string.notification_format),
+						desc,
+						FormatUtil.formatTemperature(context, high),
+						FormatUtil.formatTemperature(context, low));
+
+				//build your notification here.
+				showNotification(iconId, title, contentText);
+
+				//refreshing last sync
+				SharedPreferences.Editor editor = prefs.edit();
+				editor.putLong(lastNotificationKey, System.currentTimeMillis());
+				editor.commit();
+			}
+		}
+	}
+
+	private void showNotification(int iconId, String title, String contentText)
+	{
+		NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder
+				(getContext());
+		notificationBuilder.setSmallIcon(iconId);
+		notificationBuilder.setContentTitle(title);
+		notificationBuilder.setContentText(contentText);
+
+		// This ensures that navigating backward from the Activity leads out of
+		// your application to the Home screen.
+		Intent resultIntent = new Intent(getContext(), MainForecastActivity.class);
+
+		TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(getContext());
+		taskStackBuilder.addNextIntent(resultIntent);
+
+		PendingIntent resultPendingIntent = taskStackBuilder.getPendingIntent(0,
+				PendingIntent.FLAG_UPDATE_CURRENT);
+
+		notificationBuilder.setContentIntent(resultPendingIntent);
+
+
+		NotificationManager notificationManager = (NotificationManager)
+				getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+		// WEATHER_NOTIFICATION_ID allows you to update the notification later on.
+		notificationManager.notify(WEATHER_NOTIFICATION_ID, notificationBuilder.build());
+	}
 
 }

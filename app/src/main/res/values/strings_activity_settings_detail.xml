@@ -28,6 +28,8 @@
 		<item>@string/pref_units_label_imperial</item>
 	</string-array>
 
+	<string name="pref_last_notification">last_notification</string>
+
 	<!-- Windspeed formats -->
 	<string name="format_wind_mph">Wind: <xliff:g id="speed">%1$1.0f</xliff:g> mph <xliff:g
 		id="direction">%2$s</xliff:g></string>
