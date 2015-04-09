@@ -32,6 +32,7 @@ public class FormatUtil
 	// Format used for storing dates in the database. ALso used for converting those strings
 // back into date objects for comparison/processing.
 	public static final String DATE_FORMAT = "yyyyMMdd";
+	private static final int WEEK = 7;
 
 	public static String getPreferredLocation(Context context)
 	{
@@ -87,31 +88,32 @@ public class FormatUtil
 		long currentTime = System.currentTimeMillis();
 		int julianDay = Time.getJulianDay(dateInMillis, time.gmtoff);
 		int currentJulianDay = Time.getJulianDay(currentTime, time.gmtoff);
+		String formattedMonthDay = getFormattedMonthDay(context, dateInMillis);
 
 		// If the date we're building the String for is today's date, the format
 		// is "Today, June 24"
 		if (julianDay == currentJulianDay)
 		{
-			String today = context.getString(R.string.today);
-			int formatId = R.string.format_full_friendly_date;
-			return String.format(context.getString(
-					formatId,
-					today,
-					getFormattedMonthDay(context, dateInMillis)));
+			return getFirstWeekDateFormat(context, context.getString(R.string.today), formattedMonthDay);
 		}
-		else if (julianDay < currentJulianDay + 7)
+		else if (julianDay < currentJulianDay + WEEK)
 		{
-			// If the input date is less than a week in the future, just return the day name.
-			return getDayName(context, dateInMillis);
+			// If the input date is less than a week in the future, Wednesday, April 09.
+			String dayName = getDayName(context, dateInMillis);
+			return getFirstWeekDateFormat(context, dayName, formattedMonthDay);
 		}
 		else
 		{
-			// Otherwise, use the form "Mon Jun 3"
-			SimpleDateFormat shortenedDateFormat = new SimpleDateFormat("EEE MMM dd");
+			// Otherwise, use the form "Mon, Jun 3"
+			SimpleDateFormat shortenedDateFormat = new SimpleDateFormat("EEE, MMMM dd");
 			return shortenedDateFormat.format(dateInMillis);
 		}
 	}
 
+	private static String getFirstWeekDateFormat(Context context, String dayName, String formattedMonthDay)
+	{
+		return  String.format(context.getString(R.string.format_full_friendly_date), dayName, formattedMonthDay);
+	}
 
 	public static String getFormattedWind(Context context, float windSpeed, float degrees)
 	{
