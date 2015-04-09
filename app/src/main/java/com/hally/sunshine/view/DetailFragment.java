@@ -110,7 +110,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 		_windView = (TextView) rootView.findViewById(R.id.detail_wind_textview);
 		_pressureView = (TextView) rootView.findViewById(R.id.detail_pressure_textview);
 
-		clearDetails();
+		//clearDetails();
 
 		return rootView;
 	}

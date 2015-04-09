@@ -8,7 +8,7 @@ import com.hally.sunshine.util.TraceUtil;
 
 public class SunshineSyncService extends Service
 {
-	public final static String CLASS_NAME = SunshineSyncAdapter.class.getSimpleName();
+	public final static String CLASS_NAME = SunshineSyncService.class.getSimpleName();
 	private static final Object sSyncAdapterLock = new Object();
 	private static SunshineSyncAdapter sSunshineSyncAdapter = null;
 
