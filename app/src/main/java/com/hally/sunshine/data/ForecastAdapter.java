@@ -29,17 +29,6 @@ public class ForecastAdapter extends CursorAdapter
 		super(context, c, flags);
 	}
 
-	/**
-	 * Prepare the weather high/lows for presentation.
-	 */
-	private String formatHighLows(double high, double low)
-	{
-		boolean isMetric = FormatUtil.isMetric(mContext);
-		String highLowStr = FormatUtil.formatTemperature(mContext, high) + "/" +
-				FormatUtil.formatTemperature(mContext, low);
-		return highLowStr;
-	}
-
 	public void setIsTodayItemNecessary(boolean flag)
 	{
 		_showTodayItem = flag;
@@ -56,21 +45,6 @@ public class ForecastAdapter extends CursorAdapter
 	public int getViewTypeCount()
 	{
 		return VIEW_TYPE_COUNT;
-	}
-
-	/*
-	This is ported from FetchWeatherTask --- but now we go straight from the cursor to the
-	string.
-	*/
-	private String convertCursorRowToUXFormat(Cursor cursor)
-	{
-		String highAndLow = formatHighLows(
-				cursor.getDouble(MainForecastFragment.COL_WEATHER_MAX_TEMP),
-				cursor.getDouble(MainForecastFragment.COL_WEATHER_MIN_TEMP));
-
-		return FormatUtil.formatDate(cursor.getLong(MainForecastFragment.COL_WEATHER_DATE)) +
-				" - " + cursor.getString(MainForecastFragment.COL_WEATHER_DESC) +
-				" - " + highAndLow;
 	}
 
 	/*
