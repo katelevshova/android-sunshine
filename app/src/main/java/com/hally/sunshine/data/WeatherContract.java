@@ -50,10 +50,9 @@ public class WeatherContract
 		return time.setJulianDay(julianDay);
 	}
 
-	/*
-		Inner class that defines the table contents of the location table
-		Students: This is where you will add the strings.  (Similar to what has been
-		done for WeatherEntry)
+	/**
+	 * Inner class that defines the table contents of the location table Students: This is where you
+	 * will add the strings.  (Similar to what has been done for WeatherEntry)
 	 */
 	public static final class LocationEntry implements BaseColumns
 	{
@@ -104,6 +103,7 @@ public class WeatherContract
 
 		// Column with the foreign key into the location table.
 		public static final String COLUMN_LOC_KEY = "location_id";
+
 		// Date, stored as long in milliseconds since the epoch
 		public static final String COLUMN_DATE = "date";
 		// Weather id as returned by API, to identify the icon to be used
@@ -129,6 +129,10 @@ public class WeatherContract
 		// Degrees are meteorological degrees (e.g, 0 is north, 180 is south).  Stored as floats.
 		public static final String COLUMN_DEGREES = "degrees";
 
+		private static final int LOCATION_PATH_INDEX = 1;
+		private static final int DATE_PATH_INDEX = 2;
+
+
 		public static Uri buildWeatherUri(long id)
 		{
 			return ContentUris.withAppendedId(CONTENT_URI, id);
@@ -152,15 +156,14 @@ public class WeatherContract
 					(normalizeDate(date))).build();
 		}
 
-		//TODO: add constans for 1, 2
 		public static String getLocationSettingFromUri(Uri uri)
 		{
-			return uri.getPathSegments().get(1);
+			return uri.getPathSegments().get(LOCATION_PATH_INDEX);
 		}
 
 		public static long getDateFromUri(Uri uri)
 		{
-			return Long.parseLong(uri.getPathSegments().get(2));
+			return Long.parseLong(uri.getPathSegments().get(DATE_PATH_INDEX));
 		}
 
 		public static long getStartDateFromUri(Uri uri)
