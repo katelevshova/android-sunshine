@@ -63,6 +63,10 @@ public class WeatherDbHelper extends SQLiteOpenHelper
 		return _weatherDbHelper;
 	}
 
+	/**
+	 * Creates SQLite string for creating a weather table
+	 * @return
+	 */
 	private String createWeatherTableSqlString()
 	{
 		return "CREATE TABLE " + WeatherEntry.TABLE_NAME + " (" +
@@ -92,6 +96,10 @@ public class WeatherDbHelper extends SQLiteOpenHelper
 				WeatherEntry.COLUMN_LOC_KEY + ") ON CONFLICT REPLACE);";
 	}
 
+	/**
+	 * Creates SQLite string for creating a location table
+	 * @return
+	 */
 	private String createLocationTableSqlString()
 	{
 		return "CREATE TABLE " + LocationEntry.TABLE_NAME + " (" +
