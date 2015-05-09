@@ -24,7 +24,7 @@ Has several minor differences with source code of Udacity implementation.
 
 ![Screenshot_2015-05-08-16-48-09.png](https://bitbucket.org/repo/RjKoox/images/1127907776-Screenshot_2015-05-08-16-48-09.png)
 
-![Screenshot_2015-05-08-16-48-36.png](https://bitbucket.org/repo/RjKoox/images/3971121799-Screenshot_2015-05-08-16-48-36.png)
+![Screenshot_2015-05-08-16-48-36.png](https://bitbucket.org/repo/RjKoox/images/1665309336-Screenshot_2015-05-08-16-48-36.png)
 
 ![Screenshot_2015-05-08-16-47-53.png](https://bitbucket.org/repo/RjKoox/images/424564596-Screenshot_2015-05-08-16-47-53.png)
 
