@@ -1,6 +1,6 @@
 # README #
 
-##№ Quick summary ###
+### Quick summary ###
 
 Sunshine application is a result of an online course "Developing Android Apps: Android Fundamentals" - [https://www.udacity.com/wiki/ud853 ]() .
 Has several minor differences with source code of Udacity implementation.
