@@ -2,8 +2,10 @@
 
 ### Quick summary ###
 
-Sunshine application is a result of an online course "Developing Android Apps: Android Fundamentals" - [https://www.udacity.com/wiki/ud853 ]() .
-Has several minor differences with source code of Udacity implementation.
+Sunshine application for Android devices. 
+Uses OpenWeatherMap API to synchronize forecast data - http://openweathermap.org/api. Allows user to see forecast for 2 weeks for specific location and more detailed information for chosen day. 
+It is possible to change such settings as: location, units, turn On/Off notifications.
+To share weather information using other installed apps like Googl+, Gmail, etc. 
 
 ### Screenshots for Nexus 5 ###
 
@@ -27,7 +29,3 @@ Has several minor differences with source code of Udacity implementation.
 ![Screenshot_2015-05-08-16-48-36.png](https://bitbucket.org/repo/RjKoox/images/1665309336-Screenshot_2015-05-08-16-48-36.png)
 
 ![Screenshot_2015-05-08-16-47-53.png](https://bitbucket.org/repo/RjKoox/images/424564596-Screenshot_2015-05-08-16-47-53.png)
-
-### Who do I talk to? ###
-
-Repo owner
