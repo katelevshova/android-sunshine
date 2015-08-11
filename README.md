@@ -6,6 +6,9 @@ Sunshine application for Android devices.
 Uses OpenWeatherMap API to synchronize forecast data - http://openweathermap.org/api. Allows user to see forecast for 2 weeks for specific location and more detailed information for chosen day. 
 It is possible to change such settings as: location, units, turn On/Off notifications.
 To share weather information using other installed apps like Googl+, Gmail, etc. 
+To see location on Google Maps.
+Provides different layouts for different device sizes.
+
 
 ### Screenshots for Nexus 5 ###
 
