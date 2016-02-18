@@ -26,24 +26,20 @@ import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.ImageResouceUtil;
 import com.hally.sunshine.util.TraceUtil;
 
-import org.apache.http.protocol.HTTP;
-
 /**
  * @author Kateryna Levshova
  * @date 26.02.2015
  */
 public class DetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>
 {
-	private final String CLASS_NAME = DetailFragment.class.getSimpleName();
-	private static final String FORECAST_SHARE_HASHTAG = "#SunshineApp";
 	public static final String DETAIL_URI = "URI";
-
-	private Uri _uri;
-	private String _forecastStr;
-	private ShareActionProvider _shareActionProvider;
+	public static final int COL_WEATHER_HUMIDITY = 5;
+	public static final int COL_WEATHER_PRESSURE = 6;
+	public static final int COL_WEATHER_WIND_SPEED = 7;
+	public static final int COL_WEATHER_DEGREES = 8;
+	public static final int COL_WEATHER_CONDITION_ID = 9;
+	private static final String FORECAST_SHARE_HASHTAG = "#SunshineApp";
 	private static final int DETAIL_LOADER_ID = 0;
-
-
 	private static final String[] DETAIL_FORECAST_COLUMNS = {
 			WeatherContract.WeatherEntry.TABLE_NAME + "." + WeatherContract.WeatherEntry._ID,
 			WeatherContract.WeatherEntry.COLUMN_DATE,
@@ -67,12 +63,10 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 	private static final int COL_WEATHER_DESC = 2;
 	private static final int COL_WEATHER_MAX_TEMP = 3;
 	private static final int COL_WEATHER_MIN_TEMP = 4;
-	public static final int COL_WEATHER_HUMIDITY = 5;
-	public static final int COL_WEATHER_PRESSURE = 6;
-	public static final int COL_WEATHER_WIND_SPEED = 7;
-	public static final int COL_WEATHER_DEGREES = 8;
-	public static final int COL_WEATHER_CONDITION_ID = 9;
-
+	private final String CLASS_NAME = DetailFragment.class.getSimpleName();
+	private Uri _uri;
+	private String _forecastStr;
+	private ShareActionProvider _shareActionProvider;
 	private ImageView _iconView;
 	private TextView _friendlyDateView;
 	private TextView _dateView;
@@ -125,7 +119,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 		Intent shareIntent = new Intent(Intent.ACTION_SEND);
 		//return to your app in backstack
 		shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-		shareIntent.setType(HTTP.PLAIN_TEXT_TYPE);// "text/plain" MIME type
+		shareIntent.setType("text/plain");// "text/plain" MIME type
 		shareIntent.putExtra(Intent.EXTRA_TEXT, _forecastStr + FORECAST_SHARE_HASHTAG);
 		return shareIntent;
 	}
