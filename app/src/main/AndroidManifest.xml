@@ -16,10 +16,10 @@
 		android:allowBackup="true"
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
-		android:theme="@style/AppTheme">
+		android:theme="@style/SunshineAppTheme">
 		<activity
 			android:name=".view.MainForecastActivity"
-			android:theme="@style/ForecastTheme">
+			android:theme="@style/SunshineAppTheme">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="android.intent.category.LAUNCHER"/>
@@ -35,15 +35,16 @@
 			android:name=".view.DetailActivity"
 			android:label="@string/title_activity_detail"
 			android:parentActivityName=".view.MainForecastActivity"
-			android:theme="@style/Theme.AppCompat.Light">
+			android:theme="@style/SunshineAppTheme">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".view.MainForecastActivity"/>
 		</activity>
 		<activity
-			android:name=".view.SettingsDetailActivity"
+			android:name=".view.SettingsActivity"
 			android:label="@string/title_activity_settings_detail"
-			android:parentActivityName=".view.MainForecastActivity">
+			android:parentActivityName=".view.MainForecastActivity"
+			android:theme="@style/SunshineAppTheme">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".view.MainForecastActivity"/>

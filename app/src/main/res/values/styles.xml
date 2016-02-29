@@ -1,23 +1,31 @@
 <resources>
 
 	<!-- Base application theme. -->
-	<style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+	<style name="SunshineAppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+		<item name="actionBarStyle">@style/SunshineActionBar</item>
+		<item name="dropDownListViewStyle">@style/PopupMenuListView</item>
 		<item name="colorPrimary">@color/sunshine_blue</item>
 		<item name="colorPrimaryDark">@color/sunshine_dark_blue</item>
+		<!-- OverFlow Menu Text Color -->
+		<item name="android:textColor">@color/white</item>
 	</style>
 
-	<!-- Main activity theme. -->
-	<style name="ForecastTheme" parent="@style/Theme.AppCompat.Light">
-		<item name="actionBarStyle">@style/ActionBar.Solid.Sunshine</item>
+	<style name="SunshineAppTheme" parent="SunshineAppTheme.Base">
 	</style>
 
 	<!-- main activity action bar styles -->
-	<style name="ActionBar.Solid.Sunshine" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+	<style name="SunshineActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
 		<item name="background">@color/sunshine_blue</item>
-		<item name="title">@string/app_name</item>
 		<item name="icon">@mipmap/art_clear</item>
 		<item name="displayOptions">showTitle|showHome|useLogo</item>
 		<item name="titleTextStyle">@style/TitleActionBar</item>
+	</style>
+
+	<style name="PopupMenuListView" parent="@style/Widget.AppCompat.ListView.DropDown">
+		<item name="android:background">@color/sunshine_blue</item>
+		<item name="android:divider">@color/white</item>
+		<item name="android:dividerHeight">1dp</item>
+		<item name="android:textAppearance">@style/SansSerifCondensed.White</item>
 	</style>
 
 	<style name="SansSerifLight" >
