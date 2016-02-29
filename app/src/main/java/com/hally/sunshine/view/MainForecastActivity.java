@@ -89,7 +89,7 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 		//noinspection SimplifiableIfStatement
 		if (id == R.id.item_settings)
 		{
-			startActivity(new Intent(this, SettingsDetailActivity.class));
+			startActivity(new Intent(this, SettingsActivity.class));
 			return true;
 		}
 
