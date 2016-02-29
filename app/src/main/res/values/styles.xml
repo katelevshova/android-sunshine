@@ -16,7 +16,6 @@
 	<!-- main activity action bar styles -->
 	<style name="SunshineActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
 		<item name="background">@color/sunshine_blue</item>
-		<item name="icon">@mipmap/art_clear</item>
 		<item name="displayOptions">showTitle|showHome|useLogo</item>
 		<item name="titleTextStyle">@style/TitleActionBar</item>
 	</style>

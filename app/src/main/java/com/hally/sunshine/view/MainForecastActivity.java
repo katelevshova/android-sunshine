@@ -51,6 +51,7 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 			getSupportActionBar().setElevation(0f); // removes a shadow under the ActionBar for phone
 		}
 
+		getSupportActionBar().setIcon(R.mipmap.art_clear);
 		setUseTodayItemElement();
 
 		SunshineSyncAdapter.initializeSyncAdapter(this);
