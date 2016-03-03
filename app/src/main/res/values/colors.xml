@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<color name="today_item_background">#ff1a70b1</color>
-	<color name="tc_today_item">#ffffffff</color>
-	<color name="tc_general">#ff313131</color>
-	<color name="tc_additional">#646464</color>
+	<color name="tc_primary">#ff313131</color>
+	<color name="tc_secondary">#646464</color>
 	<color name="grey">#cccccc</color>
 	<color name="light_blue">#ff64c2f4</color>
 	<color name="sunshine_blue">#ff1ca8f4</color>

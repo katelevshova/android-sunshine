@@ -71,7 +71,7 @@
 					android:src="@mipmap/art_clear"/>
 				<TextView
 					android:id="@+id/detail_forecast_textview"
-					style="@style/SansSerifCondensed.Grey.GeneralDetails"
+					style="@style/SansSerifCondensed.Grey.PrimaryDetails"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="Clear"/>
@@ -81,7 +81,7 @@
 		<!-- Humidity, wind, pressure -->
 		<TextView
 			android:id="@+id/detail_humidity_textview"
-			style="@style/SansSerifLight.General"
+			style="@style/SansSerifLight.Primary"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="@dimen/details_humidity_margin"
@@ -90,7 +90,7 @@
 
 		<TextView
 			android:id="@+id/detail_wind_textview"
-			style="@style/SansSerifLight.General"
+			style="@style/SansSerifLight.Primary"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="@dimen/details_humidity_margin"
@@ -98,7 +98,7 @@
 
 		<TextView
 			android:id="@+id/detail_pressure_textview"
-			style="@style/SansSerifLight.General"
+			style="@style/SansSerifLight.Primary"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="Pressure: 1014 hPa"/>
