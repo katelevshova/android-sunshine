@@ -6,8 +6,10 @@
 		<item name="dropDownListViewStyle">@style/PopupMenuListView</item>
 		<item name="colorPrimary">@color/sunshine_blue</item>
 		<item name="colorPrimaryDark">@color/sunshine_dark_blue</item>
-		<item name="android:textColorPrimary">@color/sunshine_dark_blue</item>
-		<item name="android:textColorSecondary">@color/red</item>
+		<!--Preference screen title color -->
+		<item name="android:textColor">@color/tc_primary</item>
+		<!--Preference screen value color -->
+		<item name="android:textColorSecondary">@color/tc_secondary</item>
 		<!-- OverFlow Menu Text Color -->
 		<item name="android:itemTextAppearance">@style/ItemTextAppearance</item>
 	</style>
