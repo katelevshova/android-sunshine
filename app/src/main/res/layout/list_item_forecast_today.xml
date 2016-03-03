@@ -14,19 +14,19 @@
 				  android:orientation="vertical">
 
 		<TextView android:id="@+id/list_item_date_textview"
-				  style="@style/SansSerifCondensed.White.Primary"
+				  style="@style/SansSerifCondensed.TC_White.TS_Primary"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
 				  android:text="Today, June 24"/>
 
 		<TextView android:id="@+id/list_item_high_textview"
-				  style="@style/SansSerifLight.White.Max"
+				  style="@style/SansSerifLight.TC_White.Max"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
 				  android:text="81°"/>
 
 		<TextView android:id="@+id/list_item_low_textview"
-				  style="@style/SansSerifLight.White.Min"
+				  style="@style/SansSerifLight.TC_White.Min"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
 				  android:text="30°"/>
@@ -45,7 +45,7 @@
 				   android:src="@mipmap/art_clear"/>
 
 		<TextView android:id="@+id/list_item_forecast_textview"
-				  style="@style/SansSerifCondensed.White.Primary"
+				  style="@style/SansSerifCondensed.TC_White.TS_Primary"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
 				  android:text="Clear"/>
