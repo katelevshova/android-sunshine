@@ -20,15 +20,13 @@
 				style="@style/SansSerifCondensed.TC_TS_Primary"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Tomorrow"
-				android:textSize="@dimen/ts_details_today_header"/>
+				android:text="Tomorrow"/>
 			<TextView
 				android:id="@+id/detail_date_textview"
 				style="@style/SansSerifCondensed.TC_Secondary"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="June 24"
-				android:textSize="@dimen/ts_details_date"/>
+				android:text="June 24"/>
 		</LinearLayout>
 
 		<LinearLayout
