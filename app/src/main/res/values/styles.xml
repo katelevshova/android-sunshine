@@ -6,6 +6,8 @@
 		<item name="dropDownListViewStyle">@style/PopupMenuListView</item>
 		<item name="colorPrimary">@color/sunshine_blue</item>
 		<item name="colorPrimaryDark">@color/sunshine_dark_blue</item>
+		<item name="android:textColorPrimary">@color/sunshine_dark_blue</item>
+		<item name="android:textColorSecondary">@color/red</item>
 		<!-- OverFlow Menu Text Color -->
 		<item name="android:itemTextAppearance">@style/ItemTextAppearance</item>
 	</style>
@@ -97,7 +99,8 @@
 		<item name="android:textSize">@dimen/ts_min_temp_details</item>
 	</style>
 
-	<style name="SansSerifLight.TS_Primary" >
+	<style name="SansSerifLight.TC_Tertiary_TS_Primary" >
+		<item name="android:textColor">@color/tc_tertiary</item>
 		<item name="android:textSize">@dimen/ts_primary_info</item>
 	</style>
 

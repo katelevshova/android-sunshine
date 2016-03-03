@@ -81,7 +81,7 @@
 		<!-- Humidity, wind, pressure -->
 		<TextView
 			android:id="@+id/detail_humidity_textview"
-			style="@style/SansSerifLight.TS_Primary"
+			style="@style/SansSerifLight.TC_Tertiary_TS_Primary"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="@dimen/details_humidity_margin"
@@ -90,7 +90,7 @@
 
 		<TextView
 			android:id="@+id/detail_wind_textview"
-			style="@style/SansSerifLight.TS_Primary"
+			style="@style/SansSerifLight.TC_Tertiary_TS_Primary"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="@dimen/details_humidity_margin"
@@ -98,7 +98,7 @@
 
 		<TextView
 			android:id="@+id/detail_pressure_textview"
-			style="@style/SansSerifLight.TS_Primary"
+			style="@style/SansSerifLight.TC_Tertiary_TS_Primary"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="Pressure: 1014 hPa"/>
