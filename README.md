@@ -10,22 +10,19 @@ To see location on Google Maps.
 Provides different layouts for different device sizes.
 
 
-### Screenshots for Nexus 5 ###
+### Screenshots for Nexus 5 API 16 ###
 
-![Screenshot_2015-05-08-16-36-12.png](https://bitbucket.org/repo/RjKoox/images/1222951698-Screenshot_2015-05-08-16-36-12.png)
+![device-2016-03-04-134940 - small.png](https://bitbucket.org/repo/RjKoox/images/1093700792-device-2016-03-04-134940%20-%20small.png)
 
-![Screenshot_2015-05-08-16-36-29.png](https://bitbucket.org/repo/RjKoox/images/2616452002-Screenshot_2015-05-08-16-36-29.png)
+![device-2016-03-04-135125 - small.png](https://bitbucket.org/repo/RjKoox/images/3666479098-device-2016-03-04-135125%20-%20small.png)
 
-![Screenshot_2015-05-08-16-36-39.png](https://bitbucket.org/repo/RjKoox/images/2022225402-Screenshot_2015-05-08-16-36-39.png)
+![device-2016-03-04-135301 - small.png](https://bitbucket.org/repo/RjKoox/images/912781688-device-2016-03-04-135301%20-%20small.png)
 
-![Screenshot_2015-05-08-16-36-57~2.jpg](https://bitbucket.org/repo/RjKoox/images/2104876600-Screenshot_2015-05-08-16-36-57~2.jpg)
+![device-2016-03-04-135418 - small.png](https://bitbucket.org/repo/RjKoox/images/584094413-device-2016-03-04-135418%20-%20small.png)
 
 ![Screenshot_2015-05-08-16-37-18~2.jpg](https://bitbucket.org/repo/RjKoox/images/3793521772-Screenshot_2015-05-08-16-37-18~2.jpg)
 
-![Screenshot_2015-05-08-16-37-34~2.jpg](https://bitbucket.org/repo/RjKoox/images/1158512198-Screenshot_2015-05-08-16-37-34~2.jpg)
-
 ### Screenshots for Nexus 10 ###
-
 
 ![Screenshot_2015-05-08-16-48-09.png](https://bitbucket.org/repo/RjKoox/images/1127907776-Screenshot_2015-05-08-16-48-09.png)
 
