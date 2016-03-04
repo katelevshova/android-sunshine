@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="today_item_background">#ff1a70b1</color>
 	<color name="tc_primary">#ff313131</color>
 	<color name="tc_secondary">#646464</color>
 	<color name="tc_tertiary">#858EA5</color>
