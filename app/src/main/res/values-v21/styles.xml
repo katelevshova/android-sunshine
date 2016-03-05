@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="SunshineAppTheme" parent="SunshineAppTheme.Base">
+    <style name="SunshineAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
     </style>
 
-    <style name="SunshineAppTheme.Base" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <!-- main activity action bar styles -->
+    <style name="SunshineToolBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">@color/red</item>
+      <!--  <item name="android:title">@string/app.name</item>-->
+    </style>
+
+    <style name="SansSerifCondensed">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="SansSerifLight" >
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
 
 
 </resources>

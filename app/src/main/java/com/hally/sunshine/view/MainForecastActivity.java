@@ -2,9 +2,12 @@ package com.hally.sunshine.view;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -28,6 +31,13 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 		_location = FormatUtil.getPreferredLocation(this);
 
 		setContentView(R.layout.activity_main);
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+		{
+			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+			setSupportActionBar(toolbar);
+			ActionBar actionBar = getSupportActionBar();
+		}
 
 		if (findViewById(R.id.detail_container) != null)
 		{
