@@ -16,16 +16,22 @@ Provides different layouts for different device sizes.
 
 ![device-2016-03-04-135125 - small.png](https://bitbucket.org/repo/RjKoox/images/3666479098-device-2016-03-04-135125%20-%20small.png)
 
+![device-2016-03-09-152442.png](https://bitbucket.org/repo/RjKoox/images/3962930995-device-2016-03-09-152442.png)
+
 ![device-2016-03-04-135301 - small.png](https://bitbucket.org/repo/RjKoox/images/912781688-device-2016-03-04-135301%20-%20small.png)
 
 ![device-2016-03-04-135418 - small.png](https://bitbucket.org/repo/RjKoox/images/584094413-device-2016-03-04-135418%20-%20small.png)
 
 ![Screenshot_2015-05-08-16-37-18~2.jpg](https://bitbucket.org/repo/RjKoox/images/3793521772-Screenshot_2015-05-08-16-37-18~2.jpg)
 
-### Screenshots for Nexus 10 ###
+### Screenshots for tablet WXGA 10 inch API 16 ###
 
-![Screenshot_2015-05-08-16-48-09.png](https://bitbucket.org/repo/RjKoox/images/1127907776-Screenshot_2015-05-08-16-48-09.png)
+![device-2016-03-09-150932.png](https://bitbucket.org/repo/RjKoox/images/1912190177-device-2016-03-09-150932.png)
 
-![Screenshot_2015-05-08-16-48-36.png](https://bitbucket.org/repo/RjKoox/images/1665309336-Screenshot_2015-05-08-16-48-36.png)
+![device-2016-03-09-150705.png](https://bitbucket.org/repo/RjKoox/images/1469568493-device-2016-03-09-150705.png)
 
-![Screenshot_2015-05-08-16-47-53.png](https://bitbucket.org/repo/RjKoox/images/424564596-Screenshot_2015-05-08-16-47-53.png)
+![device-2016-03-09-150829.png](https://bitbucket.org/repo/RjKoox/images/1532899468-device-2016-03-09-150829.png)
+
+### Notifications ###
+
+![Screenshot_2015-05-08-16-47-53.png](https://bitbucket.org/repo/RjKoox/images/320605929-Screenshot_2015-05-08-16-47-53.png)
