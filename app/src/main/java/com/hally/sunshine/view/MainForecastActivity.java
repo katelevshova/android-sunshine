@@ -58,7 +58,7 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 		else
 		{
 			_hasTwoPane = false;
-			getSupportActionBar().setElevation(0f); // removes a shadow under the ActionBar for phone
+//			getSupportActionBar().setElevation(0f); // removes a shadow under the ActionBar for phone
 		}
 
 		getSupportActionBar().setIcon(R.mipmap.art_clear);
