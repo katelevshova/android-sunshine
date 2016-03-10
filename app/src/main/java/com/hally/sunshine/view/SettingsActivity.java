@@ -1,7 +1,9 @@
 package com.hally.sunshine.view;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.hally.sunshine.R;
 
@@ -20,6 +22,12 @@ public class SettingsActivity extends ActionBarActivity
 		{
 			getFragmentManager().beginTransaction()
 					.add(R.id.settings_container, new SettingsFragment()).commit();
+		}
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+		{
+			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+			setSupportActionBar(toolbar);
 		}
 	}
 }

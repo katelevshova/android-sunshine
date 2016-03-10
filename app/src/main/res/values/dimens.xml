@@ -7,5 +7,5 @@
 	<dimen name="icon_listitem_size">36dp</dimen>
 	<dimen name="today_item_left_margin">60dp</dimen>
 	<dimen name="details_humidity_margin">4dp</dimen>
-	<dimen name="shadow_size">4dp</dimen>
+	<dimen name="shadow_size">0dp</dimen>
 </resources>
