@@ -35,3 +35,11 @@ Provides different layouts for different device sizes.
 ### Notifications ###
 
 ![Screenshot_2015-05-08-16-47-53.png](https://bitbucket.org/repo/RjKoox/images/320605929-Screenshot_2015-05-08-16-47-53.png)
+
+### Screenshots for Nexus 5 API 21 - Toolbar ###
+
+![Nexus5 API21 2016-03-09.png](https://bitbucket.org/repo/RjKoox/images/2350990598-Nexus5%20API21%202016-03-09.png)
+
+### Screenshots for Nexus 7 API 21 - Toolbar ###
+
+![Nexus7 API21 2016-03-09.png](https://bitbucket.org/repo/RjKoox/images/285104167-Nexus7%20API21%202016-03-09.png)
