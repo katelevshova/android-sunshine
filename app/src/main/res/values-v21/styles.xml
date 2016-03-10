@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="SunshineAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+	<style name="SunshineAppTheme" parent="SunshineAppTheme.Base">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
 	</style>
 
 	<!-- main activity action bar styles -->
 	<style name="SunshineToolBar" parent="ThemeOverlay.AppCompat.Dark">
 		<item name="android:background">@color/sunshine_blue</item>
-	</style>
-
-	<style name="PopupMenuListView" parent="ThemeOverlay.AppCompat.Dark">
-		<item name="android:divider">@color/white</item>
-		<item name="android:dividerHeight">1dp</item>
-		<item name="android:textAppearance">@style/SansSerifCondensed</item>
+		<item name="android:title">@string/app_name</item>
 	</style>
 
 	<style name="SansSerifCondensed">
@@ -22,7 +19,5 @@
 	<style name="SansSerifLight">
 		<item name="android:fontFamily">sans-serif-light</item>
 	</style>
-
-	<!-- NOTE: not finished yet! -->
 
 </resources>
