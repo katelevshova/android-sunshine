@@ -10,7 +10,7 @@ To see location on Google Maps.
 Provides different layouts for different device sizes.
 
 
-### Screenshots for Nexus 5 API 16 ###
+### Screenshots for Nexus 5 API 16 - AppCompat ActionBar ###
 
 ![device-2016-03-04-134940 - small.png](https://bitbucket.org/repo/RjKoox/images/1093700792-device-2016-03-04-134940%20-%20small.png)
 
@@ -24,7 +24,7 @@ Provides different layouts for different device sizes.
 
 ![Screenshot_2015-05-08-16-37-18~2.jpg](https://bitbucket.org/repo/RjKoox/images/3793521772-Screenshot_2015-05-08-16-37-18~2.jpg)
 
-### Screenshots for tablet WXGA 10 inch API 16 ###
+### Screenshots for tablet WXGA 10 inch API 16 - AppCompat ActionBar ###
 
 ![device-2016-03-09-150932.png](https://bitbucket.org/repo/RjKoox/images/1912190177-device-2016-03-09-150932.png)
 
