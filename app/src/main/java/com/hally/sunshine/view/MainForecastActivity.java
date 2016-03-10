@@ -2,9 +2,12 @@ package com.hally.sunshine.view;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -29,6 +32,13 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 
 		setContentView(R.layout.activity_main);
 
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+		{
+			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+			setSupportActionBar(toolbar);
+			ActionBar actionBar = getSupportActionBar();
+		}
+
 		if (findViewById(R.id.detail_container) != null)
 		{
 			// The detail container view will be present only in the large-screen layouts
@@ -48,9 +58,10 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 		else
 		{
 			_hasTwoPane = false;
-			getSupportActionBar().setElevation(0f); // removes a shadow under the ActionBar for phone
+//			getSupportActionBar().setElevation(0f); // removes a shadow under the ActionBar for phone
 		}
 
+		getSupportActionBar().setIcon(R.mipmap.art_clear);
 		setUseTodayItemElement();
 
 		SunshineSyncAdapter.initializeSyncAdapter(this);
@@ -89,7 +100,7 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 		//noinspection SimplifiableIfStatement
 		if (id == R.id.item_settings)
 		{
-			startActivity(new Intent(this, SettingsDetailActivity.class));
+			startActivity(new Intent(this, SettingsActivity.class));
 			return true;
 		}
 

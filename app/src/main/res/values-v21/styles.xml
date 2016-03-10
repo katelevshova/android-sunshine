@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="android:Theme.Material.Light">
-    </style>
+
+	<style name="SunshineAppTheme" parent="SunshineAppTheme.Base">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+	</style>
+
+	<!-- main activity action bar styles -->
+	<style name="SunshineToolBar" parent="ThemeOverlay.AppCompat.Dark">
+		<item name="android:background">@color/sunshine_blue</item>
+		<item name="android:title">@string/app_name</item>
+	</style>
+
+	<style name="SansSerifCondensed">
+		<item name="android:fontFamily">sans-serif-condensed</item>
+	</style>
+
+	<style name="SansSerifLight">
+		<item name="android:fontFamily">sans-serif-light</item>
+	</style>
+
 </resources>

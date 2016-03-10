@@ -1,23 +1,40 @@
 <resources>
 
 	<!-- Base application theme. -->
-	<style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+	<style name="SunshineAppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+		<item name="actionBarStyle">@style/SunshineActionBar</item>
+		<item name="dropDownListViewStyle">@style/PopupMenuListView</item>
 		<item name="colorPrimary">@color/sunshine_blue</item>
 		<item name="colorPrimaryDark">@color/sunshine_dark_blue</item>
+		<!--Preference screen title color -->
+		<item name="android:textColor">@color/tc_primary</item>
+		<!--Preference screen value color -->
+		<item name="android:textColorSecondary">@color/tc_secondary</item>
+		<!-- OverFlow Menu Text Color -->
+		<item name="android:itemTextAppearance">@style/ItemTextAppearance</item>
+		<!-- Removes a shadow under the ActionBar -->
+		<item name="android:windowContentOverlay">@null</item>
 	</style>
 
-	<!-- Main activity theme. -->
-	<style name="ForecastTheme" parent="@style/Theme.AppCompat.Light">
-		<item name="actionBarStyle">@style/ActionBar.Solid.Sunshine</item>
+	<style name="SunshineAppTheme" parent="SunshineAppTheme.Base">
 	</style>
 
-	<!-- main activity action bar styles -->
-	<style name="ActionBar.Solid.Sunshine" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+	<!-- Action Bar styles -->
+	<style name="SunshineActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
 		<item name="background">@color/sunshine_blue</item>
-		<item name="title">@string/app_name</item>
-		<item name="icon">@mipmap/art_clear</item>
 		<item name="displayOptions">showTitle|showHome|useLogo</item>
 		<item name="titleTextStyle">@style/TitleActionBar</item>
+	</style>
+
+	<style name="PopupMenuListView" parent="@style/Widget.AppCompat.ListView.DropDown">
+		<item name="android:background">@color/sunshine_blue</item>
+		<item name="android:divider">@color/white</item>
+		<item name="android:dividerHeight">1dp</item>
+		<item name="android:textAppearance">@style/SansSerifCondensed.TC_White</item>
+	</style>
+
+	<style name="ItemTextAppearance" parent="SansSerifCondensed.TC_White.TS_Primary">
+		<item name="android:textStyle">normal</item>
 	</style>
 
 	<style name="SansSerifLight" >
@@ -29,71 +46,74 @@
 	</style>
 
 	<!-- For MainForecastFragment and its list_item_forecast_today elements-->
+	<!-- NOTE:
+	TC_ - text color
+	TS_ - text size
+	-->
 
-	<style name="SansSerifLight.White">
-		<item name="android:textColor">@color/tc_today_item</item>
+	<style name="SansSerifLight.TC_White">
+		<item name="android:textColor">@color/white</item>
 	</style>
 
-	<style name="SansSerifCondensed.White" >
-		<item name="android:textColor">@color/tc_today_item</item>
+	<style name="SansSerifCondensed.TC_White" >
+		<item name="android:textColor">@color/white</item>
 	</style>
 
-	<style name="SansSerifLight.White.Max">
+	<style name="SansSerifLight.TC_White.Max">
 		<item name="android:textSize">@dimen/ts_max_temp_today</item>
 	</style>
 
-	<style name="SansSerifLight.White.Min" >
+	<style name="SansSerifLight.TC_White.Min" >
 		<item name="android:textSize">@dimen/ts_min_temp_today</item>
 	</style>
 
-	<style name="SansSerifCondensed.White.General" >
-		<item name="android:textSize">@dimen/ts_general_info</item>
+	<style name="SansSerifCondensed.TC_White.TS_Primary" >
+		<item name="android:textSize">@dimen/ts_primary_info</item>
 	</style>
 
-	<style name="TitleActionBar" parent="SansSerifCondensed.White.General">
+	<style name="TitleActionBar" parent="SansSerifCondensed.TC_White.TS_Primary">
 		<item name="android:textStyle">italic|bold</item>
 	</style>
 
 	<!-- For MainForecastFragment and its list_item_forecast elements-->
 
-	<style name="SansSerifCondensed.Black" >
-		<item name="android:textColor">@color/tc_general</item>
+	<style name="SansSerifCondensed.TC_TS_Primary" >
+		<item name="android:textColor">@color/tc_primary</item>
+		<item name="android:textSize">@dimen/ts_primary_info</item>
 	</style>
 
-	<style name="SansSerifCondensed.Black.General" >
-		<item name="android:textSize">@dimen/ts_general_info</item>
-	</style>
-
-	<style name="SansSerifCondensed.Grey" >
-		<item name="android:textColor">@color/tc_additional</item>
-	</style>
-
-	<style name="SansSerifCondensed.Grey.GeneralMainForeccast" >
-		<item name="android:textSize">@dimen/ts_additional_info</item>
+	<style name="SansSerifCondensed.TC_Secondary" >
+		<item name="android:textColor">@color/tc_secondary</item>
 	</style>
 
 	<!-- For DetailFragment -->
-	<style name="SansSerifLight.Black" >
-		<item name="android:textColor">@color/tc_general</item>
+	<style name="SansSerifLight.TC_Primary" >
+		<item name="android:textColor">@color/tc_primary</item>
 	</style>
 
-	<style name="SansSerifLight.Black.Max" >
+	<style name="SansSerifLight.TC_Primary.Max" >
 		<item name="android:textSize">@dimen/ts_max_temp_details</item>
 	</style>
 
-	<style name="SansSerifLight.Grey" >
-		<item name="android:textColor">@color/tc_additional</item>
+	<style name="SansSerifLight.TC_Secondary" >
+		<item name="android:textColor">@color/tc_secondary</item>
 	</style>
 
-	<style name="SansSerifLight.Grey.Min" >
+	<style name="SansSerifLight.TC_Secondary.Min" >
 		<item name="android:textSize">@dimen/ts_min_temp_details</item>
 	</style>
 
-	<style name="SansSerifLight.General" >
-		<item name="android:textSize">@dimen/ts_general_info</item>
+	<style name="SansSerifLight.TC_Tertiary_TS_Primary" >
+		<item name="android:textColor">@color/tc_tertiary</item>
+		<item name="android:textSize">@dimen/ts_primary_info</item>
 	</style>
 
-	<style name="SansSerifCondensed.Grey.GeneralDetails" >
+	<style name="SansSerifCondensed.TC_TS_Secondary" >
+		<item name="android:textColor">@color/tc_secondary</item>
+		<item name="android:textSize">@dimen/ts_secondary_info</item>
+	</style>
+
+	<style name="SansSerifCondensed.TC_Secondary.TS_Forecast" >
 		<item name="android:textSize">@dimen/ts_forecast</item>
 	</style>
 

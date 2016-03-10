@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 import com.hally.sunshine.R;
@@ -19,7 +20,7 @@ import com.hally.sunshine.sync.SunshineSyncAdapter;
  * Settings</a> for design guidelines and the <a href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsDetailActivity extends PreferenceActivity
+public class SettingsFragment extends PreferenceFragment
 		implements Preference.OnPreferenceChangeListener
 {
 	@Override
@@ -51,13 +52,6 @@ public class SettingsDetailActivity extends PreferenceActivity
 						.getString(preference.getKey(), ""));
 	}
 
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-	@Override
-	public Intent getParentActivityIntent()
-	{
-		return super.getParentActivityIntent().addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	}
-
 	@Override
 	public boolean onPreferenceChange(Preference preference, Object value)
 	{
@@ -83,7 +77,7 @@ public class SettingsDetailActivity extends PreferenceActivity
 			preference.setSummary(stringValue);
 		}
 
-		SunshineSyncAdapter.syncImmediately(getApplicationContext());
+		SunshineSyncAdapter.syncImmediately(getActivity());
 		return true;
 	}
 }

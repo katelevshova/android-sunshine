@@ -14,14 +14,14 @@
 		<!-- Header: Day, Date -->
 		<TextView
 			android:id="@+id/detail_day_textview"
-			style="@style/SansSerifCondensed.Black"
+			style="@style/SansSerifCondensed.TC_TS_Primary"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="Tomorrow"
 			android:textSize="@dimen/ts_details_today_header"/>
 		<TextView
 			android:id="@+id/detail_date_textview"
-			style="@style/SansSerifCondensed.Grey"
+			style="@style/SansSerifCondensed.TC_Secondary"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="June 24"
@@ -44,13 +44,13 @@
 
 				<TextView
 					android:id="@+id/detail_high_textview"
-					style="@style/SansSerifLight.Black.Max"
+					style="@style/SansSerifLight.TC_Primary.Max"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="21°"/>
 				<TextView
 					android:id="@+id/detail_low_textview"
-					style="@style/SansSerifLight.Grey.Min"
+					style="@style/SansSerifLight.TC_Secondary.Min"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="11°"/>
@@ -71,7 +71,7 @@
 					android:src="@mipmap/art_clear"/>
 				<TextView
 					android:id="@+id/detail_forecast_textview"
-					style="@style/SansSerifCondensed.Grey.GeneralDetails"
+					style="@style/SansSerifCondensed.TC_Secondary.TS_Forecast"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="Clear"/>
@@ -81,7 +81,7 @@
 		<!-- Humidity, wind, pressure -->
 		<TextView
 			android:id="@+id/detail_humidity_textview"
-			style="@style/SansSerifLight.General"
+			style="@style/SansSerifLight.TC_Tertiary_TS_Primary"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="@dimen/details_humidity_margin"
@@ -90,7 +90,7 @@
 
 		<TextView
 			android:id="@+id/detail_wind_textview"
-			style="@style/SansSerifLight.General"
+			style="@style/SansSerifLight.TC_Tertiary_TS_Primary"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="@dimen/details_humidity_margin"
@@ -98,7 +98,7 @@
 
 		<TextView
 			android:id="@+id/detail_pressure_textview"
-			style="@style/SansSerifLight.General"
+			style="@style/SansSerifLight.TC_Tertiary_TS_Primary"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="Pressure: 1014 hPa"/>
