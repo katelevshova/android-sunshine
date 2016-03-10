@@ -36,6 +36,9 @@ public class DetailActivity extends ActionBarActivity
 		{
 			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 			setSupportActionBar(toolbar);
+			// fix for back arrow button
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+			getSupportActionBar().setDisplayShowHomeEnabled(true);
 		}
 	}
 
