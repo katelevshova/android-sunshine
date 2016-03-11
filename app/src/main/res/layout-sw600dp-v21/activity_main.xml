@@ -31,7 +31,8 @@
 				  android:layout_weight="1"
 				  tools:layout="@android:layout/list_content"/>
 
-		<!-- We will use a dynamic fragment in container since for vertical layout we do not need details from the roght side-->
+		<!-- We will use a dynamic fragment in container since for vertical layout we do not need
+		 details from the right side-->
 		<FrameLayout android:id="@+id/detail_container"
 					 android:layout_width="0dp"
 					 android:layout_height="match_parent"

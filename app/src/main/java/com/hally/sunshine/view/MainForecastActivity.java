@@ -1,6 +1,7 @@
 package com.hally.sunshine.view;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -86,6 +87,9 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.menu_main_f_activity, menu);
+
+		boolean isDebuggable =  ( 0 != ( getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE ) );
+		menu.findItem(R.id.item_db_manager).setVisible(isDebuggable);
 		return true;
 	}
 
@@ -101,6 +105,12 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 		if (id == R.id.item_settings)
 		{
 			startActivity(new Intent(this, SettingsActivity.class));
+			return true;
+		}
+
+		if(id == R.id.item_db_manager)
+		{
+			startActivity(new Intent(this, AndroidDatabaseManager.class));
 			return true;
 		}
 

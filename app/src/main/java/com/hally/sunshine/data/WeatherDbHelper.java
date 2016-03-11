@@ -16,23 +16,27 @@
 package com.hally.sunshine.data;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.hally.sunshine.data.WeatherContract.LocationEntry;
 import com.hally.sunshine.data.WeatherContract.WeatherEntry;
+import com.hally.sunshine.util.TraceUtil;
+
+import java.util.ArrayList;
 
 /**
  * Manages a local database for weather data.
  */
 public class WeatherDbHelper extends SQLiteOpenHelper
 {
-
+	static final String CLASS_NAME = WeatherDbHelper.class.getName();
+	static final String DATABASE_NAME = "weather.db";
 	// If you change the database schema, you must increment the database version.
 	private static final int DATABASE_VERSION = 2;
-
-	static final String DATABASE_NAME = "weather.db";
-
 	private static WeatherDbHelper _weatherDbHelper;
 	private static boolean _isInstantiationAllowed = false;
 
@@ -40,16 +44,6 @@ public class WeatherDbHelper extends SQLiteOpenHelper
 	public WeatherDbHelper(Context context)
 	{
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-	}
-
-	@Override
-	public void onCreate(SQLiteDatabase sqLiteDatabase)
-	{
-		final String SQL_CREATE_WEATHER_TABLE = createWeatherTableSqlString();
-		sqLiteDatabase.execSQL(SQL_CREATE_WEATHER_TABLE);
-
-		final String SQL_CREATE_LOCATION_TABLE = createLocationTableSqlString();
-		sqLiteDatabase.execSQL(SQL_CREATE_LOCATION_TABLE);
 	}
 
 	public static WeatherDbHelper getInstance(Context context)
@@ -63,8 +57,19 @@ public class WeatherDbHelper extends SQLiteOpenHelper
 		return _weatherDbHelper;
 	}
 
+	@Override
+	public void onCreate(SQLiteDatabase sqLiteDatabase)
+	{
+		final String SQL_CREATE_WEATHER_TABLE = createWeatherTableSqlString();
+		sqLiteDatabase.execSQL(SQL_CREATE_WEATHER_TABLE);
+
+		final String SQL_CREATE_LOCATION_TABLE = createLocationTableSqlString();
+		sqLiteDatabase.execSQL(SQL_CREATE_LOCATION_TABLE);
+	}
+
 	/**
 	 * Creates SQLite string for creating a weather table
+	 *
 	 * @return
 	 */
 	private String createWeatherTableSqlString()
@@ -98,6 +103,7 @@ public class WeatherDbHelper extends SQLiteOpenHelper
 
 	/**
 	 * Creates SQLite string for creating a location table
+	 *
 	 * @return
 	 */
 	private String createLocationTableSqlString()
@@ -123,5 +129,60 @@ public class WeatherDbHelper extends SQLiteOpenHelper
 		sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + LocationEntry.TABLE_NAME);
 		sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + WeatherEntry.TABLE_NAME);
 		onCreate(sqLiteDatabase);
+	}
+
+	/**
+	 * Added according to steps described
+	 * https://github.com/sanathp/DatabaseManager_For_Android
+	 * @param Query
+	 * @return
+	 */
+	public ArrayList<Cursor> getData(String Query)
+	{
+		//get writable database
+		SQLiteDatabase sqlDB = this.getWritableDatabase();
+		String[] columns = new String[]{"mesage"};
+		//an array list of cursor to save two cursors one has results from the query
+		//other cursor stores error message if any errors are triggered
+		ArrayList<Cursor> alc = new ArrayList<Cursor>(2);
+		MatrixCursor Cursor2 = new MatrixCursor(columns);
+		alc.add(null);
+		alc.add(null);
+
+		try
+		{
+			String maxQuery = Query;
+			//execute the query results will be save in Cursor c
+			Cursor c = sqlDB.rawQuery(maxQuery, null);
+
+			//add value to cursor2
+			Cursor2.addRow(new Object[]{"Success"});
+
+			alc.set(1, Cursor2);
+			if (null != c && c.getCount() > 0)
+			{
+				alc.set(0, c);
+				c.moveToFirst();
+				return alc;
+			}
+			return alc;
+		}
+		catch (SQLException sqlEx)
+		{
+			TraceUtil.logD(CLASS_NAME, "printing exception", sqlEx.getMessage());
+			//if any exceptions are triggered save the error message to cursor an return the arraylist
+			Cursor2.addRow(new Object[]{"" + sqlEx.getMessage()});
+			alc.set(1, Cursor2);
+			return alc;
+		}
+		catch (Exception ex)
+		{
+			TraceUtil.logD(CLASS_NAME, "printing exception", ex.getMessage());
+
+			//if any exceptions are triggered save the error message to cursor an return the arraylist
+			Cursor2.addRow(new Object[]{"" + ex.getMessage()});
+			alc.set(1, Cursor2);
+			return alc;
+		}
 	}
 }

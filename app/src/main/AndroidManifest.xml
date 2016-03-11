@@ -47,6 +47,9 @@
 				android:value=".view.MainForecastActivity"/>
 		</activity>
 
+		<activity android:name=".view.AndroidDatabaseManager"
+				  android:theme="@style/Theme.AppCompat.Light"/>
+
 		<provider android:name=".data.WeatherProvider"
 			android:authorities="@string/content_authority"
 			android:exported="false"
