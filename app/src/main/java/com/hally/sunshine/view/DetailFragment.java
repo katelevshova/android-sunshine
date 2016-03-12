@@ -68,7 +68,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 	private String _forecastStr;
 	private ShareActionProvider _shareActionProvider;
 	private ImageView _iconView;
-	private TextView _friendlyDateView;
+	private TextView _dayView;
 	private TextView _dateView;
 	private TextView _descriptionView;
 	private TextView _highTempView;
@@ -96,7 +96,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 		View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 		_iconView = (ImageView) rootView.findViewById(R.id.detail_icon);
 		_dateView = (TextView) rootView.findViewById(R.id.detail_date_textview);
-		_friendlyDateView = (TextView) rootView.findViewById(R.id.detail_day_textview);
+		_dayView = (TextView) rootView.findViewById(R.id.detail_day_textview);
 		_descriptionView = (TextView) rootView.findViewById(R.id.detail_forecast_textview);
 		_highTempView = (TextView) rootView.findViewById(R.id.detail_high_textview);
 		_lowTempView = (TextView) rootView.findViewById(R.id.detail_low_textview);
@@ -179,7 +179,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 	{
 		_iconView.setImageResource(-1);
 		_dateView.setText("");
-		_friendlyDateView.setText("");
+		_dayView.setText("");
 		_descriptionView.setText("");
 		_highTempView.setText("");
 		_lowTempView.setText("");
@@ -206,7 +206,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 			long date = data.getLong(COL_WEATHER_DATE);
 			String friendlyDateText = FormatUtil.getDayName(getActivity(), date);
 			String dateText = FormatUtil.getFormattedMonthDay(getActivity(), date);
-			_friendlyDateView.setText(friendlyDateText);
+			_dayView.setText(friendlyDateText);
 			_dateView.setText(dateText);
 
 			// Read description from cursor and update view
