@@ -224,12 +224,6 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 				sortOrder);
 	}
 
-//	private boolean hasTwoPane()
-//	{
-//		MainForecastActivity mainForecastActivity = (MainForecastActivity)getActivity();
-//		return mainForecastActivity.getHasTwoPane();
-//	}
-
 	@Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor)
 	{
