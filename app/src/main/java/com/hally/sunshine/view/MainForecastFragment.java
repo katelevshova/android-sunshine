@@ -103,8 +103,9 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 
 		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-		_listViewForecast = (ListView) rootView.findViewById(R.id
-				.listview_forecast);
+		_listViewForecast = (ListView) rootView.findViewById(R.id.listview_forecast);
+		View emptyView = rootView.findViewById(R.id.listview_forecast_empty);
+		_listViewForecast.setEmptyView(emptyView);
 		_listViewForecast.setAdapter(_forecastAdapter);
 
 		_listViewForecast.setOnItemClickListener(onForecastItemClickListener);
@@ -202,7 +203,6 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	// since we read the location when we create the loader, all we need to do is restart things
 	void onLocationChanged()
 	{
-		updateWeather();
 		getLoaderManager().restartLoader(FORECAST_LOADER_ID, null, this);
 	}
 
@@ -238,13 +238,7 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 
 		if(_selectedPosition != ListView.INVALID_POSITION)
 		{
-			_listViewForecast.setItemChecked(_selectedPosition, true); // needs for first startup
 			_listViewForecast.smoothScrollToPosition(_selectedPosition);
-
-			if(hasTwoPane())
-			{
-				showForecastDetails(cursor);
-			}
 		}
 	}
 

@@ -30,5 +30,6 @@
 		id="direction">%2$s</xliff:g></string>
 	<string name="format_pressure">Pressure: <xliff:g id="pressure">%1.0f</xliff:g> hPa</string>
 	<string name="format_humidity">Humidity: <xliff:g id="humidity">%1.0f</xliff:g> %%</string>
-
+	<string name="empty_forecast_list">No Weather Information Available. You need to be
+		connected to the Internet.</string>
 </resources>
