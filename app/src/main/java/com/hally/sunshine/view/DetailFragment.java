@@ -133,8 +133,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 		MenuItem itemShare = menu.findItem(R.id.item_share);
 
 		ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat
-				.getActionProvider(
-						itemShare);
+				.getActionProvider(itemShare);
 
 		if (_forecastStr != null)
 		{
