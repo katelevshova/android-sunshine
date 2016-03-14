@@ -14,7 +14,7 @@
 			  android:layout_height="match_parent"
 			  android:divider="@null"/>
 	<!--empty list-->
-	<TextView android:id="@+id/listview_forecast_empty"
+	<TextView android:id="@+id/listview_no_forecast"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
 			  android:gravity="center_horizontal"

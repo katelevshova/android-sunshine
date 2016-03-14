@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.hally.sunshine.R;
 import com.hally.sunshine.data.ForecastAdapter;
@@ -25,6 +26,7 @@ import com.hally.sunshine.model.IForecastFragmentCallback;
 import com.hally.sunshine.sync.SunshineSyncAdapter;
 import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.TraceUtil;
+import com.hally.sunshine.util.Util;
 
 ;
 
@@ -34,10 +36,19 @@ import com.hally.sunshine.util.TraceUtil;
  */
 public class MainForecastFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>
 {
-	private final String CLASS_NAME = MainForecastFragment.class.getSimpleName();
-	private ForecastAdapter _forecastAdapter;
 	public static final int FORECAST_LOADER_ID = 0;
-
+	// These indices are tied to FORECAST_COLUMNS. If FORECAST_COLUMNS changes, these
+	// must change.
+	public static final int COL_WEATHER_ID = 0;
+	public static final int COL_WEATHER_DATE = 1;
+	public static final int COL_WEATHER_DESC = 2;
+	public static final int COL_WEATHER_MAX_TEMP = 3;
+	public static final int COL_WEATHER_MIN_TEMP = 4;
+	public static final int COL_LOCATION_SETTING = 5;
+	public static final int COL_WEATHER_CONDITION_ID = 6;
+	public static final int COL_COORD_LAT = 7;
+	public static final int COL_COORD_LONG = 8;
+	public static final String SELECTED_KEY = "selectedKey";
 	// For the forecast view we're showing only a small subset of the stored data.
 	// Specify the columns we need.
 	private static final String[] FORECAST_COLUMNS = {
@@ -57,21 +68,30 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 			WeatherContract.LocationEntry.COLUMN_COORD_LAT,
 			WeatherContract.LocationEntry.COLUMN_COORD_LONG
 	};
-	// These indices are tied to FORECAST_COLUMNS. If FORECAST_COLUMNS changes, these
-	// must change.
-	public static final int COL_WEATHER_ID = 0;
-	public static final int COL_WEATHER_DATE = 1;
-	public static final int COL_WEATHER_DESC = 2;
-	public static final int COL_WEATHER_MAX_TEMP = 3;
-	public static final int COL_WEATHER_MIN_TEMP = 4;
-	public static final int COL_LOCATION_SETTING = 5;
-	public static final int COL_WEATHER_CONDITION_ID = 6;
-	public static final int COL_COORD_LAT = 7;
-	public static final int COL_COORD_LONG = 8;
-
+	private final String CLASS_NAME = MainForecastFragment.class.getSimpleName();
+	private ForecastAdapter _forecastAdapter;
 	private int _selectedPosition = 0;
 	private ListView _listViewForecast;
-	public static final String SELECTED_KEY = "selectedKey";
+	private AdapterView.OnItemClickListener onForecastItemClickListener =
+			new AdapterView.OnItemClickListener()
+			{
+				@Override
+				public void onItemClick(AdapterView<?> adapterView, View view, int position,
+										long id)
+				{
+					// CursorAdapter returns a cursor at the correct position for getItem(), or null
+					// if it cannot seek to that position.
+					Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
+
+					showForecastDetails(cursor);
+					_selectedPosition = position;
+				}
+			};
+
+	public MainForecastFragment()
+	{
+		// Required empty public constructor
+	}
 
 	/**
 	 * Returns forecast adapter
@@ -81,11 +101,6 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	public ForecastAdapter getForecastAdapter()
 	{
 		return _forecastAdapter;
-	}
-
-	public MainForecastFragment()
-	{
-		// Required empty public constructor
 	}
 
 	@Override
@@ -104,13 +119,13 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
 		_listViewForecast = (ListView) rootView.findViewById(R.id.listview_forecast);
-		View emptyView = rootView.findViewById(R.id.listview_forecast_empty);
+		View emptyView = rootView.findViewById(R.id.listview_no_forecast);
 		_listViewForecast.setEmptyView(emptyView);
 		_listViewForecast.setAdapter(_forecastAdapter);
 
 		_listViewForecast.setOnItemClickListener(onForecastItemClickListener);
 
-		if(savedInstanceState != null && savedInstanceState.containsKey(SELECTED_KEY))
+		if (savedInstanceState != null && savedInstanceState.containsKey(SELECTED_KEY))
 		{
 			_selectedPosition = savedInstanceState.getInt(SELECTED_KEY);
 		}
@@ -120,32 +135,16 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 
 	public void setUseTodayItem(boolean flag)
 	{
-		if(_forecastAdapter != null)
+		if (_forecastAdapter != null)
 		{
 			_forecastAdapter.setIsTodayItemNecessary(flag);
 		}
 	}
 
-	private AdapterView.OnItemClickListener onForecastItemClickListener =
-	new AdapterView.OnItemClickListener()
-	{
-		@Override
-		public void onItemClick(AdapterView<?> adapterView, View view, int position,
-								long id)
-		{
-			// CursorAdapter returns a cursor at the correct position for getItem(), or null
-			// if it cannot seek to that position.
-			Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
-
-			showForecastDetails(cursor);
-			_selectedPosition = position;
-		}
-	};
-
 	@Override
 	public void onSaveInstanceState(Bundle outState)
 	{
-		if(_selectedPosition != ListView.INVALID_POSITION)
+		if (_selectedPosition != ListView.INVALID_POSITION)
 		{
 			outState.putInt(SELECTED_KEY, _selectedPosition);
 		}
@@ -225,11 +224,11 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 				sortOrder);
 	}
 
-	private boolean hasTwoPane()
-	{
-		MainForecastActivity mainForecastActivity = (MainForecastActivity)getActivity();
-		return mainForecastActivity.getHasTwoPane();
-	}
+//	private boolean hasTwoPane()
+//	{
+//		MainForecastActivity mainForecastActivity = (MainForecastActivity)getActivity();
+//		return mainForecastActivity.getHasTwoPane();
+//	}
 
 	@Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor)
@@ -240,7 +239,34 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 		{
 			_listViewForecast.smoothScrollToPosition(_selectedPosition);
 		}
+		updateEmptyView();
 	}
+
+	/**
+	 * Updates the empty list view with contextually relevant information that the user can use
+	 * to determine why they aren't seeing weather.
+	 */
+	private void updateEmptyView()
+	{
+		if(	_forecastAdapter.getCount() == 0)
+		{
+			TextView textView = (TextView)getView().findViewById(R.id.listview_no_forecast);
+
+			//if cursor is empty
+			if(textView != null)
+			{
+				int message = R.string.empty_forecast_list;
+
+				if(!Util.isNetworkAvailable(getContext()))
+				{
+					message = R.string.empty_forecast_list_no_network;
+				}
+
+				textView.setText(message);
+			}
+		}
+	}
+
 
 	@Override
 	public void onLoaderReset(Loader loader)
@@ -255,29 +281,31 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 		// intent can is detailed in the "Common Intents" page of Android's developer site:
 		// http://developer.android.com/guide/components/intents-common.html#Maps
 
-		if(_forecastAdapter != null)
+		if (_forecastAdapter != null)
 		{
 			Cursor cursor = _forecastAdapter.getCursor();
 
-			if(cursor != null)
+			if (cursor != null)
 			{
 				cursor.moveToPosition(0);
 
 				String posLat = cursor.getString(COL_COORD_LAT);
 				String posLong = cursor.getString(COL_COORD_LONG);
 
-				Uri geoLocation = Uri.parse("geo:"+posLat+","+posLong);
+				Uri geoLocation = Uri.parse("geo:" + posLat + "," + posLong);
 
 				Intent intent = new Intent(Intent.ACTION_VIEW);
 				intent.setData(geoLocation);
 
-				if(intent.resolveActivity(getActivity().getPackageManager()) != null)
+				if (intent.resolveActivity(getActivity().getPackageManager()) != null)
 				{
 					startActivity(intent);
 				}
 				else
 				{
-					TraceUtil.logD(CLASS_NAME, "openPreferredLocationMap", "Couldn't call " + geoLocation.toString() + ", no receiving apps installed!");
+					TraceUtil.logD(CLASS_NAME, "openPreferredLocationMap",
+							"Couldn't call " + geoLocation.toString() +
+									", no receiving apps installed!");
 				}
 			}
 		}
