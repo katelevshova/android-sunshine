@@ -1,9 +1,11 @@
 package com.hally.sunshine.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -24,7 +26,6 @@ import com.hally.sunshine.data.ForecastAdapter;
 import com.hally.sunshine.data.WeatherContract;
 import com.hally.sunshine.model.IForecastFragmentCallback;
 import com.hally.sunshine.sync.SunshineSyncAdapter;
-import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.TraceUtil;
 import com.hally.sunshine.util.Util;
 
@@ -72,7 +73,7 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	private ForecastAdapter _forecastAdapter;
 	private int _selectedPosition = 0;
 	private ListView _listViewForecast;
-	private AdapterView.OnItemClickListener onForecastItemClickListener =
+	private AdapterView.OnItemClickListener _onForecastItemClickListener =
 			new AdapterView.OnItemClickListener()
 			{
 				@Override
@@ -85,6 +86,19 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 
 					showForecastDetails(cursor);
 					_selectedPosition = position;
+				}
+			};
+
+	private SharedPreferences.OnSharedPreferenceChangeListener _onSharedPreferenceChangeListener =
+			new SharedPreferences.OnSharedPreferenceChangeListener()
+			{
+				@Override
+				public void onSharedPreferenceChanged(SharedPreferences prefs, String key)
+				{
+					if(key.equals(getString(R.string.pref_location_status_key)))
+					{
+						updateEmptyView();
+					}
 				}
 			};
 
@@ -111,6 +125,22 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	}
 
 	@Override
+	public void onResume()
+	{
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+		pref.registerOnSharedPreferenceChangeListener(_onSharedPreferenceChangeListener);
+		super.onResume();
+	}
+
+	@Override
+	public void onPause()
+	{
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+		pref.unregisterOnSharedPreferenceChangeListener(_onSharedPreferenceChangeListener);
+		super.onPause();
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState)
 	{
@@ -123,7 +153,7 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 		_listViewForecast.setEmptyView(emptyView);
 		_listViewForecast.setAdapter(_forecastAdapter);
 
-		_listViewForecast.setOnItemClickListener(onForecastItemClickListener);
+		_listViewForecast.setOnItemClickListener(_onForecastItemClickListener);
 
 		if (savedInstanceState != null && savedInstanceState.containsKey(SELECTED_KEY))
 		{
@@ -229,7 +259,7 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	{
 		_forecastAdapter.swapCursor(cursor);
 
-		if(_selectedPosition != ListView.INVALID_POSITION)
+		if (_selectedPosition != ListView.INVALID_POSITION)
 		{
 			_listViewForecast.smoothScrollToPosition(_selectedPosition);
 		}
@@ -237,23 +267,41 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	}
 
 	/**
-	 * Updates the empty list view with contextually relevant information that the user can use
-	 * to determine why they aren't seeing weather.
+	 * Updates the empty list view with contextually relevant information that the user can use to
+	 * determine why they aren't seeing weather.
 	 */
 	private void updateEmptyView()
 	{
-		if(	_forecastAdapter.getCount() == 0)
+		if (_forecastAdapter.getCount() == 0)
 		{
-			TextView textView = (TextView)getView().findViewById(R.id.listview_no_forecast);
+			TextView textView = (TextView) getView().findViewById(R.id.listview_no_forecast);
 
 			//if cursor is empty
-			if(textView != null)
+			if (textView != null)
 			{
 				int message = R.string.empty_forecast_list;
 
-				if(!Util.isNetworkAvailable(getContext()))
+				@SunshineSyncAdapter.LocationStatus int locationStatus = Util
+						.getLocationStatus(getContext());
+
+				switch(locationStatus)
 				{
-					message = R.string.empty_forecast_list_no_network;
+					case SunshineSyncAdapter.LOCATION_STATUS_SERVER_DOWN:
+					{
+						message = R.string.empty_forecast_list_server_down;
+						break;
+					}
+					case SunshineSyncAdapter.LOCATION_STATUS_SERVER_INVALID:
+					case SunshineSyncAdapter.LOCATION_STATUS_UNKNOWN:
+					{
+						message = R.string.empty_forecast_list_server_error;
+						break;
+					}
+					default:
+						if (!Util.isNetworkAvailable(getContext()))
+						{
+							message = R.string.empty_forecast_list_no_network;
+						}
 				}
 
 				textView.setText(message);
