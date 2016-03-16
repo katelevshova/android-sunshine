@@ -2,7 +2,6 @@ package com.hally.sunshine.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
@@ -16,6 +15,7 @@ public class Util
 {
 	/**
 	 * Returns true if the network is available or about to become available
+	 *
 	 * @param context - is used to get the ConnectivityManager
 	 * @return
 	 */
@@ -25,5 +25,20 @@ public class Util
 				.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 		return (networkInfo != null && networkInfo.isConnectedOrConnecting());
+	}
+
+	public static String getPreferredLocation(Context context)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		return prefs.getString(context.getString(R.string.pref_location_key),
+				context.getString(R.string.pref_location_default));
+	}
+
+	public static boolean isMetric(Context context)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		return prefs.getString(context.getString(R.string.pref_units_key),
+				context.getString(R.string.pref_units_metric))
+				.equals(context.getString(R.string.pref_units_metric));
 	}
 }

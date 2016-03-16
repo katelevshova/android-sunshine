@@ -30,6 +30,7 @@ import com.hally.sunshine.data.WeatherContract;
 import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.ImageResouceUtil;
 import com.hally.sunshine.util.TraceUtil;
+import com.hally.sunshine.util.Util;
 import com.hally.sunshine.view.MainForecastActivity;
 
 import org.json.JSONArray;
@@ -221,7 +222,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 	{
 		TraceUtil.logD(CLASS_NAME, "onPerformSync", "Called.");
 
-		String locationQuery = FormatUtil.getPreferredLocation(getContext());
+		String locationQuery = Util.getPreferredLocation(getContext());
 
 		// These two need to be declared outside the try/catch
 		// so that they can be closed in the finally block.
@@ -562,7 +563,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 		if (System.currentTimeMillis() - lastSync >= DAY_IN_MILLIS)
 		{
 			// Last sync was more than 1 day ago, let's send a notification with the weather.
-			String locationQuery = FormatUtil.getPreferredLocation(context);
+			String locationQuery = Util.getPreferredLocation(context);
 
 			Uri weatherUri = WeatherContract.WeatherEntry
 					.buildWeatherLocationWithDate(locationQuery, System.currentTimeMillis());

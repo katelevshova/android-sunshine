@@ -25,6 +25,7 @@ import com.hally.sunshine.data.WeatherContract;
 import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.ImageResouceUtil;
 import com.hally.sunshine.util.TraceUtil;
+import com.hally.sunshine.util.Util;
 
 /**
  * @author Kateryna Levshova
@@ -216,7 +217,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 			_iconView.setContentDescription(description);
 
 			// Read high temperature from cursor and update view
-			boolean isMetric = FormatUtil.isMetric(getActivity());
+			boolean isMetric = Util.isMetric(getActivity());
 			double high = data.getDouble(COL_WEATHER_MAX_TEMP);
 			String highString = FormatUtil.formatTemperature(getActivity(), high);
 			_highTempView.setText(highString);

@@ -11,6 +11,7 @@ import com.hally.sunshine.R;
 import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.ImageResouceUtil;
 import com.hally.sunshine.util.ListItemViewHolder;
+import com.hally.sunshine.util.Util;
 import com.hally.sunshine.view.MainForecastFragment;
 
 /**
@@ -117,7 +118,7 @@ public class ForecastAdapter extends CursorAdapter
 		listItemViewHolder.iconView.setContentDescription(description);
 
 		// Read user preference for metric or imperial temperature units
-		boolean isMetric = FormatUtil.isMetric(context);
+		boolean isMetric = Util.isMetric(context);
 
 		// Read high temperature from cursor
 		double high = cursor.getDouble(MainForecastFragment.COL_WEATHER_MAX_TEMP);

@@ -16,6 +16,7 @@ import com.hally.sunshine.R;
 import com.hally.sunshine.model.IForecastFragmentCallback;
 import com.hally.sunshine.sync.SunshineSyncAdapter;
 import com.hally.sunshine.util.FormatUtil;
+import com.hally.sunshine.util.Util;
 
 
 public class MainForecastActivity extends ActionBarActivity implements IForecastFragmentCallback
@@ -29,7 +30,7 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		_location = FormatUtil.getPreferredLocation(this);
+		_location = Util.getPreferredLocation(this);
 
 		setContentView(R.layout.activity_main);
 
@@ -123,7 +124,7 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 	protected void onResume()
 	{
 		super.onResume();
-		String location = FormatUtil.getPreferredLocation(this);
+		String location = Util.getPreferredLocation(this);
 
 		// update the location in our second pane using the fragment manager
 		if (location != null && !location.equals(_location))

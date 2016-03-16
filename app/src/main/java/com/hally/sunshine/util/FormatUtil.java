@@ -34,28 +34,11 @@ public class FormatUtil
 	public static final String DATE_FORMAT = "yyyyMMdd";
 	private static final int WEEK = 7;
 
-	//TODO: move this to Util
-	public static String getPreferredLocation(Context context)
-	{
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		return prefs.getString(context.getString(R.string.pref_location_key),
-				context.getString(R.string.pref_location_default));
-	}
-
-	//TODO: move this to Util
-	public static boolean isMetric(Context context)
-	{
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		return prefs.getString(context.getString(R.string.pref_units_key),
-				context.getString(R.string.pref_units_metric))
-				.equals(context.getString(R.string.pref_units_metric));
-	}
-
 	public static String formatTemperature(Context context, double temperature)
 	{
 		// Data stored in Celsius by default.  If user prefers to see in Fahrenheit, convert
 		// the values here.
-		if (!isMetric(context))
+		if (!Util.isMetric(context))
 		{
 			temperature = (temperature * 1.8) + 32;
 		}
@@ -120,7 +103,7 @@ public class FormatUtil
 	public static String getFormattedWind(Context context, float windSpeed, float degrees)
 	{
 		int windFormat;
-		if (FormatUtil.isMetric(context))
+		if (Util.isMetric(context))
 		{
 			windFormat = R.string.format_wind_kmh;
 		}

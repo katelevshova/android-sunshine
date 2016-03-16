@@ -155,7 +155,7 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	{
 		if (cursor != null)
 		{
-			String locationSetting = FormatUtil.getPreferredLocation(getActivity());
+			String locationSetting = Util.getPreferredLocation(getActivity());
 			((IForecastFragmentCallback) getActivity()).onItemSelected(
 					WeatherContract.WeatherEntry.buildWeatherLocationWithDate(
 							locationSetting, cursor.getLong(COL_WEATHER_DATE)));
@@ -215,7 +215,7 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle bundle)
 	{
-		String locationSetting = FormatUtil.getPreferredLocation(getActivity());
+		String locationSetting = Util.getPreferredLocation(getActivity());
 		// Sort order: Ascending, by date.
 		String sortOrder = WeatherContract.WeatherEntry.COLUMN_DATE + " ASC";
 		Uri weatherForLocationUri = WeatherContract.WeatherEntry.buildWeatherLocationWithStartDate(
