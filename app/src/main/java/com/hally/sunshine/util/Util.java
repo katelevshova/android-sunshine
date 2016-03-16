@@ -1,8 +1,13 @@
 package com.hally.sunshine.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.preference.PreferenceManager;
+
+import com.hally.sunshine.R;
 
 /**
  * Created by Kateryna Levshova on 14.03.2016.

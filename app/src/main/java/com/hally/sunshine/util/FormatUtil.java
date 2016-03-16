@@ -34,6 +34,7 @@ public class FormatUtil
 	public static final String DATE_FORMAT = "yyyyMMdd";
 	private static final int WEEK = 7;
 
+	//TODO: move this to Util
 	public static String getPreferredLocation(Context context)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -41,6 +42,7 @@ public class FormatUtil
 				context.getString(R.string.pref_location_default));
 	}
 
+	//TODO: move this to Util
 	public static boolean isMetric(Context context)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
