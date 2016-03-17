@@ -53,7 +53,7 @@ public class Util
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		return prefs.getInt(context.getString(R.string.pref_location_status_key),
-				SunshineSyncAdapter.LOCATION_STATUS_SERVER_DOWN);
+				SunshineSyncAdapter.LOCATION_STATUS_UNKNOWN);
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class Util
 	{
 		SharedPreferences.Editor prefs = PreferenceManager.getDefaultSharedPreferences(context).edit();
 		prefs.putInt(context.getResources().getString(R.string.pref_location_status_key),
-				SunshineSyncAdapter.LOCATION_STATUS_INVALID);
+				SunshineSyncAdapter.LOCATION_STATUS_UNKNOWN);
 		prefs.apply(); // it is called from UI thread
 	}
 }

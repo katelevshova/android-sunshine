@@ -55,7 +55,8 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 	public static final int LOCATION_STATUS_OK = 0;
 	public static final int LOCATION_STATUS_SERVER_DOWN = 1;
 	public static final int LOCATION_STATUS_SERVER_INVALID = 2;
-	public static final int LOCATION_STATUS_INVALID = 3;
+	public static final int LOCATION_STATUS_UNKNOWN = 3;
+	public static final int LOCATION_STATUS_INVALID = 4;
 	private static final int NUMBER_DAYS = 14;
 	private static final String[] NOTIFY_WEATHER_PROJECTION = new String[]{
 			WeatherContract.WeatherEntry.COLUMN_WEATHER_ID,
@@ -639,7 +640,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 
 	@Retention(RetentionPolicy.SOURCE)
 	@IntDef({LOCATION_STATUS_OK, LOCATION_STATUS_SERVER_DOWN, LOCATION_STATUS_SERVER_INVALID,
-			LOCATION_STATUS_INVALID})
+			LOCATION_STATUS_UNKNOWN, LOCATION_STATUS_INVALID})
 	public @interface LocationStatus
 	{
 	}

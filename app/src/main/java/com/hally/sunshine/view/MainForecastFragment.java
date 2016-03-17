@@ -313,7 +313,6 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 		}
 	}
 
-
 	@Override
 	public void onLoaderReset(Loader loader)
 	{

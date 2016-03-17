@@ -45,9 +45,8 @@ public class SettingsFragment extends PreferenceFragment
 	{
 		// Set the listener to watch for value changes.
 		preference.setOnPreferenceChangeListener(this);
-		// Trigger the listener immediately with the preference's
-		// current value.
-		onPreferenceChange(preference,
+		// Set the preference summaries
+		setPreferenceSummary(preference,
 				PreferenceManager
 						.getDefaultSharedPreferences(preference.getContext())
 						.getString(preference.getKey(), ""));
@@ -71,8 +70,7 @@ public class SettingsFragment extends PreferenceFragment
 		super.onPause();
 	}
 
-	@Override
-	public boolean onPreferenceChange(Preference preference, Object value)
+	private void setPreferenceSummary(Preference preference, Object value)
 	{
 		String stringValue = value.toString();
 		String key = preference.getKey();
@@ -96,8 +94,11 @@ public class SettingsFragment extends PreferenceFragment
 				case SunshineSyncAdapter.LOCATION_STATUS_OK:
 					preference.setSummary(stringValue);
 					break;
+				case SunshineSyncAdapter.LOCATION_STATUS_UNKNOWN:
+					preference.setSummary(getString(R.string.pref_location_unknown_description, value.toString()));
+					break;
 				case SunshineSyncAdapter.LOCATION_STATUS_INVALID:
-					preference.setSummary(getString(R.string.empty_forecast_list_invalid_location));
+					preference.setSummary(getString(R.string.pref_location_error_description, value.toString()));
 					break;
 				default:
 					// Note --- if the server is down we still assume the value
@@ -110,7 +111,13 @@ public class SettingsFragment extends PreferenceFragment
 			// For other preferences, set the summary to the value's simple string representation.
 			preference.setSummary(stringValue);
 		}
+	}
 
+	// This gets called before the preference is changed
+	@Override
+	public boolean onPreferenceChange(Preference preference, Object value)
+	{
+		setPreferenceSummary(preference, value);
 		return true;
 	}
 
