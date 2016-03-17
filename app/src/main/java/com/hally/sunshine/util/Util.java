@@ -28,14 +28,14 @@ public class Util
 		return (networkInfo != null && networkInfo.isConnectedOrConnecting());
 	}
 
-	public static String getPreferredLocation(Context context)
+	static public String getPreferredLocation(Context context)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		return prefs.getString(context.getString(R.string.pref_location_key),
 				context.getString(R.string.pref_location_default));
 	}
 
-	public static boolean isMetric(Context context)
+	static public boolean isMetric(Context context)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		return prefs.getString(context.getString(R.string.pref_units_key),
@@ -49,10 +49,39 @@ public class Util
 	 * @return
 	 */
 	@SuppressWarnings("ResourceType")
-	public static @SunshineSyncAdapter.LocationStatus int getLocationStatus(Context context)
+	static public @SunshineSyncAdapter.LocationStatus int getLocationStatus(Context context)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		return prefs.getInt(context.getString(R.string.pref_location_status_key),
-				SunshineSyncAdapter.LOCATION_STATUS_UNKNOWN);
+				SunshineSyncAdapter.LOCATION_STATUS_SERVER_DOWN);
+	}
+
+	/**
+	 * Sets the location status into shared preference. Should not be called from the UI thread
+	 * because it uses commit to write to the shared preferences.
+	 *
+	 * @param context
+	 * @param locationStatus
+	 */
+	static public void setLocationStatusPref(Context context, int locationStatus)
+	{
+		SharedPreferences.Editor prefsEditor = PreferenceManager.getDefaultSharedPreferences
+				(context).edit();
+		prefsEditor.putInt(context.getResources().getString(R.string.pref_location_status_key),
+				locationStatus);
+		prefsEditor.commit(); // because the function is used in BG thread, use apply for UI
+	}
+
+	/**
+	 * Resets th location status to <code>SunshineSyncAdapter.LocationStatus
+	 * .LOCATION_STATUS_INVALID</code>
+	 * @param context
+	 */
+	static public void resentLocationUnknown(Context context)
+	{
+		SharedPreferences.Editor prefs = PreferenceManager.getDefaultSharedPreferences(context).edit();
+		prefs.putInt(context.getResources().getString(R.string.pref_location_status_key),
+				SunshineSyncAdapter.LOCATION_STATUS_INVALID);
+		prefs.apply(); // it is called from UI thread
 	}
 }

@@ -55,7 +55,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 	public static final int LOCATION_STATUS_OK = 0;
 	public static final int LOCATION_STATUS_SERVER_DOWN = 1;
 	public static final int LOCATION_STATUS_SERVER_INVALID = 2;
-	public static final int LOCATION_STATUS_UNKNOWN = 3;
+	public static final int LOCATION_STATUS_INVALID = 3;
 	private static final int NUMBER_DAYS = 14;
 	private static final String[] NOTIFY_WEATHER_PROJECTION = new String[]{
 			WeatherContract.WeatherEntry.COLUMN_WEATHER_ID,
@@ -73,22 +73,6 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 	public SunshineSyncAdapter(Context context, boolean autoInitialize)
 	{
 		super(context, autoInitialize);
-	}
-
-	/**
-	 * Sets the location status into shared preference. Should not be called from the UI thread
-	 * because it uses commit to write to the shared preferences.
-	 *
-	 * @param context
-	 * @param locationStatus
-	 */
-	static private void setLocationStatusPref(Context context, int locationStatus)
-	{
-		SharedPreferences.Editor prefsEditor = PreferenceManager.getDefaultSharedPreferences
-				(context).edit();
-		prefsEditor.putInt(context.getResources().getString(R.string.pref_location_status_key),
-				locationStatus);
-		prefsEditor.commit(); // because the function is used in BG thread, use apply for UI
 	}
 
 	/**
@@ -287,7 +271,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 			{
 				// Stream was empty.  No point in parsing.
 				TraceUtil.logI(CLASS_NAME, "onHandleIntent", "Stream was empty.");
-				setLocationStatusPref(getContext(), LOCATION_STATUS_SERVER_DOWN);
+				Util.setLocationStatusPref(getContext(), LOCATION_STATUS_SERVER_DOWN);
 				return;
 			}
 			forecastJsonStr = buffer.toString();
@@ -299,13 +283,13 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 			// If the code didn't successfully get the weather data, there's no point in attempting
 			// to parse it.
 			TraceUtil.logE(CLASS_NAME, "onHandleIntent", e.getMessage(), e);
-			setLocationStatusPref(getContext(), LOCATION_STATUS_SERVER_DOWN);
+			Util.setLocationStatusPref(getContext(), LOCATION_STATUS_SERVER_DOWN);
 			e.printStackTrace();
 		}
 		catch (JSONException e)
 		{
 			TraceUtil.logE(CLASS_NAME, "onHandleIntent", e.getMessage(), e);
-			setLocationStatusPref(getContext(), LOCATION_STATUS_SERVER_INVALID);
+			Util.setLocationStatusPref(getContext(), LOCATION_STATUS_SERVER_INVALID);
 			e.printStackTrace();
 		}
 		finally
@@ -373,6 +357,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 		final String OWM_WEATHER = "weather";
 		final String OWM_DESCRIPTION = "main";
 		final String OWM_WEATHER_ID = "id";
+		final String OWM_MESSAGE_CODE = "cod";
 
 		try
 		{
@@ -385,6 +370,23 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 			JSONObject cityCoord = cityJson.getJSONObject(OWM_COORD);
 			double cityLatitude = cityCoord.getDouble(OWM_LATITUDE);
 			double cityLongitude = cityCoord.getDouble(OWM_LONGITUDE);
+
+			if(forecastJson.has(OWM_MESSAGE_CODE))
+			{
+				int errorCode = forecastJson.getInt(OWM_MESSAGE_CODE);
+
+				switch (errorCode)
+				{
+					case HttpURLConnection.HTTP_OK:
+						break;
+					case HttpURLConnection.HTTP_NOT_FOUND:
+						Util.setLocationStatusPref(getContext(), LOCATION_STATUS_INVALID);
+						return;
+					default:
+						Util.setLocationStatusPref(getContext(), LOCATION_STATUS_SERVER_DOWN);
+						return;
+				}
+			}
 
 			long locationId = addLocation(locationSetting, cityName, cityLatitude, cityLongitude);
 
@@ -477,7 +479,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 				notifyWeather();
 			}
 
-			setLocationStatusPref(getContext(), LOCATION_STATUS_OK);
+			Util.setLocationStatusPref(getContext(), LOCATION_STATUS_OK);
 			TraceUtil.logD(CLASS_NAME, "getWeatherDataFromJson",
 					"Sunshine Service Complete. " + cVVector.size() + " " +
 							"Inserted");
@@ -485,7 +487,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 		catch (JSONException e)
 		{
 			TraceUtil.logE(CLASS_NAME, "getWeatherDataFromJson", e.getMessage(), e);
-			setLocationStatusPref(getContext(), LOCATION_STATUS_SERVER_INVALID);
+			Util.setLocationStatusPref(getContext(), LOCATION_STATUS_SERVER_INVALID);
 			e.printStackTrace();
 		}
 	}
@@ -637,7 +639,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 
 	@Retention(RetentionPolicy.SOURCE)
 	@IntDef({LOCATION_STATUS_OK, LOCATION_STATUS_SERVER_DOWN, LOCATION_STATUS_SERVER_INVALID,
-			LOCATION_STATUS_UNKNOWN})
+			LOCATION_STATUS_INVALID})
 	public @interface LocationStatus
 	{
 	}
