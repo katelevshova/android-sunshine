@@ -1,13 +1,15 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+				  xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<!-- NOTE: EditTextPreference accepts EditText attributes. -->
 	<!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
-	<EditTextPreference
+	<com.hally.sunshine.customviews.LocationEditTextPreference
 		android:defaultValue="@string/pref_location_default"
 		android:inputType="text"
 		android:key="@string/pref_location_key"
 		android:singleLine="true"
-		android:title="@string/pref_location_label"/>
+		android:title="@string/pref_location_label"
+		app:minLength="3"/>
 	<!--MountainView postal code 94043-->
 
 	<ListPreference

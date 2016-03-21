@@ -1,4 +1,4 @@
-package com.hally.sunshine.view;
+package com.hally.sunshine.customviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
