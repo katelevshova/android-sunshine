@@ -9,7 +9,8 @@
 		android:key="@string/pref_location_key"
 		android:singleLine="true"
 		android:title="@string/pref_location_label"
-		app:minLength="3"/>
+		app:minLength="3"
+		app:maxLength="10"/>
 	<!--MountainView postal code 94043-->
 
 	<ListPreference

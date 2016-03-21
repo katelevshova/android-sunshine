@@ -21,8 +21,10 @@ import com.hally.sunshine.util.TraceUtil;
 public class LocationEditTextPreference extends EditTextPreference
 {
 	static public final String CLASS_NAME = LocationEditTextPreference.class.getName();
-	static private final int DEFAULT_LENGTH = 2;
+	static private final int MIN_DEFAULT_LENGTH = 2;
+	static private final int MAX_DEFAULT_LENGTH = 12;
 	private int _minLength = 0;
+	private int _maxLength = 0;
 
 
 	public LocationEditTextPreference(Context context, AttributeSet attrs)
@@ -34,7 +36,9 @@ public class LocationEditTextPreference extends EditTextPreference
 		try
 		{
 			_minLength = typedArray
-					.getInt(R.styleable.LocationEditTextPreference_minLength, DEFAULT_LENGTH);
+					.getInt(R.styleable.LocationEditTextPreference_minLength, MIN_DEFAULT_LENGTH);
+			_maxLength = typedArray
+					.getInt(R.styleable.LocationEditTextPreference_maxLength, MAX_DEFAULT_LENGTH);
 		}
 		finally
 		{
@@ -64,7 +68,6 @@ public class LocationEditTextPreference extends EditTextPreference
 			@Override
 			public void afterTextChanged(Editable s)
 			{
-				TraceUtil.logD(CLASS_NAME, "afterTextChanged", "s= " + s);
 				Dialog dialog = getDialog();
 
 				if (dialog instanceof AlertDialog)
@@ -72,7 +75,9 @@ public class LocationEditTextPreference extends EditTextPreference
 					Button positiveBtn = ((AlertDialog) getDialog()).getButton(AlertDialog
 							.BUTTON_POSITIVE);
 
-					if (s.length() < _minLength)
+					int curLength = s.length();
+
+					if (curLength < _minLength || curLength > _maxLength)
 					{
 						positiveBtn.setEnabled(false);
 					}
