@@ -80,10 +80,14 @@ public class LocationEditTextPreference extends EditTextPreference
 					if (curLength < _minLength || curLength > _maxLength)
 					{
 						positiveBtn.setEnabled(false);
+						positiveBtn.announceForAccessibility(getContext().getResources()
+								.getString(R.string.accessibility_positive_btn_disabled));
 					}
 					else
 					{
 						positiveBtn.setEnabled(true);
+						positiveBtn.announceForAccessibility(getContext().getResources()
+								.getString(R.string.accessibility_positive_btn_enabled));
 					}
 				}
 			}

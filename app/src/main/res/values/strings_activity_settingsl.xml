@@ -38,4 +38,6 @@
 
 	<string name="pref_location_status_key" translatable="false">location-status</string>
 
+	<string name="accessibility_positive_btn_disabled">The OK button is disabled.</string>
+	<string name="accessibility_positive_btn_enabled">The OK button is enabled.</string>
 </resources>
