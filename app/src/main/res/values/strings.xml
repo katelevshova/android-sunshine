@@ -12,16 +12,14 @@
 	<string name="format_full_friendly_date"><xliff:g id="day">%1$s</xliff:g>, <xliff:g id="date">%2$s</xliff:g></string>
 	<string name="format_temperature"><xliff:g id="temp">%1.0f</xliff:g>\u00B0</string>
 
-	<string name="exampleViewDescription">Example view description</string>
-
 	<!-- SyncAdapter related -->
-	<string name="sync_account_type">sunshine.hally.com</string>
-	<string name="content_authority">com.hally.sunshine</string>
+	<string name="sync_account_type" translatable="false">sunshine.hally.com</string>
+	<string name="content_authority" translatable="false">com.hally.sunshine</string>
 
 	<!-- notification -->
 	<string name="notification_format">Forecast: <xliff:g id="condition">%1$s</xliff:g> High: <xliff:g
 		id="high">%2$s</xliff:g> Low: <xliff:g id="low">%3$s</xliff:g></string>
-	<string name="pref_last_notification">last_notification</string>
+	<string name="pref_last_notification" translatable="false">last_notification</string>
 
 	<!-- Windspeed formats -->
 	<string name="format_wind_mph">Wind: <xliff:g id="speed">%1$1.0f</xliff:g> mph <xliff:g
@@ -59,11 +57,11 @@
 	<string name="condition_602">Heavy Snow</string>
 	<string name="condition_611">Sleet</string>
 	<string name="condition_612">Shower Sleet</string>
-	<string name="condition_615">Rain and Snow</string> <!-- light rain and snow -->
+	<string name="condition_615">Дight Rain and Snow</string>
 	<string name="condition_616">Rain and Snow</string>
-	<string name="condition_620">Shower Snow</string> <!-- light shower snow -->
+	<string name="condition_620">Light Shower Snow</string>
 	<string name="condition_621">Shower Snow</string>
-	<string name="condition_622">Shower Snow</string> <!-- heavy shower snow -->
+	<string name="condition_622">Heavy Shower Snow</string>
 	<string name="condition_701">Mist</string>
 	<string name="condition_711">Smoke</string>
 	<string name="condition_721">Haze</string>
@@ -89,7 +87,7 @@
 	<string name="condition_951">Calm</string>
 	<string name="condition_952">Light Breeze</string>
 	<string name="condition_953">Gentle Breeze</string>
-	<string name="condition_954">Breeze</string> <!-- moderate breeze -->
+	<string name="condition_954">Moderate Breeze</string>
 	<string name="condition_955">Fresh Breeze</string>
 	<string name="condition_956">Strong Breeze</string>
 	<string name="condition_957">High Wind</string>

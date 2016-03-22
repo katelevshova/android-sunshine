@@ -1,0 +1,96 @@
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+	<string name="app_name">Свети Солнышко</string>
+	<string name="title_activity_detail">Детально для одного дня</string>
+	<!-- Date label when displaying today's weather forecast [CHAR LIMIT=20] -->
+	<string name="today">Сегодня</string>
+
+	<!-- Date label when displaying tomorrow's weather forecast [CHAR LIMIT=20] -->
+	<string name="tomorrow">Завтра</string>
+
+	<!-- Date format for displaying day of week and date (i.e. Mon Jun 1) [CHAR LIMIT=20] -->
+	<string name="format_full_friendly_date"><xliff:g id="day">%1$s</xliff:g>, <xliff:g id="date">%2$s</xliff:g></string>
+	<string name="format_temperature"><xliff:g id="temp">%1.0f</xliff:g>\u00B0</string>
+
+	<!-- notification -->
+	<string name="notification_format">Прогноз: <xliff:g id="condition">%1$s</xliff:g> Верхнее:
+		<xliff:g
+		id="high">%2$s</xliff:g> Нижнее: <xliff:g id="low">%3$s</xliff:g></string>
+
+	<!-- Windspeed formats -->
+	<string name="format_wind_mph">Ветер: <xliff:g id="speed">%1$1.0f</xliff:g> миль/час <xliff:g
+		id="direction">%2$s</xliff:g></string>
+	<string name="format_wind_kmh">Ветер: <xliff:g id="speed">%1$1.0f</xliff:g> км/ч <xliff:g
+		id="direction">%2$s</xliff:g></string>
+	<string name="format_pressure">Давление: <xliff:g id="pressure">%1.0f</xliff:g> гПА</string>
+	<string name="format_humidity">Влажность: <xliff:g id="humidity">%1.0f</xliff:g> %%</string>
+	<string name="empty_forecast_list">Нет информации о погоде.</string>
+	<string name="empty_forecast_list_no_network">Нет информации о погоде. Сеть не доступна для
+		получения данных о погоде.</string>
+	<string name="empty_forecast_list_server_down">Нет информации о погоде. Сервер не возвращает данные.</string>
+	<string name="empty_forecast_list_server_error">Нет информации о погоде. Сервер не возвращает
+		действительные данные. Пожалуйста, проверьте наличие обновленной версии приложения.</string>
+	<string name="empty_forecast_list_invalid_location">Нет информации о погоде. Месторасположение в настройках не распознается сервером погоды.</string>
+	<string name="pref_location_error_description">Неверное месторасположение (<xliff:g
+		id="location_setting">%1$s</xliff:g>)"</string>
+	<string name="pref_location_unknown_description">Проверка местоположения... (<xliff:g
+		id="location_setting">%1$s</xliff:g>)"</string>
+
+	<!-- Weather Conditions -->
+	<string name="condition_2xx">Буря</string>
+	<string name="condition_3xx">Моросящий Дождь</string>
+	<string name="condition_500">Легкий Дождь</string>
+	<string name="condition_501">Умеренный Дождь</string>
+	<string name="condition_502">Ливень</string>
+	<string name="condition_503">Интенсивный Дождь</string>
+	<string name="condition_504">Экстримальный Дождь</string>
+	<string name="condition_511">Ледяной Дождь</string>
+	<string name="condition_520">Легкий Град</string>
+	<string name="condition_521">Град</string>
+	<string name="condition_522">Сильный Град</string>
+	<string name="condition_531">Очень Сильный Град</string>
+	<string name="condition_600">Небольшой Снег</string>
+	<string name="condition_601">Снег</string>
+	<string name="condition_602">Снегопад</string>
+	<string name="condition_611">Мокрый Снег</string>
+	<string name="condition_612">Мокрый Снег с Градом</string>
+	<string name="condition_615">Легкий Дождь со Снегом</string>
+	<string name="condition_616">Дождь со Снегом</string>
+	<string name="condition_620">Легкий Град со Снегом</string>
+	<string name="condition_621">Град со Снегом</string>
+	<string name="condition_622">Сильный Град со Снегом</string>
+	<string name="condition_701">Дымка</string>
+	<string name="condition_711">Дым</string>
+	<string name="condition_721">Мгла</string>
+	<string name="condition_731">Песок, пыль</string>
+	<string name="condition_741">Туман</string>
+	<string name="condition_751">Песок</string>
+	<string name="condition_761">Пыль</string>
+	<string name="condition_762">Вулканичский Пепел</string>
+	<string name="condition_771">Шквалы</string>
+	<string name="condition_781">Торнадо</string>
+	<string name="condition_800">Ясно</string>
+	<string name="condition_801">В основном ясно</string>
+	<string name="condition_802">Рассеянные Облака</string>
+	<string name="condition_803">Разорванные Облака</string>
+	<string name="condition_804">Сильная Облачность</string>
+	<string name="condition_900">Торнадо</string>
+	<string name="condition_901">Тропическая Буря</string>
+	<string name="condition_902">Ураган</string>
+	<string name="condition_903">Холод</string>
+	<string name="condition_904">Жара</string>
+	<string name="condition_905">Ветренно</string>
+	<string name="condition_906">Град</string>
+	<string name="condition_951">Штиль</string>
+	<string name="condition_952">Легкий Бриз</string>
+	<string name="condition_953">Нежный Бриз</string>
+	<string name="condition_954">Умеренный Бриз</string>
+	<string name="condition_955">Свежий Бриз</string>
+	<string name="condition_956">Сильный Бриз</string>
+	<string name="condition_957">Сильный Ветер</string>
+	<string name="condition_958">Штормит</string>
+	<string name="condition_959">Сильный Шторм</string>
+	<string name="condition_960">Шторм</string>
+	<string name="condition_961">Сильнейший Шторм</string>
+	<string name="condition_962">Ураган</string>
+	<string name="condition_unknown">Неизвестно (<xliff:g id="low">%1$s</xliff:g>)</string>
+</resources>

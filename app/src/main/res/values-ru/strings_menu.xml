@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="item_settings">Настройки</string>
+	<string name="item_db_manager">Менеджер БД</string>
+	<string name="item_refresh">Обновить</string>
+	<string name="item_map">Карта</string>
+	<string name="item_share">Поделиться</string>
+</resources>
