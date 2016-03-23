@@ -9,6 +9,7 @@ import com.hally.sunshine.R;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /*
 * Copyright (C) 2014 The Android Open Source Project
@@ -27,9 +28,6 @@ import java.util.Date;
 */
 public class FormatUtil
 {
-	// Format used for storing dates in the database. ALso used for converting those strings
-// back into date objects for comparison/processing.
-	public static final String DATE_FORMAT = "yyyyMMdd";
 	private static final int WEEK = 7;
 
 	public static String formatTemperature(Context context, double temperature)
@@ -88,9 +86,23 @@ public class FormatUtil
 		}
 		else
 		{
-			// Otherwise, use the form "Mon, Jun 3"
-			SimpleDateFormat shortenedDateFormat = new SimpleDateFormat("EEE, MMMM dd");
-			return shortenedDateFormat.format(dateInMillis);
+			String currLocale = Locale.getDefault().getLanguage();
+			SimpleDateFormat shortenedDateFormat;
+			String dayString;
+
+			if(currLocale.equals("ru"))
+			{
+				shortenedDateFormat = new SimpleDateFormat("EEE, dd MMMM");
+				dayString = shortenedDateFormat.format(dateInMillis).toUpperCase();
+			}
+			else
+			{
+				// Otherwise, use the form "Mon, Jun 3"
+				shortenedDateFormat = new SimpleDateFormat("EEE, MMMM dd");
+				dayString = shortenedDateFormat.format(dateInMillis);
+			}
+
+			return dayString;
 		}
 	}
 
@@ -369,8 +381,21 @@ public class FormatUtil
 			Time time = new Time();
 			time.setToNow();
 			// Otherwise, the format is just the day of the week (e.g "Wednesday".
-			SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
-			return dayFormat.format(dateInMillis);
+
+			String currLocale = Locale.getDefault().getLanguage();
+			SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");;
+			String dayString;
+
+			if(currLocale.equals("ru"))
+			{
+				dayString = dayFormat.format(dateInMillis).toUpperCase();
+			}
+			else
+			{
+
+				dayString = dayFormat.format(dateInMillis);
+			}
+			return dayString;
 		}
 	}
 
@@ -386,9 +411,23 @@ public class FormatUtil
 	{
 		Time time = new Time();
 		time.setToNow();
-		SimpleDateFormat dbDateFormat = new SimpleDateFormat(FormatUtil.DATE_FORMAT);
-		SimpleDateFormat monthDayFormat = new SimpleDateFormat("MMMM dd");
-		String monthDayString = monthDayFormat.format(dateInMillis);
+
+		String currLocale = Locale.getDefault().getLanguage();
+
+		SimpleDateFormat monthDayFormat;
+		String monthDayString;
+
+		if(currLocale.equals("ru"))
+		{
+			monthDayFormat = new SimpleDateFormat("dd MMMM");
+			monthDayString = monthDayFormat.format(dateInMillis).toUpperCase();
+		}
+		else
+		{
+			monthDayFormat = new SimpleDateFormat("MMMM dd");
+			monthDayString = monthDayFormat.format(dateInMillis);
+		}
+
 		return monthDayString;
 	}
 }
