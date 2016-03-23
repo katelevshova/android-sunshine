@@ -126,39 +126,39 @@ public class FormatUtil
 			windSpeed = .621371192237334f * windSpeed;
 		}
 
-		String direction = "Unknown";
+		String direction = context.getResources().getString(R.string.wind_unknown);
 
 		if (degrees >= 337.5 || degrees < 22.5)
 		{
-			direction = "N";
+			direction = context.getResources().getString(R.string.wind_N);
 		}
 		else if (degrees >= 22.5 && degrees < 67.5)
 		{
-			direction = "NE";
+			direction = context.getResources().getString(R.string.wind_NE);
 		}
 		else if (degrees >= 67.5 && degrees < 112.5)
 		{
-			direction = "E";
+			direction = context.getResources().getString(R.string.wind_E);
 		}
 		else if (degrees >= 112.5 && degrees < 157.5)
 		{
-			direction = "SE";
+			direction = context.getResources().getString(R.string.wind_SE);
 		}
 		else if (degrees >= 157.5 && degrees < 202.5)
 		{
-			direction = "S";
+			direction = context.getResources().getString(R.string.wind_S);
 		}
 		else if (degrees >= 202.5 && degrees < 247.5)
 		{
-			direction = "SW";
+			direction = context.getResources().getString(R.string.wind_SW);
 		}
 		else if (degrees >= 247.5 && degrees < 292.5)
 		{
-			direction = "W";
+			direction = context.getResources().getString(R.string.wind_W);
 		}
 		else if (degrees >= 292.5 || degrees < 22.5)
 		{
-			direction = "NW";
+			direction = context.getResources().getString(R.string.wind_NW);
 		}
 		return String.format(context.getString(windFormat), windSpeed, direction);
 	}

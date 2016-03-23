@@ -93,4 +93,15 @@
 	<string name="condition_961">Сильнейший Шторм</string>
 	<string name="condition_962">Ураган</string>
 	<string name="condition_unknown">Неизвестно (<xliff:g id="low">%1$s</xliff:g>)</string>
+
+	<!-- Wind Directions -->
+	<string name="wind_unknown">Неизвестно</string>
+	<string name="wind_N">С</string>
+	<string name="wind_NE">СВ</string>
+	<string name="wind_E">В</string>
+	<string name="wind_SE">ЮВ</string>
+	<string name="wind_S">Ю</string>
+	<string name="wind_SW">ЮЗ</string>
+	<string name="wind_W">З</string>
+	<string name="wind_NW">СЗ</string>
 </resources>

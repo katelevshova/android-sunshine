@@ -97,4 +97,15 @@
 	<string name="condition_961">Violent Storm</string>
 	<string name="condition_962">Hurricane</string>
 	<string name="condition_unknown">Unknown (<xliff:g id="low">%1$s</xliff:g>)</string>
+
+	<!-- Wind Directions -->
+	<string name="wind_unknown">Unknown</string>
+	<string name="wind_N">N</string>
+	<string name="wind_NE">NE</string>
+	<string name="wind_E">E</string>
+	<string name="wind_SE">SE</string>
+	<string name="wind_S">S</string>
+	<string name="wind_SW">SW</string>
+	<string name="wind_W">W</string>
+	<string name="wind_NW">NW</string>
 </resources>
