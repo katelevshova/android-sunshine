@@ -43,3 +43,7 @@ Provides different layouts for different device sizes.
 ### Screenshots for Nexus 7 API 21 - Toolbar ###
 
 ![Nexus7 API21 2016-03-09.png](https://bitbucket.org/repo/RjKoox/images/285104167-Nexus7%20API21%202016-03-09.png)
+
+### Screenshots for Nexus 7 API 21 - Russian locale ###
+
+![Screenshot_20160323-121251 - RU.png](https://bitbucket.org/repo/RjKoox/images/1621064626-Screenshot_20160323-121251%20-%20RU.png)
