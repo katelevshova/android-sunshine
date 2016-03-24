@@ -40,6 +40,7 @@
 				  android:orientation="vertical">
 
 		<ImageView android:id="@+id/list_item_icon"
+				   android:adjustViewBounds="true"
 				   android:layout_width="@dimen/icon_todayitem_size"
 				   android:layout_height="@dimen/icon_todayitem_size"
 				   android:src="@mipmap/art_clear"/>

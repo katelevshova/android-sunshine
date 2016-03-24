@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.hally.sunshine.R;
 import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.ImageResouceUtil;
@@ -39,7 +40,7 @@ public class ForecastAdapter extends CursorAdapter
 	public int getItemViewType(int position)
 	{
 		return (position == VIEW_TYPE_TODAY && _showTodayItem) ? VIEW_TYPE_TODAY :
-			VIEW_TYPE_FUTURE_DAY;
+				VIEW_TYPE_FUTURE_DAY;
 	}
 
 	@Override
@@ -88,19 +89,23 @@ public class ForecastAdapter extends CursorAdapter
 		int weatherId = cursor.getInt(MainForecastFragment.COL_WEATHER_CONDITION_ID);
 
 		int viewType = getItemViewType(cursor.getPosition());
+		int defaultIcon;
 
 		switch (viewType)
 		{
 			case VIEW_TYPE_TODAY:
-				listItemViewHolder.iconView.setImageResource(
-						ImageResouceUtil.getArtResourceForWeatherCondition(weatherId));
+			{
+				defaultIcon = ImageResouceUtil.getArtResourceForWeatherCondition(weatherId);
 				break;
-			case VIEW_TYPE_FUTURE_DAY:
-				listItemViewHolder.iconView
-						.setImageResource(ImageResouceUtil.getIconResourceForWeatherCondition(
-								weatherId));
-				break;
+			}
+			default:
+			{
+				defaultIcon = ImageResouceUtil.getIconResourceForWeatherCondition(weatherId);
+			}
 		}
+
+		Glide.with(context).load(ImageResouceUtil.getArtUrlForWeatherCondition(context,
+				weatherId)).error(defaultIcon).crossFade().into(listItemViewHolder.iconView);
 
 		// Read date from cursor
 		long dateInMillis = cursor.getLong(MainForecastFragment.COL_WEATHER_DATE);
