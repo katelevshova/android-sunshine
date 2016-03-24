@@ -35,6 +35,13 @@
 	<string name="pref_location_unknown_description">Проверка местоположения... (<xliff:g
 		id="location_setting">%1$s</xliff:g>)"</string>
 
+	<!-- A11y - accessibility audits-->
+	<string name="a11y_forecast">Прогноз: <xliff:g id="condition">%1$s</xliff:g></string>
+	<string name="a11y_forecast_icon">Иконка прогноза:
+		<xliff:g id="condition">%1$s</xliff:g></string>
+	<string name="a11y_high_temp">Высшая: <xliff:g id="high">%1$s</xliff:g></string>
+	<string name="a11y_low_temp">Нижняя: <xliff:g id="low">%1$s</xliff:g></string>
+
 	<!-- Weather Conditions -->
 	<string name="condition_2xx">Буря</string>
 	<string name="condition_3xx">Моросящий Дождь</string>
