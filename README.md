@@ -11,6 +11,10 @@ Provides different layouts for different device sizes.
 
 ### Screenshots for Nexus 5 API 21 - Toolbar ###
 
+Glide, art resource with url
+
+![Screenshot_20160323-175742 - phone -Glide.png](https://bitbucket.org/repo/RjKoox/images/2785426715-Screenshot_20160323-175742%20-%20phone%20-Glide.png)
+
 ![Nexus5 API21 2016-03-09.png](https://bitbucket.org/repo/RjKoox/images/2350990598-Nexus5%20API21%202016-03-09.png)
 
 ### Screenshots for Nexus 7 API 21 - Toolbar ###
@@ -22,6 +26,8 @@ Provides different layouts for different device sizes.
 ![Screenshot_20160323-121251 - RU.png](https://bitbucket.org/repo/RjKoox/images/1621064626-Screenshot_20160323-121251%20-%20RU.png)
 
 ### Screenshots for Nexus 5 API 16 - AppCompat ActionBar ###
+
+Screenshot with icons by default
 
 ![device-2016-03-04-134940 - small.png](https://bitbucket.org/repo/RjKoox/images/1093700792-device-2016-03-04-134940%20-%20small.png)
 
