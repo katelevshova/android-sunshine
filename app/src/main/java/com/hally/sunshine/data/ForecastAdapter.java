@@ -119,21 +119,23 @@ public class ForecastAdapter extends CursorAdapter
 		// Find TextView and set weather forecast on it
 		listItemViewHolder.descriptionView.setText(description);
 
-		// For accessibility, add a content description to the icon field
-		listItemViewHolder.iconView.setContentDescription(description);
-
-		// Read user preference for metric or imperial temperature units
-		boolean isMetric = Util.isMetric(context);
+		// null is appropriate when the image is purely decorative or when the image already
+		// has text describing it in the same UI component
+		listItemViewHolder.iconView.setContentDescription(null);
 
 		// Read high temperature from cursor
 		double high = cursor.getDouble(MainForecastFragment.COL_WEATHER_MAX_TEMP);
-		listItemViewHolder.highTempView
-				.setText(FormatUtil.formatTemperature(context, high));
+
+		String highString = FormatUtil.formatTemperature(context, high);
+		listItemViewHolder.highTempView.setText(highString);
+		listItemViewHolder.highTempView.setContentDescription(context.getResources().getString(R
+				.string.a11y_high_temp,	highString));
 
 		// Read low temperature from cursor
 		double low = cursor.getDouble(MainForecastFragment.COL_WEATHER_MIN_TEMP);
-		listItemViewHolder.lowTempView
-				.setText(FormatUtil.formatTemperature(context, low));
+		String lowString = FormatUtil.formatTemperature(context, low);
+		listItemViewHolder.lowTempView.setText(lowString);
+		listItemViewHolder.lowTempView.setContentDescription(context.getResources().getString(R.string.a11y_low_temp, lowString));
 	}
 }
 
