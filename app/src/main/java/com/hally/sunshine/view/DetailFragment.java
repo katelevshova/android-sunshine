@@ -212,20 +212,22 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 			// Read description from weather condition ID
 			String description = FormatUtil.getStringForWeatherCondition(getActivity(), weatherId);
 			_descriptionView.setText(description);
+			_descriptionView.setContentDescription(getString(R.string.a11y_forecast, description));
 
-			// for accessibility
-			_iconView.setContentDescription(description);
+			// For accessibility, add a content description to the icon field
+			_iconView.setContentDescription(getString(R.string.a11y_forecast_icon, description));
 
 			// Read high temperature from cursor and update view
-			boolean isMetric = Util.isMetric(getActivity());
 			double high = data.getDouble(COL_WEATHER_MAX_TEMP);
 			String highString = FormatUtil.formatTemperature(getActivity(), high);
 			_highTempView.setText(highString);
+			_highTempView.setContentDescription(getString(R.string.a11y_high_temp, highString));
 
 			// Read low temperature from cursor and update view
 			double low = data.getDouble(COL_WEATHER_MIN_TEMP);
 			String lowString = FormatUtil.formatTemperature(getActivity(), low);
 			_lowTempView.setText(lowString);
+			_lowTempView.setContentDescription(getString(R.string.a11y_low_temp, lowString));
 
 			// Read humidity from cursor and update view
 			float humidity = data.getFloat(COL_WEATHER_HUMIDITY);
