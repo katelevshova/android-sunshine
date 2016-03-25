@@ -1,0 +1,43 @@
+{
+  "project_info": {
+    "project_id": "sunlit-plasma-126122",
+    "project_number": "1082190430702",
+    "name": "SunshineGoogleAPI"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082190430702:android:a3e3901391fe1890",
+        "client_id": "android:com.hally.sunshine",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.hally.sunshine",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 2,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 1
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
