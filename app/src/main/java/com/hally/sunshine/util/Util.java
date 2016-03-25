@@ -43,6 +43,13 @@ public class Util
 				.equals(context.getString(R.string.pref_units_metric));
 	}
 
+	static public String getPrefArtPack(Context context)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		return prefs.getString(context.getString(R.string.pref_art_pack_key),
+				context.getString(R.string.pref_art_pack_default));
+	}
+
 	/**
 	 * Returns location status
 	 * @param context

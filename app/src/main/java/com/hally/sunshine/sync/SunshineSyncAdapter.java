@@ -2,6 +2,7 @@ package com.hally.sunshine.sync;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.AbstractThreadedSyncAdapter;
@@ -14,7 +15,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SyncRequest;
 import android.content.SyncResult;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,8 +26,10 @@ import android.preference.PreferenceManager;
 import android.support.annotation.IntDef;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.content.ContextCompat;
 import android.text.format.Time;
 
+import com.bumptech.glide.Glide;
 import com.hally.sunshine.BuildConfig;
 import com.hally.sunshine.R;
 import com.hally.sunshine.data.WeatherContract;
@@ -46,6 +52,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Vector;
+import java.util.concurrent.ExecutionException;
 
 public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 {
@@ -71,6 +78,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 	private static final int INDEX_SHORT_DESC = 3;
 	private static final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
 	private static final int WEATHER_NOTIFICATION_ID = 3004;
+
 	public SunshineSyncAdapter(Context context, boolean autoInitialize)
 	{
 		super(context, autoInitialize);
@@ -158,7 +166,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 
 	private static void onAccountCreated(Account newAccount, Context context)
 	{
-        /*
+		/*
          * Since we've created an account
          */
 		SunshineSyncAdapter.configurePeriodicSync(context, SYNC_INTERVAL, SYNC_FLEXTIME);
@@ -372,7 +380,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 			double cityLatitude = cityCoord.getDouble(OWM_LATITUDE);
 			double cityLongitude = cityCoord.getDouble(OWM_LONGITUDE);
 
-			if(forecastJson.has(OWM_MESSAGE_CODE))
+			if (forecastJson.has(OWM_MESSAGE_CODE))
 			{
 				int errorCode = forecastJson.getInt(OWM_MESSAGE_CODE);
 
@@ -582,7 +590,36 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 				double low = cursor.getDouble(INDEX_MIN_TEMP);
 				String desc = cursor.getString(INDEX_SHORT_DESC);
 
+				Resources resources = context.getResources();
 				int iconId = ImageResouceUtil.getIconResourceForWeatherCondition(weatherId);
+				int artResourceId = ImageResouceUtil.getArtResourceForWeatherCondition(weatherId);
+				String artUrl = ImageResouceUtil.getArtUrlForWeatherCondition(context, weatherId);
+
+				@SuppressLint("InlinedApi")
+				int largeIconWidth = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB
+						? resources
+						.getDimensionPixelSize(android.R.dimen.notification_large_icon_width)
+						: resources.getDimensionPixelSize(R.dimen.notification_large_icon_default);
+				@SuppressLint("InlinedApi")
+				int largeIconHeight = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB
+						? resources
+						.getDimensionPixelSize(android.R.dimen.notification_large_icon_height)
+						: resources.getDimensionPixelSize(R.dimen.notification_large_icon_default);
+
+				// Retrieve the large icon
+				Bitmap largeIcon;
+				try
+				{
+					largeIcon = Glide.with(context).load(artUrl).asBitmap().error(artResourceId)
+							.fitCenter().into(largeIconWidth, largeIconHeight).get();
+				}
+				catch (InterruptedException | ExecutionException e)
+				{
+					TraceUtil.logE(CLASS_NAME, "notifyWeather",
+							"Error retrieving large icon from " + artUrl, e);
+					largeIcon = BitmapFactory.decodeResource(resources, artResourceId);
+				}
+
 				String title = context.getString(R.string.app_name);
 
 				// Define the text of the forecast.
@@ -598,7 +635,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 				if (isNotificationOn)
 				{
 					//build your notification here.
-					showNotification(iconId, title, contentText);
+					showNotification(iconId, largeIcon, title, contentText);
 				}
 
 				//refreshing last sync
@@ -610,13 +647,31 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 		}
 	}
 
-	private void showNotification(int iconId, String title, String contentText)
+	/**
+	 * Builds notification
+	 * @param smallIconId
+	 * @param largeIcon
+	 * @param title
+	 * @param contentText
+	 */
+	private void showNotification(int smallIconId, Bitmap largeIcon, String title, String
+			contentText)
 	{
 		NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder
-				(getContext());
-		notificationBuilder.setSmallIcon(iconId);
-		notificationBuilder.setContentTitle(title);
-		notificationBuilder.setContentText(contentText);
+				(getContext())
+		.setSmallIcon(smallIconId)
+		.setLargeIcon(largeIcon)
+		.setContentTitle(title)
+		.setContentText(contentText);
+
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+		{
+			notificationBuilder.setColor(ContextCompat.getColor(getContext(), R.color.light_blue));
+		}
+		else
+		{
+			notificationBuilder.setColor(getContext().getResources().getColor(R.color.light_blue));
+		}
 
 		// This ensures that navigating backward from the Activity leads out of
 		// your application to the Home screen.

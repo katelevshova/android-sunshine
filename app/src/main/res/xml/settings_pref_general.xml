@@ -29,4 +29,12 @@
 		android:summaryOn="@string/pref_enable_notifications_true"
 		android:title="@string/pref_enable_notifications_label"/>
 
+	<ListPreference
+		android:defaultValue="@string/pref_art_pack_label_default"
+		android:entries="@array/pref_art_pack_options"
+		android:entryValues="@array/pref_art_pack_values"
+		android:key="@string/pref_art_pack_key"
+		android:summary="@string/pref_art_pack_label_default"
+		android:title="@string/pref_art_pack_label"/>
+
 </PreferenceScreen>

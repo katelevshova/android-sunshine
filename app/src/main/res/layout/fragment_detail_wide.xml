@@ -85,6 +85,7 @@
 			<!-- icon, forecast -->
 			<ImageView
 				android:id="@+id/detail_icon"
+				android:adjustViewBounds="true"
 				android:layout_width="@dimen/icon_details_size"
 				android:layout_height="@dimen/icon_details_size"
 				android:src="@mipmap/art_clear"/>

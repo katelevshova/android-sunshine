@@ -24,6 +24,8 @@ public class SettingsFragment extends PreferenceFragment
 		implements Preference.OnPreferenceChangeListener,
 		SharedPreferences.OnSharedPreferenceChangeListener
 {
+	static public final String CLASS_NAME = SettingsFragment.class.getName();
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -35,6 +37,7 @@ public class SettingsFragment extends PreferenceFragment
 		// updated when the preference changes.
 		bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_location_key)));
 		bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_units_key)));
+		bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_art_pack_key)));
 	}
 
 	/**
@@ -131,9 +134,11 @@ public class SettingsFragment extends PreferenceFragment
 			Util.resentLocationUnknown(getActivity());
 			SunshineSyncAdapter.syncImmediately(getActivity());
 		}
-		else if (key.equals(getString(R.string.pref_units_key)))
+		else if (key.equals(getString(R.string.pref_units_key)) ||
+				key.equals(R.string.pref_art_pack_key))
 		{
 			// units have changed. update lists of weather entries accordingly
+			// art pack have changed. update lists of weather entries accordingly
 			getActivity().getContentResolver().notifyChange(WeatherContract.WeatherEntry
 					.CONTENT_URI, null);
 		}
