@@ -25,7 +25,9 @@ Colored icon pack
 
 ![Nexus5 API21 2016-03-09.png](https://bitbucket.org/repo/RjKoox/images/2350990598-Nexus5%20API21%202016-03-09.png)
 
-![Screenshot_20160325-pnone-prefs.png](https://bitbucket.org/repo/RjKoox/images/413140550-Screenshot_20160325-pnone-prefs.png)
+![Screenshot_20160325-pnone-prefs.png](https://bitbucket.org/repo/RjKoox/images/667936284-Screenshot_20160325-pnone-prefs.png)
+
+![Screenshot_20160325-phone-landscape.png](https://bitbucket.org/repo/RjKoox/images/504713129-Screenshot_20160325-phone-landscape.png)
 
 Russian locale 
 
