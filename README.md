@@ -15,6 +15,14 @@ Glide, art resource with url
 
 ![Screenshot_20160323-175742 - phone -Glide.png](https://bitbucket.org/repo/RjKoox/images/2785426715-Screenshot_20160323-175742%20-%20phone%20-Glide.png)
 
+Mono icon pack 
+
+![Screenshot_20160325-phone-mono.png](https://bitbucket.org/repo/RjKoox/images/2025156016-Screenshot_20160325-phone-mono.png)
+
+Colored icon pack
+
+![Screenshot_20160325-phone-colored.png](https://bitbucket.org/repo/RjKoox/images/2981332205-Screenshot_20160325-phone-colored.png)
+
 ![Nexus5 API21 2016-03-09.png](https://bitbucket.org/repo/RjKoox/images/2350990598-Nexus5%20API21%202016-03-09.png)
 
 Russian locale 
@@ -30,6 +38,8 @@ Glide, art resource with url
 Screenshot with icons by default
 
 ![Nexus7 API21 2016-03-09.png](https://bitbucket.org/repo/RjKoox/images/285104167-Nexus7%20API21%202016-03-09.png)
+
+![Screenshot_20160325-tablet colored.png](https://bitbucket.org/repo/RjKoox/images/2052390619-Screenshot_20160325-tablet%20colored.png)
 
 Russian locale 
 
