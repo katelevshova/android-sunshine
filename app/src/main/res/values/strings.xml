@@ -118,9 +118,8 @@
 	<!-- Format for retrieving art from an external source -->
 	<string name="format_art_url_default" translatable="false">https://raw.githubusercontent.com/udacity/Sunshine-Version-2/sunshine_master/app/src/main/res/drawable-xxhdpi/art_<xliff:g
 		id="description">%s</xliff:g>.png</string>
-	<string name="format_art_url_colored" translatable="false">https://github.com/udacity/sunshine_icons/tree/master/Archive/Colored/art_<xliff:g
+	<string name="format_art_url_colored" translatable="false">https://raw.githubusercontent.com/hallyxed/icon-packs/master/weather-icon-pack-MerlinTheRed/colored/art_<xliff:g
 		id="description">%s</xliff:g>.png</string>
-	<string name="format_art_url_mono" translatable="false">https://github
-		.com/udacity/sunshine_icons/tree/master/Archive/Mono/art_<xliff:g id="description">%s
-		</xliff:g>.png</string>
+	<string name="format_art_url_mono" translatable="false">https://raw.githubusercontent.com/hallyxed/icon-packs/master/weather-icon-pack-MerlinTheRed/mono/art_<xliff:g
+		id="description">%s</xliff:g>.png</string>
 </resources>

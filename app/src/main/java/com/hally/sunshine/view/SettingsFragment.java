@@ -134,11 +134,9 @@ public class SettingsFragment extends PreferenceFragment
 			Util.resentLocationUnknown(getActivity());
 			SunshineSyncAdapter.syncImmediately(getActivity());
 		}
-		else if (key.equals(getString(R.string.pref_units_key)) ||
-				key.equals(R.string.pref_art_pack_key))
+		else if (key.equals(getString(R.string.pref_units_key)))
 		{
 			// units have changed. update lists of weather entries accordingly
-			// art pack have changed. update lists of weather entries accordingly
 			getActivity().getContentResolver().notifyChange(WeatherContract.WeatherEntry
 					.CONTENT_URI, null);
 		}
@@ -147,6 +145,12 @@ public class SettingsFragment extends PreferenceFragment
 			// our location status has changed.  Update the summary accordingly
 			Preference locationPreference = findPreference(getString(R.string.pref_location_key));
 			bindPreferenceSummaryToValue(locationPreference);
+		}
+		else if(key.equals(R.string.pref_art_pack_key))
+		{
+			// art pack have changed. update lists of weather entries accordingly
+			getActivity().getContentResolver().notifyChange(WeatherContract.WeatherEntry
+					.CONTENT_URI, null);
 		}
 	}
 }
