@@ -114,4 +114,12 @@
 	<string name="wind_SW">SW</string>
 	<string name="wind_W">W</string>
 	<string name="wind_NW">NW</string>
+
+	<!-- Format for retrieving art from an external source -->
+	<string name="format_art_url_default" translatable="false">https://raw.githubusercontent.com/udacity/Sunshine-Version-2/sunshine_master/app/src/main/res/drawable-xxhdpi/art_<xliff:g
+		id="description">%s</xliff:g>.png</string>
+	<string name="format_art_url_colored" translatable="false">https://bytebucket.org/hally/sunshine/raw/7a8be3172e591b609a2149376dcde44a4086702e/app/src/docs/weather-icon-pack-MerlinTheRed/colored/art_<xliff:g
+		id="description">%s</xliff:g>.png</string>
+	<string name="format_art_url_mono" translatable="false">https://bytebucket.org/hally/sunshine/raw/7a8be3172e591b609a2149376dcde44a4086702e/app/src/docs/weather-icon-pack-MerlinTheRed/mono/art_<xliff:g
+		id="description">%s</xliff:g>.png</string>
 </resources>
