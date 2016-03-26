@@ -12,17 +12,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.hally.sunshine.R;
 import com.hally.sunshine.model.IForecastFragmentCallback;
 import com.hally.sunshine.sync.SunshineSyncAdapter;
-import com.hally.sunshine.util.FormatUtil;
+import com.hally.sunshine.util.TraceUtil;
 import com.hally.sunshine.util.Util;
 
 
 public class MainForecastActivity extends ActionBarActivity implements IForecastFragmentCallback
 {
-	private final String CLASS_NAME = MainForecastActivity.class.getSimpleName();
 	private static final String DETAILFRAGMENT_TAG = "DFTAG";
+	private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+	private final String CLASS_NAME = MainForecastActivity.class.getSimpleName();
 	private String _location;
 	private boolean _hasTwoPane = false;
 
@@ -67,6 +70,13 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 		setUseTodayItemElement();
 
 		SunshineSyncAdapter.initializeSyncAdapter(this);
+
+		if(!checkPlayServices())
+		{
+			// This is where we could either prompt a user that they should install
+			// the latest version of Google Play Services, or add an error snackbar
+			// that some features won't be available.
+		}
 	}
 
 	private void setUseTodayItemElement()
@@ -89,7 +99,8 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.menu_main_f_activity, menu);
 
-		boolean isDebuggable =  ( 0 != ( getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE ) );
+		boolean isDebuggable =
+				(0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE));
 		menu.findItem(R.id.item_db_manager).setVisible(isDebuggable);
 		return true;
 	}
@@ -109,7 +120,7 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 			return true;
 		}
 
-		if(id == R.id.item_db_manager)
+		if (id == R.id.item_db_manager)
 		{
 			startActivity(new Intent(this, AndroidDatabaseManager.class));
 			return true;
@@ -118,7 +129,32 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 		return super.onOptionsItemSelected(item);
 	}
 
+	/**
+	 * Check the device to make sure it has the Google Play Services APK. If it doesn't, display a
+	 * dialog that allows users to download the APK from the Google Play Store or enable it in the
+	 * device's system settings.
+	 */
+	private boolean checkPlayServices()
+	{
+		GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+		int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
 
+		if (resultCode != ConnectionResult.SUCCESS)
+		{
+			if (apiAvailability.isUserResolvableError(resultCode))
+			{
+				apiAvailability.getErrorDialog(this, resultCode,
+						PLAY_SERVICES_RESOLUTION_REQUEST).show();
+			}
+			else
+			{
+				TraceUtil.logI(CLASS_NAME, "checkPlayServices", "This device is not supported.");
+				finish();
+			}
+			return false;
+		}
+		return true;
+	}
 
 	@Override
 	protected void onResume()
