@@ -89,13 +89,13 @@
 				<category android:name="com.example.android.sunshine.app" />
 			</intent-filter>
 		</receiver>
-	<!--	<service
+		<service
 			android:name="gcm.SunshineGcmListenerService"
 			android:exported="false" >
 			<intent-filter>
 				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
 			</intent-filter>
-		</service>-->
+		</service>
 		<service
 			android:name="gcm.SunshineInstanceIDListenerService"
 			android:exported="false">
