@@ -16,12 +16,11 @@ import com.hally.sunshine.view.MainForecastActivity;
  */
 public class RegistrationIntentService extends IntentService
 {
-	private static final String CLASS_NAME = RegistrationIntentService.class.getName();
-	private static final String TAG = "RegIntentService";
+	private static final String CLASS_NAME = RegistrationIntentService.class.getSimpleName();
 
 	public RegistrationIntentService()
 	{
-		super(TAG);
+		super(CLASS_NAME);
 	}
 
 	@Override
@@ -33,7 +32,7 @@ public class RegistrationIntentService extends IntentService
 		{
 			// In the (unlikely) event that multiple refresh operations occur simultaneously,
 			// ensure that they are processed sequentially.
-			synchronized (TAG)
+			synchronized (CLASS_NAME)
 			{
 				// Initially this call goes out to the network to retrieve the token, subsequent calls
 				// are local.
@@ -51,8 +50,7 @@ public class RegistrationIntentService extends IntentService
 		}
 		catch (Exception e)
 		{
-			TraceUtil.logD(CLASS_NAME, "onHandleIntent", "Failed to complete token refresh " + TAG,
-					e);
+			TraceUtil.logD(CLASS_NAME, "onHandleIntent", "Failed to complete token refresh ", e);
 
 			// If an exception happens while fetching the new token or updating our registration data
 			// on a third-party server, this ensures that we'll attempt the update at a later time.
@@ -70,7 +68,7 @@ public class RegistrationIntentService extends IntentService
 	 */
 	private void sendRegistrationToServer(String token)
 	{
-		TraceUtil.logI(CLASS_NAME, TAG, "GCM Registration Token: " + token);
+		TraceUtil.logI(CLASS_NAME, "sendRegistrationToServer", "GCM Registration Token: " + token);
 	}
 }
 

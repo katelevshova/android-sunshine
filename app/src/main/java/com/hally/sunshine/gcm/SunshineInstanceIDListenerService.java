@@ -9,7 +9,7 @@ import com.google.android.gms.iid.InstanceIDListenerService;
  */
 public class SunshineInstanceIDListenerService extends InstanceIDListenerService
 {
-	private static final String TAG = "SunshineInstanceIDLS";
+	private static final String CLASS_NAME = SunshineInstanceIDListenerService.class.getSimpleName();
 
 	/**
 	 * Called if InstanceID token is updated. This may occur if the security of the previous
