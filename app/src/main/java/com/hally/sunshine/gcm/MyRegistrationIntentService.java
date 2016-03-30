@@ -14,11 +14,11 @@ import com.hally.sunshine.view.MainForecastActivity;
 /**
  * Created by Kateryna Levshova on 28.03.2016.
  */
-public class RegistrationIntentService extends IntentService
+public class MyRegistrationIntentService extends IntentService
 {
-	private static final String CLASS_NAME = RegistrationIntentService.class.getSimpleName();
+	private static final String CLASS_NAME = MyRegistrationIntentService.class.getSimpleName();
 
-	public RegistrationIntentService()
+	public MyRegistrationIntentService()
 	{
 		super(CLASS_NAME);
 	}

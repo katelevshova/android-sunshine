@@ -21,10 +21,10 @@ import org.json.JSONObject;
 /**
  * Created by Kateryna Levshova on 28.03.2016.
  */
-public class SunshineGcmListenerService extends GcmListenerService
+public class MyGcmListenerService extends GcmListenerService
 {
 	public static final int NOTIFICATION_ID = 1;
-	private static final String CLASS_NAME = SunshineGcmListenerService.class.getSimpleName();
+	private static final String CLASS_NAME = MyGcmListenerService.class.getSimpleName();
 	private static final String EXTRA_DATA = "data";
 	private static final String EXTRA_WEATHER = "weather";
 	private static final String EXTRA_LOCATION = "location";

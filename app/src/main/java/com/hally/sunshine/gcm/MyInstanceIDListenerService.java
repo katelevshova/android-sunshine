@@ -7,9 +7,9 @@ import com.google.android.gms.iid.InstanceIDListenerService;
 /**
  * Created by Kateryna Levshova on 28.03.2016.
  */
-public class SunshineInstanceIDListenerService extends InstanceIDListenerService
+public class MyInstanceIDListenerService extends InstanceIDListenerService
 {
-	private static final String CLASS_NAME = SunshineInstanceIDListenerService.class.getSimpleName();
+	private static final String CLASS_NAME = MyInstanceIDListenerService.class.getSimpleName();
 
 	/**
 	 * Called if InstanceID token is updated. This may occur if the security of the previous
@@ -19,7 +19,7 @@ public class SunshineInstanceIDListenerService extends InstanceIDListenerService
 	public void onTokenRefresh()
 	{
 		//Fetch updated Instance id token
-		Intent intent = new Intent(this, RegistrationIntentService.class);
+		Intent intent = new Intent(this, MyRegistrationIntentService.class);
 		startService(intent);
 	}
 

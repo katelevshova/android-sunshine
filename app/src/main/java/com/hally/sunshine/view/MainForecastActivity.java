@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.hally.sunshine.R;
-import com.hally.sunshine.gcm.RegistrationIntentService;
+import com.hally.sunshine.gcm.MyRegistrationIntentService;
 import com.hally.sunshine.model.IForecastFragmentCallback;
 import com.hally.sunshine.sync.SunshineSyncAdapter;
 import com.hally.sunshine.util.TraceUtil;
@@ -85,7 +85,7 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 			boolean sentToken = sharedPreferences.getBoolean(SENT_TOKEN_TO_SERVER, false);
 			if(!sentToken)
 			{
-				Intent intent = new Intent(this, RegistrationIntentService.class);
+				Intent intent = new Intent(this, MyRegistrationIntentService.class);
 				startService(intent);
 			}
 		}
