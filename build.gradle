@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.0.0-beta7'
-        classpath 'com.google.gms:google-services:2.1.0-alpha4 '
+        classpath 'com.google.gms:google-services:2.0.0-rc1'
         //https://bintray.com/android/android-tools/com.google.gms.google-services/ check
         // versions here
 
