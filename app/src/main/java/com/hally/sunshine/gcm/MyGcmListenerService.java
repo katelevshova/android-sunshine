@@ -35,15 +35,16 @@ public class MyGcmListenerService extends GcmListenerService
 	 * @param from SenderID of the sender.
 	 * @param data Data bundle containing message data as key/value pairs. For Set of keys use
 	 *             data.keySet().
+	 *
+	 *  http://udacity.github.io/Advanced_Android_Development/ - is used to send a fake message
 	 */
 	@Override
 	public void onMessageReceived(String from, Bundle data)
 	{
-		// Time to unparcel the bundle!
 		if (!data.isEmpty())
 		{
 			// TODO: gcm_default sender ID comes from the API console
-			String senderId = getString(R.string.gcm_defaultSenderId);
+			String senderId = getResources().getString(R.string.gcm_defaultSenderId);
 			if (senderId.length() == 0)
 			{
 				Toast.makeText(this, "SenderID string needs to be set", Toast.LENGTH_LONG).show();
@@ -52,20 +53,12 @@ public class MyGcmListenerService extends GcmListenerService
 			if ((senderId).equals(from))
 			{
 				// Process message and then post a notification of the received message.
-				try
-				{
-					JSONObject jsonObject = new JSONObject(data.getString(EXTRA_DATA));
-					String weather = jsonObject.getString(EXTRA_WEATHER);
-					String location = jsonObject.getString(EXTRA_LOCATION);
-					String alert =
-							String.format(getString(R.string.gcm_weather_alert), weather, location);
-					sendNotification(alert);
-				}
-				catch (JSONException e)
-				{
-					// JSON parsing failed, so we just let this message go, since GCM is not one
-					// of our critical features.
-				}
+				String weather = data.getString(EXTRA_WEATHER);
+				String location = data.getString(EXTRA_LOCATION);
+				String alertMsg =
+						String.format(getResources().getString(R.string.gcm_weather_alert),
+								weather, location);
+				sendNotification(alertMsg); //Result - Heads up: Sharknado in LA!
 			}
 			TraceUtil.logI(CLASS_NAME, "onMessageReceived:", data.toString());
 		}
