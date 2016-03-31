@@ -79,6 +79,7 @@
 				android:resource="@xml/syncadapter"/>
 		</service>
 		<!-- The Google Cloud Messaging receiver and services -->
+		<!-- more info https://developers.google.com/cloud-messaging/android/client?configured=false#get-config -->
 		<receiver
 			android:name="com.google.android.gms.gcm.GcmReceiver"
 			android:exported="true"
