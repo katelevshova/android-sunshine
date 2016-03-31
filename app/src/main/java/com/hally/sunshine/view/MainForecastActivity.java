@@ -75,7 +75,11 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 
 		SunshineSyncAdapter.initializeSyncAdapter(this);
 
-		if(!checkPlayServices())
+		// If Google Play Services is up to date, we'll want to register GCM. If it is not, we'll
+		// skip the registration and this device will not receive any downstream messages from
+		// our fake server. Because weather alerts are not a core feature of the app, this should
+		// not affect the behavior of the app, from a user perspective.
+		if(checkPlayServices())
 		{
 			// This is where we could either prompt a user that they should install
 			// the latest version of Google Play Services, or add an error snackbar
@@ -83,6 +87,7 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences
 					(this);
 			boolean sentToken = sharedPreferences.getBoolean(SENT_TOKEN_TO_SERVER, false);
+
 			if(!sentToken)
 			{
 				Intent intent = new Intent(this, MyRegistrationIntentService.class);
