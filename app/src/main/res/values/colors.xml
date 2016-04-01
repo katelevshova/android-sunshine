@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<color name="grey">#cccccc</color>
+	<color name="white">#ffffffff</color>
+	<!-- Text colors -->
 	<color name="txt_primary">#ff313131</color>
 	<color name="txt_secondary">#646464</color>
 	<color name="txt_tertiary">#858EA5</color>
+	<!-- blue palette -->
 	<color name="primary_light">#ff64c2f4</color>
 	<color name="primary">#ff1ca8f4</color>
 	<color name="primary_dark">#0288D1</color>
-	<color name="grey">#cccccc</color>
-	<color name="white">#ffffffff</color>
 </resources>
