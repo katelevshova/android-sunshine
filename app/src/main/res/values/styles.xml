@@ -7,9 +7,9 @@
 		<item name="colorPrimary">@color/sunshine_blue</item>
 		<item name="colorPrimaryDark">@color/sunshine_dark_blue</item>
 		<!--Preference screen title color -->
-		<item name="android:textColor">@color/tc_primary</item>
+		<item name="android:textColor">@color/primary</item>
 		<!--Preference screen value color -->
-		<item name="android:textColorSecondary">@color/tc_secondary</item>
+		<item name="android:textColorSecondary">@color/secondary</item>
 		<!-- OverFlow Menu Text Color -->
 		<item name="android:itemTextAppearance">@style/ItemTextAppearance</item>
 		<!-- Removes a shadow under the ActionBar -->
@@ -78,17 +78,17 @@
 	<!-- For MainForecastFragment and its list_item_forecast elements-->
 
 	<style name="SansSerifCondensed.TC_TS_Primary" >
-		<item name="android:textColor">@color/tc_primary</item>
+		<item name="android:textColor">@color/primary</item>
 		<item name="android:textSize">@dimen/ts_primary_info</item>
 	</style>
 
 	<style name="SansSerifCondensed.TC_Secondary" >
-		<item name="android:textColor">@color/tc_secondary</item>
+		<item name="android:textColor">@color/secondary</item>
 	</style>
 
 	<!-- For DetailFragment -->
 	<style name="SansSerifLight.TC_Primary" >
-		<item name="android:textColor">@color/tc_primary</item>
+		<item name="android:textColor">@color/primary</item>
 	</style>
 
 	<style name="SansSerifLight.TC_Primary.Max" >
@@ -96,7 +96,7 @@
 	</style>
 
 	<style name="SansSerifLight.TC_Secondary" >
-		<item name="android:textColor">@color/tc_secondary</item>
+		<item name="android:textColor">@color/secondary</item>
 	</style>
 
 	<style name="SansSerifLight.TC_Secondary.Min" >
@@ -104,12 +104,12 @@
 	</style>
 
 	<style name="SansSerifLight.TC_Tertiary_TS_Primary" >
-		<item name="android:textColor">@color/tc_tertiary</item>
+		<item name="android:textColor">@color/tertiary</item>
 		<item name="android:textSize">@dimen/ts_primary_info</item>
 	</style>
 
 	<style name="SansSerifCondensed.TC_TS_Secondary" >
-		<item name="android:textColor">@color/tc_secondary</item>
+		<item name="android:textColor">@color/secondary</item>
 		<item name="android:textSize">@dimen/ts_secondary_info</item>
 	</style>
 
