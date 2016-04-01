@@ -666,11 +666,11 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter
 
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
 		{
-			notificationBuilder.setColor(ContextCompat.getColor(getContext(), R.color.light_blue));
+			notificationBuilder.setColor(ContextCompat.getColor(getContext(), R.color.primary_light));
 		}
 		else
 		{
-			notificationBuilder.setColor(getContext().getResources().getColor(R.color.light_blue));
+			notificationBuilder.setColor(getContext().getResources().getColor(R.color.primary_light));
 		}
 
 		// This ensures that navigating backward from the Activity leads out of
