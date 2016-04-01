@@ -4,7 +4,7 @@
 	<dimen name="activity_vertical_margin">16dp</dimen>
 	<dimen name="icon_todayitem_size">100dp</dimen>
 	<dimen name="icon_details_size">136dp</dimen>
-	<dimen name="icon_listitem_size">36dp</dimen>
+	<dimen name="icon_listitem_size">60dp</dimen>
 	<dimen name="today_item_left_margin">60dp</dimen>
 	<dimen name="details_humidity_margin">4dp</dimen>
 	<dimen name="shadow_size">0dp</dimen>

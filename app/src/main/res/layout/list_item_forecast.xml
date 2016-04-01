@@ -21,9 +21,9 @@
 				   android:src="@mipmap/art_clear"/>
 	</FrameLayout>
 
-	<LinearLayout android:layout_width="wrap_content"
+	<LinearLayout android:layout_width="0dp"
 				  android:layout_height="wrap_content"
-				  android:layout_weight="1"
+				  android:layout_weight="7"
 				  android:orientation="vertical">
 
 		<TextView android:id="@+id/list_item_date_textview"
@@ -40,22 +40,24 @@
 
 	</LinearLayout>
 
-	<LinearLayout android:layout_width="wrap_content"
+	<LinearLayout android:layout_width="0dp"
 				  android:layout_height="wrap_content"
-				  android:layout_weight="0"
-				  android:gravity="center_horizontal"
+				  android:layout_weight="5"
+				  android:layout_gravity="center"
 				  android:orientation="vertical">
 
 		<TextView android:id="@+id/list_item_high_textview"
 				  style="@style/SansSerifCondensed.TC_TS_Primary"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
+				  android:layout_gravity="center"
 				  android:text="81°"/>
 
 		<TextView android:id="@+id/list_item_low_textview"
 				  style="@style/SansSerifCondensed.TC_TS_Secondary"
 				  android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
+				  android:layout_gravity="center"
 				  android:text="30°"/>
 
 	</LinearLayout>
