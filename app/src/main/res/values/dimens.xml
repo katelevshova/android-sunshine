@@ -2,7 +2,7 @@
 	<!-- Default screen margins, per the Android Design guidelines. -->
 	<dimen name="activity_horizontal_margin">16dp</dimen>
 	<dimen name="activity_vertical_margin">16dp</dimen>
-	<dimen name="icon_todayitem_size">100dp</dimen>
+	<dimen name="icon_todayitem_size">96dp</dimen>
 	<dimen name="icon_details_size">136dp</dimen>
 	<dimen name="icon_listitem_size">50dp</dimen>
 	<dimen name="today_item_left_margin">60dp</dimen>
