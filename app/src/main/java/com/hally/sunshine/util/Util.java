@@ -51,12 +51,29 @@ public class Util
 	}
 
 	/**
+	 * Helper method to return whether or not Sunshine is using local graphics.
+	 *
+	 * @param context Context to use for retrieving the preference
+	 * @return true if Sunshine is using local graphics, false otherwise.
+	 */
+	public static boolean isDefaultArtPack(Context context)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String sunshineArtPack = context.getString(R.string.pref_art_pack_default);
+		return prefs.getString(context.getString(R.string.pref_art_pack_key),
+				sunshineArtPack).equals(sunshineArtPack);
+	}
+
+	/**
 	 * Returns location status
+	 *
 	 * @param context
 	 * @return
 	 */
 	@SuppressWarnings("ResourceType")
-	static public @SunshineSyncAdapter.LocationStatus int getLocationStatus(Context context)
+	static public
+	@SunshineSyncAdapter.LocationStatus
+	int getLocationStatus(Context context)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		return prefs.getInt(context.getString(R.string.pref_location_status_key),
@@ -82,11 +99,13 @@ public class Util
 	/**
 	 * Resets th location status to <code>SunshineSyncAdapter.LocationStatus
 	 * .LOCATION_STATUS_INVALID</code>
+	 *
 	 * @param context
 	 */
 	static public void resentLocationUnknown(Context context)
 	{
-		SharedPreferences.Editor prefs = PreferenceManager.getDefaultSharedPreferences(context).edit();
+		SharedPreferences.Editor prefs =
+				PreferenceManager.getDefaultSharedPreferences(context).edit();
 		prefs.putInt(context.getResources().getString(R.string.pref_location_status_key),
 				SunshineSyncAdapter.LOCATION_STATUS_UNKNOWN);
 		prefs.apply(); // it is called from UI thread

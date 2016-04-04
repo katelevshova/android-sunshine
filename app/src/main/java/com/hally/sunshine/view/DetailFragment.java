@@ -26,6 +26,7 @@ import com.hally.sunshine.data.WeatherContract;
 import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.ImageResouceUtil;
 import com.hally.sunshine.util.TraceUtil;
+import com.hally.sunshine.util.Util;
 
 /**
  * @author Kateryna Levshova
@@ -195,9 +196,19 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 			// Read weather condition ID from cursor
 			int weatherId = data.getInt(COL_WEATHER_CONDITION_ID);
 
-			Glide.with(this).load(ImageResouceUtil.getArtUrlForWeatherCondition(getContext(), weatherId))
-					.error(ImageResouceUtil.getArtResourceForWeatherCondition(weatherId)).into
-					(_iconView);
+			if (Util.isDefaultArtPack(getActivity()))
+			{
+				_iconView.setImageResource(ImageResouceUtil.getArtResourceForWeatherCondition(weatherId));
+			}
+			else
+			{
+				// Use weather art image
+				Glide.with(this)
+						.load(ImageResouceUtil.getArtUrlForWeatherCondition(getContext(), weatherId))
+						.error(ImageResouceUtil.getArtResourceForWeatherCondition(weatherId))
+						.crossFade()
+						.into(_iconView);
+			}
 
 			// Read date from cursor and update views for day of week and date
 			long date = data.getLong(COL_WEATHER_DATE);
