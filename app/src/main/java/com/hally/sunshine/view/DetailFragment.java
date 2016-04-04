@@ -26,7 +26,6 @@ import com.hally.sunshine.data.WeatherContract;
 import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.ImageResouceUtil;
 import com.hally.sunshine.util.TraceUtil;
-import com.hally.sunshine.util.Util;
 
 /**
  * @author Kateryna Levshova
@@ -70,8 +69,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 	private String _forecastStr;
 	private ShareActionProvider _shareActionProvider;
 	private ImageView _iconView;
-	private TextView _dayView;
-	private TextView _dateView;
+	private TextView _dateDayView;
 	private TextView _descriptionView;
 	private TextView _highTempView;
 	private TextView _lowTempView;
@@ -97,8 +95,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
 		View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 		_iconView = (ImageView) rootView.findViewById(R.id.detail_icon);
-		_dateView = (TextView) rootView.findViewById(R.id.detail_date_textview);
-		_dayView = (TextView) rootView.findViewById(R.id.detail_day_textview);
+		_dateDayView = (TextView) rootView.findViewById(R.id.detail_date_day_textview);
 		_descriptionView = (TextView) rootView.findViewById(R.id.detail_forecast_textview);
 		_highTempView = (TextView) rootView.findViewById(R.id.detail_high_textview);
 		_lowTempView = (TextView) rootView.findViewById(R.id.detail_low_textview);
@@ -179,8 +176,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 	private void clearDetails()
 	{
 		_iconView.setImageResource(android.R.color.transparent);
-		_dateView.setText("");
-		_dayView.setText("");
+		_dateDayView.setText("");
 		_descriptionView.setText("");
 		_highTempView.setText("");
 		_lowTempView.setText("");
@@ -205,10 +201,8 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
 			// Read date from cursor and update views for day of week and date
 			long date = data.getLong(COL_WEATHER_DATE);
-			String friendlyDateText = FormatUtil.getDayName(getActivity(), date);
-			String dateText = FormatUtil.getFormattedMonthDay(getActivity(), date);
-			_dayView.setText(friendlyDateText);
-			_dateView.setText(dateText);
+			String dateText = FormatUtil.getFriendlyDayString(getActivity(), date);
+			_dateDayView.setText(dateText);
 
 			// Read description from weather condition ID
 			String description = FormatUtil.getStringForWeatherCondition(getActivity(), weatherId);

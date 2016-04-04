@@ -12,7 +12,7 @@
 									 app:layout_rowWeight="1"/>
 	<!-- Header: Day, Date -->
 	<TextView
-		android:id="@+id/detail_day_textview"
+		android:id="@+id/detail_date_day_textview"
 		style="@style/SansSerifCondensed.TC_TS_Primary"
 		android:textSize="@dimen/ts_details_today_header"
 		android:layout_marginBottom="@dimen/abc_list_item_padding_horizontal_material"
@@ -27,7 +27,7 @@
 	<!-- 1st row - art and high temp-->
 	<ImageView
 		android:id="@+id/detail_icon"
-		android:layout_width="@dimen/icon_details_size"
+		android:layout_width="0dp"
 		android:adjustViewBounds="true"
 		android:maxHeight="@dimen/icon_todayitem_size"
 		android:maxWidth="@dimen/icon_todayitem_size"
