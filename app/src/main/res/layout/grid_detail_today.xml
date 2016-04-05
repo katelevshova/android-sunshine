@@ -14,14 +14,14 @@
 	<TextView
 		android:id="@+id/detail_date_day_textview"
 		style="@style/SansSerifCondensed.TC_TS_Primary"
-		android:textSize="@dimen/ts_details_today_header"
 		android:layout_marginBottom="@dimen/abc_list_item_padding_horizontal_material"
 		android:layout_marginTop="@dimen/abc_list_item_padding_horizontal_material"
 		android:gravity="center_horizontal"
+		android:textSize="@dimen/ts_details_today_header"
 		app:layout_columnSpan="2"
 		app:layout_columnWeight="1"
 		app:layout_gravity="fill_horizontal"
-		tools:text="Today, April 03" />
+		tools:text="Today, April 03"/>
 
 	<!-- Main content: -->
 	<!-- 1st row - art and high temp-->
@@ -33,38 +33,38 @@
 		android:maxWidth="@dimen/icon_todayitem_size"
 		app:layout_columnWeight="1"
 		app:layout_gravity="fill_horizontal"
-		tools:src="@mipmap/art_clouds" />
+		tools:src="@mipmap/art_clouds"/>
 
 	<TextView
 		android:id="@+id/detail_high_textview"
-		android:layout_width="0dp"
 		style="@style/SansSerifLight.TC_Primary.Max"
+		android:layout_width="0dp"
 		android:gravity="center_horizontal"
 		app:layout_columnWeight="1"
 		app:layout_gravity="fill_horizontal"
-		tools:text="19" />
+		tools:text="19"/>
 
 	<!-- 2nd row - weather and low temp -->
 	<TextView
 		android:id="@+id/detail_forecast_textview"
-		android:layout_width="0dp"
 		style="@style/SansSerifCondensed.TC_Secondary.TS_Forecast"
+		android:layout_width="0dp"
 		android:gravity="center_horizontal"
 		app:layout_columnWeight="1"
-		tools:text="Rainy" />
+		tools:text="Rainy"/>
 
 	<TextView
 		android:id="@+id/detail_low_textview"
-		android:layout_width="0dp"
 		style="@style/SansSerifLight.TC_Secondary.Min"
+		android:layout_width="0dp"
 		android:layout_marginBottom="@dimen/abc_list_item_padding_horizontal_material"
 		android:gravity="center_horizontal"
 		app:layout_columnWeight="1"
-		tools:text="10" />
+		tools:text="10"/>
 
 	<android.support.v7.widget.Space
 		app:layout_columnSpan="2"
 		app:layout_columnWeight="1"
-		app:layout_rowWeight="1" />
+		app:layout_rowWeight="1"/>
 
 </android.support.v7.widget.GridLayout>
