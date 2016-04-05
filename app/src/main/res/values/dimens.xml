@@ -6,6 +6,6 @@
 	<dimen name="icon_details_size">136dp</dimen>
 	<dimen name="icon_listitem_size">50dp</dimen>
 	<dimen name="today_item_left_margin">60dp</dimen>
-	<dimen name="details_humidity_margin">4dp</dimen>
 	<dimen name="notification_large_icon_default">48dp</dimen>
+	<dimen name="detail_horizontal_padding">32dp</dimen>
 </resources>

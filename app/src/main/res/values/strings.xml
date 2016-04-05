@@ -22,12 +22,15 @@
 	<string name="pref_last_notification" translatable="false">last_notification</string>
 
 	<!-- Windspeed formats -->
-	<string name="format_wind_mph">Wind: <xliff:g id="speed">%1$1.0f</xliff:g> mph <xliff:g
+	<string name="wind">Wind</string>
+	<string name="format_wind_mph"><xliff:g id="speed">%1$1.0f</xliff:g> mph <xliff:g
 		id="direction">%2$s</xliff:g></string>
-	<string name="format_wind_kmh">Wind: <xliff:g id="speed">%1$1.0f</xliff:g> km/h <xliff:g
+	<string name="format_wind_kmh"><xliff:g id="speed">%1$1.0f</xliff:g> km/h <xliff:g
 		id="direction">%2$s</xliff:g></string>
-	<string name="format_pressure">Pressure: <xliff:g id="pressure">%1.0f</xliff:g> hPa</string>
-	<string name="format_humidity">Humidity: <xliff:g id="humidity">%1.0f</xliff:g> %%</string>
+	<string name="pressure">Pressure</string>
+	<string name="format_pressure"><xliff:g id="pressure">%1.0f</xliff:g> hPa</string>
+	<string name="humidity">Humidity</string>
+	<string name="format_humidity"><xliff:g id="humidity">%1.0f</xliff:g> %%</string>
 	<string name="empty_forecast_list">No weather information available.</string>
 	<string name="empty_forecast_list_no_network">No weather information available. The network is not
 		available to fetch weather data.</string>
@@ -44,6 +47,9 @@
 	<string name="a11y_forecast_icon">Forecast icon: <xliff:g id="condition">%1$s</xliff:g></string>
 	<string name="a11y_high_temp">High: <xliff:g id="high">%1$s</xliff:g></string>
 	<string name="a11y_low_temp">Low: <xliff:g id="low">%1$s</xliff:g></string>
+	<string name="a11y_humidity">Humidity: <xliff:g id="humidity">%1$s</xliff:g></string>
+	<string name="a11y_pressure">Barometric Pressure: <xliff:g id="pressure">%1$s</xliff:g></string>
+	<string name="a11y_wind">Wind speed and direction: <xliff:g id="wind">%1$s</xliff:g></string>
 
 	<!-- Weather Conditions -->
 	<string name="condition_2xx">Storm</string>

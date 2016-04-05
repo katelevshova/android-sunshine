@@ -17,12 +17,15 @@
 		id="high">%2$s</xliff:g> Нижнее: <xliff:g id="low">%3$s</xliff:g></string>
 
 	<!-- Windspeed formats -->
-	<string name="format_wind_mph">Ветер: <xliff:g id="speed">%1$1.0f</xliff:g> миль/час <xliff:g
+	<string name="wind">Ветер</string>
+	<string name="format_wind_mph"><xliff:g id="speed">%1$1.0f</xliff:g> миль/час <xliff:g
 		id="direction">%2$s</xliff:g></string>
-	<string name="format_wind_kmh">Ветер: <xliff:g id="speed">%1$1.0f</xliff:g> км/ч <xliff:g
+	<string name="format_wind_kmh"><xliff:g id="speed">%1$1.0f</xliff:g> км/ч <xliff:g
 		id="direction">%2$s</xliff:g></string>
-	<string name="format_pressure">Давление: <xliff:g id="pressure">%1.0f</xliff:g> гПА</string>
-	<string name="format_humidity">Влажность: <xliff:g id="humidity">%1.0f</xliff:g> %%</string>
+	<string name="pressure">Давление</string>
+	<string name="format_pressure"><xliff:g id="pressure">%1.0f</xliff:g> гПА</string>
+	<string name="humidity">Влажность</string>
+	<string name="format_humidity"><xliff:g id="humidity">%1.0f</xliff:g> %%</string>
 	<string name="empty_forecast_list">Нет информации о погоде.</string>
 	<string name="empty_forecast_list_no_network">Нет информации о погоде. Сеть не доступна для
 		получения данных о погоде.</string>
@@ -41,6 +44,10 @@
 		<xliff:g id="condition">%1$s</xliff:g></string>
 	<string name="a11y_high_temp">Высшая: <xliff:g id="high">%1$s</xliff:g></string>
 	<string name="a11y_low_temp">Нижняя: <xliff:g id="low">%1$s</xliff:g></string>
+	<string name="a11y_humidity">Влажность: <xliff:g id="humidity">%1$s</xliff:g></string>
+	<string name="a11y_pressure">Барометрическое давление: <xliff:g id="pressure">%1$s</xliff:g></string>
+	<string name="a11y_wind">Скорость и направление ветра:
+		<xliff:g id="wind">%1$s</xliff:g></string>
 
 	<!-- Weather Conditions -->
 	<string name="condition_2xx">Буря</string>

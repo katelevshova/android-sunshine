@@ -77,6 +77,9 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 	private TextView _humidityView;
 	private TextView _windView;
 	private TextView _pressureView;
+	private TextView _humidityLabelView;
+	private TextView _windLabelView;
+	private TextView _pressureLabelView;
 
 
 	public DetailFragment()
@@ -103,6 +106,10 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 		_humidityView = (TextView) rootView.findViewById(R.id.detail_humidity_textview);
 		_windView = (TextView) rootView.findViewById(R.id.detail_wind_textview);
 		_pressureView = (TextView) rootView.findViewById(R.id.detail_pressure_textview);
+
+		_humidityLabelView = (TextView) rootView.findViewById(R.id.detail_humidity_label_text_view);
+		_windLabelView = (TextView) rootView.findViewById(R.id.detail_wind_label_textview);
+		_pressureLabelView = (TextView) rootView.findViewById(R.id.detail_pressure_label_textview);
 
 		clearDetails();
 
@@ -238,15 +245,22 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 			// Read humidity from cursor and update view
 			float humidity = data.getFloat(COL_WEATHER_HUMIDITY);
 			_humidityView.setText(getActivity().getString(R.string.format_humidity, humidity));
+			_humidityLabelView.setContentDescription(getString(R.string.a11y_humidity, _humidityLabelView.getText()));
+			_humidityLabelView.setContentDescription(_humidityLabelView.getContentDescription());
 
 			// Read wind speed and direction from cursor and update view
 			float windSpeedStr = data.getFloat(COL_WEATHER_WIND_SPEED);
 			float windDirStr = data.getFloat(COL_WEATHER_DEGREES);
 			_windView.setText(FormatUtil.getFormattedWind(getActivity(), windSpeedStr, windDirStr));
+			_windLabelView.setContentDescription(
+			getString(R.string.a11y_wind, _windLabelView.getText()));
+			_windLabelView.setContentDescription(_windLabelView.getContentDescription());
 
 			// Read pressure from cursor and update view
 			float pressure = data.getFloat(COL_WEATHER_PRESSURE);
 			_pressureView.setText(getActivity().getString(R.string.format_pressure, pressure));
+			_pressureLabelView.setContentDescription(getString(R.string.a11y_pressure, _pressureLabelView.getText()));
+			_pressureLabelView.setContentDescription(_pressureLabelView.getContentDescription());
 
 			// We still need this for the share intent
 			_forecastStr = String.format("%s - %s - %s/%s", dateText, description, high, low);
