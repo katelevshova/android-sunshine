@@ -9,4 +9,5 @@
 	<dimen name="ts_details_today_header">24sp</dimen>
 	<dimen name="ts_details_date">16sp</dimen>
 	<dimen name="ts_forecast">22sp</dimen>
+	<dimen name="ts_humidity_value">36sp</dimen>
 </resources>

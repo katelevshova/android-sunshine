@@ -109,6 +109,14 @@
 		<item name="android:textSize">@dimen/ts_primary_info</item>
 	</style>
 
+	<style name="SansSerifLight.TC_White.TS_HumidityValue" >
+		<item name="android:textSize">@dimen/ts_humidity_value</item>
+	</style>
+
+	<style name="SansSerifLight.TC_White.TS_Primary">
+		<item name="android:textSize">@dimen/ts_primary_info</item>
+	</style>
+
 	<style name="SansSerifCondensed.TC_TS_Secondary" >
 		<item name="android:textColor">@color/txt_secondary</item>
 		<item name="android:textSize">@dimen/ts_secondary_info</item>
