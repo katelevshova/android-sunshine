@@ -9,7 +9,7 @@ To share weather information using other installed apps like Googl+, Gmail, etc.
 To see location on Google Maps.
 Provides different layouts for different device sizes.
 
-### Screenshots for Nexus 5 API >21 - Material Design (not final yet) ###
+### Screenshots for Nexus 5 API >21 (not final yet) ###
 
 ![Screenshot_20160406-220849.png](https://bitbucket.org/repo/RjKoox/images/1379368300-Screenshot_20160406-220849.png)
 
