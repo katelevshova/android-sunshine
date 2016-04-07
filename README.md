@@ -9,6 +9,14 @@ To share weather information using other installed apps like Googl+, Gmail, etc.
 To see location on Google Maps.
 Provides different layouts for different device sizes.
 
+### Screenshots for Nexus 5 API >21 - Material Design (not final yet) ###
+
+![Screenshot_20160406-220849.png](https://bitbucket.org/repo/RjKoox/images/1379368300-Screenshot_20160406-220849.png)
+
+![Screenshot_20160406-220900.png](https://bitbucket.org/repo/RjKoox/images/1391470600-Screenshot_20160406-220900.png)
+
+![Screenshot_20160406-220959.png](https://bitbucket.org/repo/RjKoox/images/2909601383-Screenshot_20160406-220959.png)
+
 ### Screenshots for Nexus 5 API 21 - Toolbar ###
 
 Glide, art resource with url
