@@ -11,7 +11,7 @@
 			 android:layout_weight="3"/>
 
 	<!-- Humidity, wind, pressure -->
-	<include layout="@layout/grid_detail_humidity"
+	<include layout="@layout/detail_humidity_grid"
 			 android:layout_width="match_parent"
 			 android:layout_height="wrap_content"
 			 android:layout_weight="2"/>
