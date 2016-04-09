@@ -20,21 +20,22 @@
 
 	<LinearLayout android:layout_width="match_parent"
 				  android:layout_height="match_parent"
-		android:orientation="horizontal">
-
-		<!-- A static fragment -->
-		<fragment android:id="@+id/fragment_main"
-				  android:name="com.hally.sunshine.view.MainForecastFragment"
-				  android:layout_width="0dp"
-				  android:layout_height="match_parent"
-				  android:layout_weight="1"
-				  tools:layout="@android:layout/list_content"/>
+		android:orientation="vertical">
 
 		<!-- We will use a dynamic fragment in container since for vertical layout we do not need
 		 details from the right side-->
 		<FrameLayout android:id="@+id/detail_container"
-					 android:layout_width="0dp"
-					 android:layout_height="match_parent"
+					 android:layout_width="match_parent"
+					 android:layout_height="0dp"
 					 android:layout_weight="1"/>
+
+		<!-- A static fragment -->
+		<fragment android:id="@+id/fragment_main"
+				  android:name="com.hally.sunshine.view.MainForecastFragment"
+				  android:layout_width="match_parent"
+				  android:layout_height="0dp"
+				  android:layout_weight="1"
+				  tools:layout="@android:layout/list_content"/>
+
 	</LinearLayout>
 </LinearLayout>

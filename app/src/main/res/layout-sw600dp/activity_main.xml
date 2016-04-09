@@ -5,24 +5,24 @@
 			  android:layout_height="match_parent"
 			  android:baselineAligned="false"
 			  android:divider="?android:attr/dividerHorizontal"
-			  android:orientation="horizontal"
+			  android:orientation="vertical"
 			  tools:context="com.hally.sunshine.view.MainForecastActivity">
 
 	<!-- This layout is a two-pane layout for the Items master/detail flow. -->
 
-	<!-- A static fragment -->
-	<fragment android:id="@+id/fragment_main"
-			  android:name="com.hally.sunshine.view.MainForecastFragment"
-			  android:layout_width="0dp"
-			  android:layout_height="match_parent"
-			  android:layout_weight="1"
-			  tools:layout="@android:layout/list_content"/>
-
 	<!-- We will use a dynamic fragment in container since for vertical layout we do not need
 	details from the right side-->
 	<FrameLayout android:id="@+id/detail_container"
-				 android:layout_width="0dp"
-				 android:layout_height="match_parent"
+				 android:layout_width="match_parent"
+				 android:layout_height="0dp"
 				 android:layout_weight="1"/>
+
+	<!-- A static fragment -->
+	<fragment android:id="@+id/fragment_main"
+			  android:name="com.hally.sunshine.view.MainForecastFragment"
+			  android:layout_width="match_parent"
+			  android:layout_height="0dp"
+			  android:layout_weight="1"
+			  tools:layout="@android:layout/list_content"/>
 
 </LinearLayout>
