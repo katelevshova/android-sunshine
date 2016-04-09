@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:app="http://schemas.android.com/apk/res-auto"
+			  xmlns:tools="http://schemas.android.com/tools"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:baselineAligned="false"
+			  android:divider="?android:attr/dividerHorizontal"
+			  android:orientation="vertical"
+			  tools:context="com.hally.sunshine.view.MainForecastActivity">
+
+	<!-- This layout is a two-pane layout for the Items master/detail flow. -->
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="?attr/actionBarSize"
+		android:minHeight="?attr/actionBarSize"
+		app:popupTheme="@style/PopupMenuListView"
+		app:theme="@style/SunshineToolBar"/>
+
+	<LinearLayout android:layout_width="match_parent"
+				  android:layout_height="match_parent"
+				  android:orientation="horizontal">
+
+		<!-- A static fragment -->
+		<fragment android:id="@+id/fragment_main"
+				  android:name="com.hally.sunshine.view.MainForecastFragment"
+				  android:layout_width="0dp"
+				  android:layout_height="match_parent"
+				  android:layout_weight="2"
+				  tools:layout="@android:layout/list_content"/>
+
+		<!-- We will use a dynamic fragment in container since for vertical layout we do not need
+		 details from the right side-->
+		<FrameLayout android:id="@+id/detail_container"
+					 android:layout_width="0dp"
+					 android:layout_height="match_parent"
+					 android:layout_weight="3"/>
+	</LinearLayout>
+</LinearLayout>
