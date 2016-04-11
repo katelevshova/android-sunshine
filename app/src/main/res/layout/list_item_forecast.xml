@@ -8,18 +8,18 @@
 			  android:gravity="center_vertical"
 			  android:minHeight="?android:attr/listPreferredItemHeight"
 			  android:orientation="horizontal"
+			  android:paddingLeft="@dimen/activity_vertical_margin"
 			  android:paddingRight="@dimen/activity_vertical_margin">
 
-	<FrameLayout android:layout_width="@dimen/today_item_left_margin"
-				 android:layout_height="wrap_content">
 
-		<ImageView android:id="@+id/detail_icon"
-				   android:adjustViewBounds="true"
-				   android:layout_width="@dimen/icon_listitem_size"
-				   android:layout_height="@dimen/icon_listitem_size"
-				   android:layout_gravity="center"
-				   android:src="@mipmap/art_clear"/>
-	</FrameLayout>
+	<ImageView android:id="@+id/detail_icon"
+			   android:layout_width="@dimen/icon_listitem_size"
+			   android:layout_height="@dimen/icon_listitem_size"
+			   android:layout_gravity="center"
+			   android:layout_marginEnd="@dimen/abc_list_item_padding_horizontal_material"
+			   android:layout_marginRight="@dimen/abc_list_item_padding_horizontal_material"
+			   android:adjustViewBounds="true"
+			   android:src="@mipmap/art_clear"/>
 
 	<LinearLayout android:layout_width="0dp"
 				  android:layout_height="wrap_content"
@@ -40,26 +40,25 @@
 
 	</LinearLayout>
 
-	<LinearLayout android:layout_width="0dp"
-				  android:layout_height="wrap_content"
-				  android:layout_weight="5"
-				  android:layout_gravity="center"
-				  android:orientation="vertical">
 
-		<TextView android:id="@+id/detail_high_textview"
-				  style="@style/SansSerifCondensed.TC_TS_Primary"
-				  android:layout_width="wrap_content"
-				  android:layout_height="wrap_content"
-				  android:layout_gravity="center"
-				  android:text="81°"/>
+	<TextView android:id="@+id/detail_high_textview"
+			  style="@style/SansSerifLight.TC_Primary"
+			  android:textSize="@dimen/forecast_text_size"
+			  android:layout_width="@dimen/forecast_text_width"
+			  android:layout_height="wrap_content"
+			  android:layout_gravity="center"
+			  android:layout_marginEnd="@dimen/forecast_temperature_space"
+			  android:layout_marginRight="@dimen/forecast_temperature_space"
+			  android:gravity="right"
+			  android:text="81°"/>
 
-		<TextView android:id="@+id/detail_low_textview"
-				  style="@style/SansSerifCondensed.TC_TS_Secondary"
-				  android:layout_width="wrap_content"
-				  android:layout_height="wrap_content"
-				  android:layout_gravity="center"
-				  android:text="30°"/>
-
-	</LinearLayout>
+	<TextView android:id="@+id/detail_low_textview"
+			  style="@style/SansSerifLight.TC_Secondary"
+			  android:textSize="@dimen/forecast_text_size"
+			  android:layout_width="@dimen/forecast_text_width"
+			  android:layout_height="wrap_content"
+			  android:layout_gravity="center"
+			  android:gravity="right"
+			  android:text="30°"/>
 
 </LinearLayout>
