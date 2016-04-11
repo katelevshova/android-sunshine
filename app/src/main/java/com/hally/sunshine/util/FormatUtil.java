@@ -78,12 +78,12 @@ public class FormatUtil
 			return getFirstWeekDateFormat(context, context.getString(R.string.today),
 					formattedMonthDay);
 		}
-		else if (julianDay < currentJulianDay + WEEK)
-		{
-			// If the input date is less than a week in the future, Wednesday, April 09.
-			String dayName = getDayName(context, dateInMillis);
-			return getFirstWeekDateFormat(context, dayName, formattedMonthDay);
-		}
+//		else if (julianDay < currentJulianDay + WEEK)
+//		{
+//			// If the input date is less than a week in the future, Wednesday, April 09.
+//			String dayName = getDayName(context, dateInMillis);
+//			return getFirstWeekDateFormat(context, dayName, formattedMonthDay);
+//		}
 		else
 		{
 			String currLocale = Locale.getDefault().getLanguage();
