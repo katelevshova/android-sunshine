@@ -9,7 +9,6 @@
 	<!-- main activity action bar styles -->
 	<style name="SunshineToolBar" parent="ThemeOverlay.AppCompat.Dark">
 		<item name="android:background">@color/primary</item>
-		<item name="android:title">@string/app_name</item>
 	</style>
 
 	<style name="SansSerifCondensed">
