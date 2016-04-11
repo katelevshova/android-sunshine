@@ -56,7 +56,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/drawable-v21" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/layout-sw600dp" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/values-sw600dp" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/res/values-land" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/res/values-sw200dp-land" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/values-sw600dp-port" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/layout-large" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
