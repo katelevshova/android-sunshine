@@ -20,10 +20,10 @@ public class ListItemViewHolder
 
 	public ListItemViewHolder(View view)
 	{
-		iconView = (ImageView) view.findViewById(R.id.list_item_icon);
-		dateView = (TextView) view.findViewById(R.id.list_item_date_textview);
-		descriptionView = (TextView) view.findViewById(R.id.list_item_forecast_textview);
-		highTempView = (TextView) view.findViewById(R.id.list_item_high_textview);
-		lowTempView = (TextView) view.findViewById(R.id.list_item_low_textview);
+		iconView = (ImageView) view.findViewById(R.id.detail_icon);
+		dateView = (TextView) view.findViewById(R.id.detail_date_day_textview);
+		descriptionView = (TextView) view.findViewById(R.id.detail_forecast_textview);
+		highTempView = (TextView) view.findViewById(R.id.detail_high_textview);
+		lowTempView = (TextView) view.findViewById(R.id.detail_low_textview);
 	}
 }
