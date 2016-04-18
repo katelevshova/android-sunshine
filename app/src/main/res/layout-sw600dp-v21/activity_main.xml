@@ -6,7 +6,7 @@
 				android:layout_height="match_parent"
 				tools:context="com.hally.sunshine.view.MainForecastActivity">
 
-	<!-- This layout is a two-pane layout for the Items master/detail flow. -->
+	<!-- If set eveluation to other value than 0dp the detail_container cannot be placed above blue area -->
 	<android.support.v7.widget.Toolbar
 		android:id="@+id/toolbar"
 		android:layout_width="match_parent"
