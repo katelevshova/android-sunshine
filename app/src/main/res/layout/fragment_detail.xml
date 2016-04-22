@@ -16,12 +16,6 @@
 			 android:layout_height="wrap_content"
 			 android:layout_weight="2"/>
 
-	<!-- for transition effect from one image to another -->
-	<ImageSwitcher
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:id="@+id/imageSwitcher"
-		android:layout_gravity="right" />
 </LinearLayout>
 
 

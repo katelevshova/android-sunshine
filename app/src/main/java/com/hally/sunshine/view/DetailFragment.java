@@ -97,7 +97,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 			_uri = args.getParcelable(DetailFragment.DETAIL_URI);
 		}
 
-		View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_detail_start, container, false);
 		_iconView = (ImageView) rootView.findViewById(R.id.detail_icon);
 		_dateDayView = (TextView) rootView.findViewById(R.id.detail_date_day_textview);
 		_descriptionView = (TextView) rootView.findViewById(R.id.detail_forecast_textview);
