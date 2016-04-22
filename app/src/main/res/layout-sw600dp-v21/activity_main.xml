@@ -12,7 +12,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_alignParentTop="true"
-		android:elevation="0dp"
+		android:elevation="@dimen/appbar_elevation"
 		app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
 		app:theme="@style/SunshineToolBar">
 
@@ -22,7 +22,7 @@
 				  android:layout_height="?attr/actionBarSize"
 				  android:layout_gravity="center"
 				  android:layout_marginTop="?attr/actionBarSize"
-				  android:gravity="center_vertical"
+				  android:gravity="center_vertical|bottom"
 				  android:text="@string/app_name"/>
 	</android.support.v7.widget.Toolbar>
 
@@ -30,6 +30,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="@dimen/details_app_bar_overlap"
 		android:layout_below="@id/toolbar"
+		android:elevation="@dimen/appbar_elevation"
 		android:background="@color/primary"/>
 
 	<!-- We will use a dynamic fragment in container since for vertical layout we do not need
@@ -38,6 +39,7 @@
 				 android:layout_width="match_parent"
 				 android:layout_height="wrap_content"
 				 android:layout_below="@id/toolbar"
+				 android:elevation="@dimen/appbar_elevation"
 				 android:paddingLeft="@dimen/abc_list_item_padding_horizontal_material"
 				 android:paddingRight="@dimen/abc_list_item_padding_horizontal_material"
 		/>
