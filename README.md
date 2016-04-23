@@ -45,6 +45,10 @@ Russian locale
 
 ### Screenshots for Nexus 7 API 21 - Toolbar ###
 
+![Screenshot_20160422-171944 - tablet-land.png](https://bitbucket.org/repo/RjKoox/images/2060552619-Screenshot_20160422-171944%20-%20tablet-land.png)
+
+![Screenshot_20160422-171929 - tablet-port.png](https://bitbucket.org/repo/RjKoox/images/419694945-Screenshot_20160422-171929%20-%20tablet-port.png)
+
 Glide, art resource with url
 
 ![Screenshot_20160323-174845 - tablet - Glide.png](https://bitbucket.org/repo/RjKoox/images/465858935-Screenshot_20160323-174845%20-%20tablet%20-%20Glide.png)
