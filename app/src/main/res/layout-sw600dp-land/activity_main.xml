@@ -14,8 +14,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:elevation="@dimen/appbar_elevation"
-		app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-		app:theme="@style/SunshineToolBar">
+		app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 		<!-- align the title to the list_content's day text -->
 		<FrameLayout android:layout_width="wrap_content"

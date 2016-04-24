@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="SunshineAppTheme" parent="SunshineAppTheme.Base">
+	<style name="SunshineAppTheme" parent="AppTheme">
 		<item name="windowActionBar">false</item>
 		<item name="windowNoTitle">true</item>
-	</style>
-
-	<!-- main activity action bar styles -->
-	<style name="SunshineToolBar" parent="ThemeOverlay.AppCompat.Dark">
-		<item name="android:background">@color/primary</item>
 	</style>
 
 	<style name="SansSerifCondensed">

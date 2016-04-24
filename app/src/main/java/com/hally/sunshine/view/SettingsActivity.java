@@ -24,13 +24,13 @@ public class SettingsActivity extends ActionBarActivity
 					.add(R.id.settings_container, new SettingsFragment()).commit();
 		}
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-		{
+//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+//		{
 			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 			setSupportActionBar(toolbar);
 			// fix for back arrow button
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 			getSupportActionBar().setDisplayShowHomeEnabled(true);
-		}
+//		}
 	}
 }

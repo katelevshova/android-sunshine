@@ -2,32 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			  xmlns:app="http://schemas.android.com/apk/res-auto"
 			  xmlns:tools="http://schemas.android.com/tools"
-			  android:orientation="vertical"
 			  android:layout_width="match_parent"
-			  android:layout_height="match_parent">
+			  android:layout_height="match_parent"
+			  android:orientation="vertical">
 
 	<android.support.v7.widget.Toolbar
 		android:id="@+id/toolbar"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-		app:theme="@style/SunshineToolBar">
+		app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 		<TextView
+			style="@style/TitleActionBar"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="@string/app_name"
-			android:gravity="center_vertical"
 			android:layout_gravity="center"
 			android:layout_marginTop="?attr/actionBarSize"
-			style="@style/TitleActionBar"/>
-		</android.support.v7.widget.Toolbar>
+			android:gravity="center_vertical"
+			android:text="@string/app_name"/>
+	</android.support.v7.widget.Toolbar>
 
 	<fragment android:id="@+id/fragment_main"
 			  android:name="com.hally.sunshine.view.MainForecastFragment"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
 			  tools:context="com.hally.sunshine.view.MainForecastFragment"
-			  tools:layout="@android:layout/list_content" />
+			  tools:layout="@android:layout/list_content"/>
 
 </LinearLayout>

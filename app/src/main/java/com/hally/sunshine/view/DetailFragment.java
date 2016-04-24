@@ -10,7 +10,9 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -135,20 +137,10 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
-		inflater.inflate(R.menu.menu_detail_fragment, menu);
-
-		MenuItem itemShare = menu.findItem(R.id.item_share);
-
-		ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat
-				.getActionProvider(itemShare);
-
-		if (_forecastStr != null)
-		{
-			shareActionProvider.setShareIntent(createShareForecastIntent());
-		}
-		else
-		{
-			TraceUtil.logD(CLASS_NAME, "onCreateOptionsMenu", "_forecastStr is null?");
+		if ( getActivity() instanceof DetailActivity ){
+			// Inflate the menu; this adds items to the action bar if it is present.
+			inflater.inflate(R.menu.menu_detail_fragment, menu);
+			finishCreatingMenu(menu);
 		}
 	}
 
@@ -264,13 +256,34 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
 			// We still need this for the share intent
 			_forecastStr = String.format("%s - %s - %s/%s", dateText, description, high, low);
+		}
+		AppCompatActivity activity = (AppCompatActivity)getActivity();
+		Toolbar toolbarView = (Toolbar) getView().findViewById(R.id.toolbar);
 
-			// If onCreateOptionsMenu has already happened, we need to update the share intent now.
-			if (_shareActionProvider != null)
-			{
-				_shareActionProvider.setShareIntent(createShareForecastIntent());
+		// We need to start the enter transition after the data has loaded
+		if (activity instanceof DetailActivity) {
+			activity.supportStartPostponedEnterTransition();
+
+			if ( null != toolbarView ) {
+				activity.setSupportActionBar(toolbarView);
+
+				activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
+				activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+			}
+		} else {
+			if ( null != toolbarView ) {
+				Menu menu = toolbarView.getMenu();
+				if ( null != menu ) menu.clear();
+				toolbarView.inflateMenu(R.menu.menu_detail_fragment);
+				finishCreatingMenu(toolbarView.getMenu());
 			}
 		}
+	}
+
+	private void finishCreatingMenu(Menu menu) {
+		// Retrieve the share menu item
+		MenuItem menuItem = menu.findItem(R.id.item_share);
+		menuItem.setIntent(createShareForecastIntent());
 	}
 
 	@Override

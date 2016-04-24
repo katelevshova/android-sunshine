@@ -1,9 +1,10 @@
 <resources>
 
 	<!-- Base application theme. -->
-	<style name="SunshineAppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
-		<item name="actionBarStyle">@style/SunshineActionBar</item>
-		<item name="dropDownListViewStyle">@style/PopupMenuListView</item>
+	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+		<item name="windowActionBar">false</item>
+		<item name="toolbarStyle">@style/SunshineToolBar</item>
+
 		<item name="colorPrimary">@color/primary</item>
 		<item name="colorPrimaryDark">@color/primary_dark</item>
 		<item name="colorAccent">@color/accent</item>
@@ -16,15 +17,14 @@
 		<!-- Removes a shadow under the ActionBar -->
 		<item name="android:windowContentOverlay">@null</item>
 	</style>
-
-	<style name="SunshineAppTheme" parent="SunshineAppTheme.Base">
+<!-- 	<item name="dropDownListViewStyle">@style/PopupMenuListView</item> -->
+	<style name="SunshineAppTheme" parent="AppTheme">
 	</style>
 
-	<!-- Action Bar styles -->
-	<style name="SunshineActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
-		<item name="background">@color/primary</item>
-		<item name="displayOptions">showTitle|showHome|useLogo</item>
-		<item name="titleTextStyle">@style/TitleActionBar</item>
+	<!-- main activity styles -->
+	<style name="SunshineToolBar" parent="ThemeOverlay.AppCompat.Dark">
+		<item name="android:background">@color/primary</item>
+		<item name="popupTheme">@style/Theme.AppCompat.Light</item>
 	</style>
 
 	<style name="PopupMenuListView" parent="@style/Widget.AppCompat.ListView.DropDown">

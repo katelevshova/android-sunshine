@@ -41,12 +41,10 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 
 		setContentView(R.layout.activity_main);
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-		{
-			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-			setSupportActionBar(toolbar);
-			ActionBar actionBar = getSupportActionBar();
-		}
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		//getSupportActionBar().setIcon(R.mipmap.art_clear);
+		getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 		if (findViewById(R.id.detail_container) != null)
 		{
@@ -70,8 +68,6 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 //			getSupportActionBar().setElevation(0f); // removes a shadow under the ActionBar for phone
 		}
 
-//		getSupportActionBar().setIcon(R.mipmap.art_clear);
-		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		setUseTodayItemElement();
 
 		SunshineSyncAdapter.initializeSyncAdapter(this);
@@ -226,6 +222,5 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 			Intent startIntent = new Intent(this, DetailActivity.class).setData(dateUri);
 			startActivity(startIntent);
 		}
-
 	}
 }
