@@ -25,7 +25,7 @@
 	<!-- main activity styles -->
 	<style name="SunshineToolBar" parent="Widget.AppCompat.Toolbar">
 		<item name="android:background">@color/primary</item>
-		<!-- <item name="popupTheme">@style/Theme.AppCompat.Light</item> only for API >= 21 -->
+		<!--<item name="popupTheme">@style/Theme.AppCompat.Light</item> only for API >= 21 -->
 	</style>
 
 	<style name="PopupMenuListView" parent="@style/Widget.AppCompat.ListView.DropDown">

@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-	<style name="SunshineAppTheme" parent="AppTheme">
-		<item name="windowActionBar">false</item>
-		<item name="windowNoTitle">true</item>
-	</style>
-
 	<style name="SansSerifCondensed">
 		<item name="android:fontFamily">sans-serif-condensed</item>
 	</style>
-
 	<style name="SansSerifLight">
 		<item name="android:fontFamily">sans-serif-light</item>
 	</style>
-
 </resources>
