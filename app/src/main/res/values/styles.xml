@@ -1,9 +1,7 @@
 <resources>
 
 	<!-- Base application theme. -->
-	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-		<item name="windowActionBar">false</item>
-		<item name="toolbarStyle">@style/SunshineToolBar</item>
+	<style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
 
 		<item name="colorPrimary">@color/primary</item>
 		<item name="colorPrimaryDark">@color/primary_dark</item>
@@ -14,23 +12,26 @@
 		<item name="android:textColorSecondary">@color/txt_secondary</item>
 		<!-- OverFlow Menu Text Color -->
 		<item name="android:itemTextAppearance">@style/ItemTextAppearance</item>
-		<!-- Removes a shadow under the ActionBar -->
-		<item name="android:windowContentOverlay">@null</item>
+		<!-- Removes a shadow under the ActionBar
+		<item name="android:windowContentOverlay">@null</item> -->
+		<!-- Toolbar-->
+		<item name="toolbarStyle">@style/SunshineToolBar</item>
+		<item name="dropDownListViewStyle">@style/PopupMenuListView</item>
 	</style>
-<!-- 	<item name="dropDownListViewStyle">@style/PopupMenuListView</item> -->
+
 	<style name="SunshineAppTheme" parent="AppTheme">
 	</style>
 
 	<!-- main activity styles -->
-	<style name="SunshineToolBar" parent="ThemeOverlay.AppCompat.Dark">
+	<style name="SunshineToolBar" parent="Widget.AppCompat.Toolbar">
 		<item name="android:background">@color/primary</item>
-		<item name="popupTheme">@style/Theme.AppCompat.Light</item>
+		<!-- <item name="popupTheme">@style/Theme.AppCompat.Light</item> only for API >= 21 -->
 	</style>
 
 	<style name="PopupMenuListView" parent="@style/Widget.AppCompat.ListView.DropDown">
 		<item name="android:background">@color/primary</item>
-		<item name="android:divider">@color/white</item>
-		<item name="android:dividerHeight">1dp</item>
+		<!--<item name="android:divider">@color/white</item>
+		<item name="android:dividerHeight">1dp</item>-->
 		<item name="android:textAppearance">@style/SansSerifCondensed.TC_White</item>
 	</style>
 
