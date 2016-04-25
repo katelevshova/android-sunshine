@@ -2,14 +2,30 @@
 
 ### Quick summary ###
 
-Sunshine application for Android devices. 
-Uses OpenWeatherMap API to synchronize forecast data - http://openweathermap.org/api. Allows user to see forecast for 2 weeks for specific location and more detailed information for chosen day. 
-It is possible to change such settings as: location, units, turn On/Off notifications.
-To share weather information using other installed apps like Googl+, Gmail, etc. 
-To see location on Google Maps.
-Provides different layouts for different device sizes.
+Sunshine application for Android devices is a weather forecast app which uses OpenWeatherMap API - http://openweathermap.org/api - to synchronize forecast data. Allows users to see forecast for 2 weeks for specific location and more detailed information for chosen day, to change settings like units, preferred weather icon pack, location, and turn On/Off notifications, share weather information and open location on Google maps. Uses SQLite data storage and such libraries as: support-v4, appcompat-v7, glide, play-services-gcm. Covered functionality by Unit tests. Provides different layouts/styles for different device sizes and API versions. Added accessibility support (sound and LTR), localization for 2 languages. 
 
-### Screenshots for Nexus 5 API >21 (not final yet) ###
+# The most recent screenshots #
+
+### Screenshots for Nexus 5 ###
+
+![Screenshot_20160425-122505.png](https://bitbucket.org/repo/RjKoox/images/1868660671-Screenshot_20160425-122505.png)
+
+![Screenshot_20160425-122551.png](https://bitbucket.org/repo/RjKoox/images/2015942233-Screenshot_20160425-122551.png)
+
+![Screenshot_20160425-122511.png](https://bitbucket.org/repo/RjKoox/images/653041038-Screenshot_20160425-122511.png)
+
+![Screenshot_20160425-122518.png](https://bitbucket.org/repo/RjKoox/images/3519044003-Screenshot_20160425-122518.png)
+
+![Screenshot_20160425-122525.png](https://bitbucket.org/repo/RjKoox/images/1895952214-Screenshot_20160425-122525.png)
+
+### Screenshots for Nexus 7 ###
+
+![Screenshot_20160425-122925.png](https://bitbucket.org/repo/RjKoox/images/3437921564-Screenshot_20160425-122925.png)
+
+![Screenshot_20160425-122941.png](https://bitbucket.org/repo/RjKoox/images/363955799-Screenshot_20160425-122941.png)
+
+
+# OLDER SCREENSHOTS ---------------------- OLDER SCREENSHOTS ---------------------- #
 
 ![Screenshot_20160411-163652.png](https://bitbucket.org/repo/RjKoox/images/778669369-Screenshot_20160411-163652.png)
 
