@@ -2,7 +2,6 @@
 
 	<!-- Base application theme. -->
 	<style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
-
 		<item name="colorPrimary">@color/primary</item>
 		<item name="colorPrimaryDark">@color/primary_dark</item>
 		<item name="colorAccent">@color/accent</item>
@@ -12,11 +11,12 @@
 		<item name="android:textColorSecondary">@color/txt_secondary</item>
 		<!-- OverFlow Menu Text Color -->
 		<item name="android:itemTextAppearance">@style/ItemTextAppearance</item>
-		<!-- Removes a shadow under the ActionBar
-		<item name="android:windowContentOverlay">@null</item> -->
 		<!-- Toolbar-->
 		<item name="toolbarStyle">@style/SunshineToolBar</item>
 		<item name="dropDownListViewStyle">@style/PopupMenuListView</item>
+
+		<!-- Removes a shadow under the ActionBar
+		<item name="android:windowContentOverlay">@null</item> -->
 	</style>
 
 	<style name="SunshineAppTheme" parent="AppTheme">
