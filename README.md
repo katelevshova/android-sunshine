@@ -27,6 +27,8 @@ Sunshine application for Android devices is a weather forecast app which uses Op
 
 # OLDER SCREENSHOTS ---------------------- OLDER SCREENSHOTS ---------------------- #
 
+
+
 ![Screenshot_20160411-163652.png](https://bitbucket.org/repo/RjKoox/images/778669369-Screenshot_20160411-163652.png)
 
 ![Screenshot_20160406-220849.png](https://bitbucket.org/repo/RjKoox/images/1379368300-Screenshot_20160406-220849.png)
