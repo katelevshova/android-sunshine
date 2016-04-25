@@ -22,6 +22,10 @@
 	<style name="SunshineAppTheme" parent="AppTheme">
 	</style>
 
+	<style name="DetailTheme" parent="SunshineAppTheme">
+		<item name="dropDownListViewStyle">@style/DetailPopupMenuListView</item>
+	</style>
+
 	<!-- main activity styles -->
 	<style name="SunshineToolBar" parent="Widget.AppCompat.Toolbar">
 		<item name="android:background">@color/primary</item>
@@ -32,6 +36,11 @@
 		<item name="android:background">@color/primary</item>
 		<!--<item name="android:divider">@color/white</item>
 		<item name="android:dividerHeight">1dp</item>-->
+		<item name="android:textAppearance">@style/SansSerifCondensed.TC_White</item>
+	</style>
+
+	<style name="DetailPopupMenuListView" parent="@style/Widget.AppCompat.ListView.DropDown">
+		<item name="android:background">@color/detail_accent_pane_background</item>
 		<item name="android:textAppearance">@style/SansSerifCondensed.TC_White</item>
 	</style>
 
