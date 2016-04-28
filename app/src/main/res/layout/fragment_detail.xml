@@ -10,7 +10,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="?attr/actionBarSize"
 		android:background="@color/white"
-		app:theme="@style/DetailTheme"/>
+		android:theme="@style/DetailTheme"/>
 
 	<!-- Main content: art, weather, low and high temp -->
 	<include layout="@layout/grid_detail_today"

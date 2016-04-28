@@ -13,7 +13,7 @@
 		android:layout_height="wrap_content"
 		android:layout_alignParentTop="true"
 		android:elevation="@dimen/appbar_elevation"
-		app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 		<TextView android:id="@+id/txt_title"
 				  style="@style/TitleActionBar"
