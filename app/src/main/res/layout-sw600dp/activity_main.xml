@@ -29,19 +29,19 @@
 		android:layout_width="match_parent"
 		android:layout_height="@dimen/details_app_bar_overlap"
 		android:layout_below="@id/toolbar"
-		android:elevation="@dimen/appbar_elevation"
-		android:background="@color/primary"/>
+		android:background="@color/primary"
+		android:elevation="@dimen/appbar_elevation"/>
 
 	<!-- We will use a dynamic fragment in container since for vertical layout we do not need
 	 details from the right side-->
-	<FrameLayout android:id="@+id/detail_container"
-				 android:layout_width="match_parent"
-				 android:layout_height="wrap_content"
-				 android:layout_below="@id/toolbar"
-				 android:elevation="@dimen/appbar_elevation"
-				 android:paddingLeft="@dimen/abc_list_item_padding_horizontal_material"
-				 android:paddingRight="@dimen/abc_list_item_padding_horizontal_material"
-		/>
+	<android.support.v7.widget.CardView android:id="@+id/detail_container"
+										android:layout_width="match_parent"
+										android:layout_height="wrap_content"
+										android:layout_below="@id/toolbar"
+										android:layout_marginLeft="@dimen/abc_list_item_padding_horizontal_material"
+										android:layout_marginRight="@dimen/abc_list_item_padding_horizontal_material"
+										app:cardElevation="@dimen/detail_card_elevation"
+										app:cardPreventCornerOverlap="false"/>
 
 	<!-- A static fragment -->
 	<fragment android:id="@+id/fragment_main"
@@ -49,7 +49,6 @@
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
 			  android:layout_below="@id/detail_container"
-			  tools:layout="@android:layout/list_content"
-		/>
+			  tools:layout="@android:layout/list_content"/>
 
 </RelativeLayout>
