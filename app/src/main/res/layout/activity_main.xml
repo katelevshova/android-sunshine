@@ -24,7 +24,8 @@
 	<fragment android:id="@+id/fragment_main"
 			  android:layout_below="@id/toolbar"
 			  android:name="com.hally.sunshine.view.MainForecastFragment"
-			  android:layout_width="match_parent"
+			  android:layout_width="@dimen/landscape_forecast_view_width"
+			  android:layout_centerInParent="true"
 			  android:layout_height="match_parent"
 			  tools:context="com.hally.sunshine.view.MainForecastFragment"
 			  tools:layout="@android:layout/list_content"/>
