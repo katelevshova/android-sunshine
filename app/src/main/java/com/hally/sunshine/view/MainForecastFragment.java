@@ -23,17 +23,20 @@ import android.widget.TextView;
 
 import com.hally.sunshine.R;
 import com.hally.sunshine.data.ForecastAdapter;
+import com.hally.sunshine.data.ForecastAdapterViewHolder;
+import com.hally.sunshine.data.IForecastAdapterOnClick;
+import com.hally.sunshine.data.IForecastFragmentCallback;
 import com.hally.sunshine.data.WeatherContract;
-import com.hally.sunshine.model.IForecastFragmentCallback;
 import com.hally.sunshine.sync.SunshineSyncAdapter;
 import com.hally.sunshine.util.TraceUtil;
 import com.hally.sunshine.util.Util;
 
 
 /**
- * Encapsulates fetching the forecast and displaying it as a {@link RecyclerView} layout.
+ * Encapsulates fetching the forecast and displaying it as a {@link android.support.v7.widget.RecyclerView} layout.
  */
-public class MainForecastFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>
+public class MainForecastFragment extends Fragment implements LoaderManager
+		.LoaderCallbacks<Cursor>
 {
 	public static final int FORECAST_LOADER_ID = 0;
 	// These indices are tied to FORECAST_COLUMNS. If FORECAST_COLUMNS changes, these
@@ -72,21 +75,17 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	private int _selectedPosition = RecyclerView.NO_POSITION;
 	private boolean _showTodayItem = true;
 	private RecyclerView _recyclerViewForecast;
-//	private AdapterView.OnItemClickListener _onForecastItemClickListener =
-//			new AdapterView.OnItemClickListener()
-//			{
-//				@Override
-//				public void onItemClick(AdapterView<?> adapterView, View view, int position,
-//										long id)
-//				{
-//					// CursorAdapter returns a cursor at the correct position for getItem(), or null
-//					// if it cannot seek to that position.
-//					Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
-//
-//					showForecastDetails(cursor);
-//					_selectedPosition = position;
-//				}
-//			};
+
+	private IForecastAdapterOnClick _forecastAdapterOnClickHandler = new IForecastAdapterOnClick()
+	{
+		@Override
+		public void onClick(Long date, ForecastAdapterViewHolder viewHolder)
+		{
+			String locationSetting = Util.getPreferredLocation(getActivity());
+			((IForecastFragmentCallback)getActivity()).onItemSelected(WeatherContract.WeatherEntry
+					.buildWeatherLocationWithDate(locationSetting, date));
+		}
+	};
 
 	private SharedPreferences.OnSharedPreferenceChangeListener _onSharedPreferenceChangeListener =
 			new SharedPreferences.OnSharedPreferenceChangeListener()
@@ -143,17 +142,22 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState)
 	{
-		// The ForecastAdapter will take data from a source and
-		// use it to populate the RecyclerView it's attached to.
-		_forecastAdapter = new ForecastAdapter(getActivity());
-
 		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
 		// Get a reference to the RecyclerView, and attach this adapter to it.
 		_recyclerViewForecast = (RecyclerView) rootView.findViewById(R.id.recyclerview_forecast);
-		// Set the layout manager
+		// Set the layout manager because RecyclerView does not have it by default
 		_recyclerViewForecast.setLayoutManager(new LinearLayoutManager(getActivity()));
-		_recyclerViewForecast.setAdapter(_forecastAdapter);
 
+		View emptyView = rootView.findViewById(R.id.recyclerview_forecast_empty);
+
+		// The ForecastAdapter will take data from a source and
+		// use it to populate the RecyclerView it's attached to.
+		_forecastAdapter = new ForecastAdapter(getActivity(), _forecastAdapterOnClickHandler, emptyView);
+		_recyclerViewForecast.setAdapter(_forecastAdapter);
+		// use this setting to improve performance if you know that changes
+		// in content do not change the layout size of the RecyclerView
+		_recyclerViewForecast.setHasFixedSize(true);
 
 		// If there's instance state, mine it for useful information.
 		// The end-goal here is that the user never knows that turning their device sideways
@@ -191,16 +195,16 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 		super.onSaveInstanceState(outState);
 	}
 
-	private void showForecastDetails(Cursor cursor)
-	{
-		if (cursor != null)
-		{
-			String locationSetting = Util.getPreferredLocation(getActivity());
-			((IForecastFragmentCallback) getActivity()).onItemSelected(
-					WeatherContract.WeatherEntry.buildWeatherLocationWithDate(
-							locationSetting, cursor.getLong(COL_WEATHER_DATE)));
-		}
-	}
+//	private void showForecastDetails(Cursor cursor)
+//	{
+//		if (cursor != null)
+//		{
+//			String locationSetting = Util.getPreferredLocation(getActivity());
+//			((IForecastFragmentCallback) getActivity()).onItemSelected(
+//					WeatherContract.WeatherEntry.buildWeatherLocationWithDate(
+//							locationSetting, cursor.getLong(COL_WEATHER_DATE)));
+//		}
+//	}
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
@@ -365,5 +369,6 @@ public class MainForecastFragment extends Fragment implements LoaderManager.Load
 			}
 		}
 	}
+
 }
 

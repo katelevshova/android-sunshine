@@ -25,11 +25,14 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapterViewHol
 	final private Context _context;
 	private Cursor _cursor;
 	private boolean _showTodayItem = true;
+	final private View _emptyView;
+	final private IForecastAdapterOnClick _clickHandler;
 
-
-	public ForecastAdapter(Context context)
+	public ForecastAdapter(Context context, IForecastAdapterOnClick clickHandler, View emptyView)
 	{
 		_context = context;
+		_clickHandler = clickHandler;
+		_emptyView = emptyView;
 	}
 
 	public void setIsTodayItemNecessary(boolean flag)
@@ -74,7 +77,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapterViewHol
 			View view =
 					LayoutInflater.from(viewGroup.getContext()).inflate(layoutId, viewGroup, false);
 			view.setFocusable(true);
-			return new ForecastAdapterViewHolder(view);
+			return new ForecastAdapterViewHolder(view, _cursor, _clickHandler);
 		}
 		else
 		{
@@ -96,6 +99,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapterViewHol
 	{
 		_cursor = newCursor;
 		notifyDataSetChanged();
+		_emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);
 	}
 
 	public Cursor getCursor()

@@ -1,4 +1,4 @@
-package com.hally.sunshine.model;
+package com.hally.sunshine.data;
 
 import android.net.Uri;
 
