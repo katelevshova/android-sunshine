@@ -153,7 +153,8 @@ public class MainForecastFragment extends Fragment implements LoaderManager
 
 		// The ForecastAdapter will take data from a source and
 		// use it to populate the RecyclerView it's attached to.
-		_forecastAdapter = new ForecastAdapter(getActivity(), _forecastAdapterOnClickHandler, emptyView);
+		_forecastAdapter = new ForecastAdapter(getActivity(), _forecastAdapterOnClickHandler,
+				emptyView, 0);
 		_recyclerViewForecast.setAdapter(_forecastAdapter);
 		// use this setting to improve performance if you know that changes
 		// in content do not change the layout size of the RecyclerView

@@ -2,12 +2,14 @@ package com.hally.sunshine.data;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.hally.sunshine.ItemChoiceManager;
 import com.hally.sunshine.R;
 import com.hally.sunshine.util.FormatUtil;
 import com.hally.sunshine.util.ImageResouceUtil;
@@ -19,20 +21,23 @@ import com.hally.sunshine.view.MainForecastFragment;
  */
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapterViewHolder>
 {
-	private static final int VIEW_TYPE_COUNT = 2;
 	private static final int VIEW_TYPE_TODAY = 0;
 	private static final int VIEW_TYPE_FUTURE_DAY = 1;
 	final private Context _context;
-	private Cursor _cursor;
-	private boolean _showTodayItem = true;
 	final private View _emptyView;
 	final private IForecastAdapterOnClick _clickHandler;
+	final private ItemChoiceManager _itemChoiceManager;
+	private Cursor _cursor;
+	private boolean _showTodayItem = true;
 
-	public ForecastAdapter(Context context, IForecastAdapterOnClick clickHandler, View emptyView)
+	public ForecastAdapter(Context context, IForecastAdapterOnClick clickHandler, View emptyView,
+						   int choiceMode)
 	{
 		_context = context;
 		_clickHandler = clickHandler;
 		_emptyView = emptyView;
+		_itemChoiceManager = new ItemChoiceManager(this);
+		_itemChoiceManager.setChoiceMode(choiceMode);
 	}
 
 	public void setIsTodayItemNecessary(boolean flag)
@@ -77,7 +82,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapterViewHol
 			View view =
 					LayoutInflater.from(viewGroup.getContext()).inflate(layoutId, viewGroup, false);
 			view.setFocusable(true);
-			return new ForecastAdapterViewHolder(view, _cursor, _clickHandler);
+			return new ForecastAdapterViewHolder(view, _cursor, _clickHandler, _itemChoiceManager);
 		}
 		else
 		{
@@ -167,6 +172,31 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapterViewHol
 			forecastAdapterViewHolder.lowTempView.setText(lowString);
 			forecastAdapterViewHolder.lowTempView.setContentDescription(
 					_context.getResources().getString(R.string.a11y_low_temp, lowString));
+			_itemChoiceManager.onBindViewHolder(forecastAdapterViewHolder, position);
+		}
+	}
+
+	public void onRestoreInstanceState(Bundle savedInstanceState)
+	{
+		_itemChoiceManager.onRestoreInstanceState(savedInstanceState);
+	}
+
+	public void onSaveInstanceState(Bundle outState)
+	{
+		_itemChoiceManager.onSaveInstanceState(outState);
+	}
+
+	public int getSelectedItemPosition()
+	{
+		return _itemChoiceManager.getSelectedItemPosition();
+	}
+
+	public void selectView(RecyclerView.ViewHolder viewHolder)
+	{
+		if (viewHolder instanceof ForecastAdapterViewHolder)
+		{
+			ForecastAdapterViewHolder favh = (ForecastAdapterViewHolder) viewHolder;
+			favh.onClick(favh.itemView);
 		}
 	}
 }

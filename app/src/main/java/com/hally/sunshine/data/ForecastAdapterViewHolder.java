@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hally.sunshine.ItemChoiceManager;
 import com.hally.sunshine.R;
 
 /**
@@ -22,13 +23,15 @@ public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder implement
 	public final TextView lowTempView;
 	private Cursor _cursor;
 	private IForecastAdapterOnClick _clickListener;
+	private ItemChoiceManager _itemChoiceManager;
 
 	public ForecastAdapterViewHolder(View view, Cursor cursor, IForecastAdapterOnClick
-			clickListener)
+			clickListener, ItemChoiceManager iCM)
 	{
 		super(view);
 		_cursor = cursor;
 		_clickListener = clickListener;
+		_itemChoiceManager = iCM;
 		iconView = (ImageView) view.findViewById(R.id.detail_icon);
 		dateView = (TextView) view.findViewById(R.id.detail_date_day_textview);
 		descriptionView = (TextView) view.findViewById(R.id.detail_forecast_textview);
@@ -44,6 +47,6 @@ public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder implement
 		_cursor.moveToPosition(position);
 		int dateColumnIndex = _cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_DATE);
 		_clickListener.onClick(_cursor.getLong(dateColumnIndex), this);
-
+		_itemChoiceManager.onClick(this);
 	}
 }
