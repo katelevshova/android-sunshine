@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -18,7 +16,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.hally.sunshine.R;
 import com.hally.sunshine.gcm.MyRegistrationIntentService;
-import com.hally.sunshine.model.IForecastFragmentCallback;
+import com.hally.sunshine.data.IForecastFragmentCallback;
 import com.hally.sunshine.sync.SunshineSyncAdapter;
 import com.hally.sunshine.util.TraceUtil;
 import com.hally.sunshine.util.Util;
@@ -41,12 +39,10 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 
 		setContentView(R.layout.activity_main);
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-		{
-			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-			setSupportActionBar(toolbar);
-			ActionBar actionBar = getSupportActionBar();
-		}
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		//getSupportActionBar().setIcon(R.mipmap.art_clear);
+		getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 		if (findViewById(R.id.detail_container) != null)
 		{
@@ -70,8 +66,6 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 //			getSupportActionBar().setElevation(0f); // removes a shadow under the ActionBar for phone
 		}
 
-//		getSupportActionBar().setIcon(R.mipmap.art_clear);
-		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		setUseTodayItemElement();
 
 		SunshineSyncAdapter.initializeSyncAdapter(this);
@@ -226,6 +220,5 @@ public class MainForecastActivity extends ActionBarActivity implements IForecast
 			Intent startIntent = new Intent(this, DetailActivity.class).setData(dateUri);
 			startActivity(startIntent);
 		}
-
 	}
 }

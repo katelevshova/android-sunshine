@@ -2,22 +2,33 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layoutDirection="ltr"
 	android:orientation="horizontal">
 
-	<!-- Main content: art, weather, low and high temp -->
-	<include layout="@layout/grid_detail_today"
-			 android:layout_width="0dp"
-			 android:layout_height="match_parent"
-			 android:layout_weight="3"/>
+	<FrameLayout
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="3">
+
+		<!-- Main content: art, weather, low and high temp -->
+		<include layout="@layout/grid_detail_today"
+				 android:layout_width="match_parent"
+				 android:layout_height="match_parent"/>
+
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			android:background="@android:color/transparent"
+			android:theme="@style/DetailTheme"/>
+	</FrameLayout>
 
 	<!-- Humidity, wind, pressure -->
 	<include layout="@layout/detail_humidity_linear"
 			 android:layout_width="0dp"
 			 android:layout_height="match_parent"
 			 android:layout_weight="2"/>
-
-
 
 </LinearLayout>
 

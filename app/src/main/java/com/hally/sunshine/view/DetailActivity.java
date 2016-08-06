@@ -32,14 +32,14 @@ public class DetailActivity extends ActionBarActivity
 					.add(R.id.detail_container, detailFragmen).commit();
 		}
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-		{
-			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-			setSupportActionBar(toolbar);
-			// fix for back arrow button
-			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-			getSupportActionBar().setDisplayShowHomeEnabled(true);
-		}
+//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+//		{
+//			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//			setSupportActionBar(toolbar);
+//			// fix for back arrow button
+//			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//			getSupportActionBar().setDisplayShowHomeEnabled(true);
+//		}
 	}
 
 	@Override
