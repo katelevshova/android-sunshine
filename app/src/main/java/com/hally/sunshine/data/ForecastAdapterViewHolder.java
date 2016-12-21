@@ -22,10 +22,10 @@ public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder implement
 	public final TextView highTempView;
 	public final TextView lowTempView;
 	private Cursor _cursor;
-	private IForecastAdapterOnClick _clickListener;
+	private IForecastAdapterOnCLick _clickListener;
 	private ItemChoiceManager _itemChoiceManager;
 
-	public ForecastAdapterViewHolder(View view, Cursor cursor, IForecastAdapterOnClick
+	public ForecastAdapterViewHolder(View view, Cursor cursor, IForecastAdapterOnCLick
 			clickListener, ItemChoiceManager iCM)
 	{
 		super(view);
