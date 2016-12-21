@@ -25,12 +25,12 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapterViewHol
 	private static final int VIEW_TYPE_FUTURE_DAY = 1;
 	final private Context _context;
 	final private View _emptyView;
-	final private IForecastAdapterOnClick _clickHandler;
+	final private IForecastAdapterOnCLick _clickHandler;
 	final private ItemChoiceManager _itemChoiceManager;
 	private Cursor _cursor;
 	private boolean _showTodayItem = true;
 
-	public ForecastAdapter(Context context, IForecastAdapterOnClick clickHandler, View emptyView,
+	public ForecastAdapter(Context context, IForecastAdapterOnCLick clickHandler, View emptyView,
 						   int choiceMode)
 	{
 		_context = context;

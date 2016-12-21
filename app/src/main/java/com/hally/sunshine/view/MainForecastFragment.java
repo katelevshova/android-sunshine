@@ -24,7 +24,7 @@ import android.widget.TextView;
 import com.hally.sunshine.R;
 import com.hally.sunshine.data.ForecastAdapter;
 import com.hally.sunshine.data.ForecastAdapterViewHolder;
-import com.hally.sunshine.data.IForecastAdapterOnClick;
+import com.hally.sunshine.data.IForecastAdapterOnCLick;
 import com.hally.sunshine.data.IForecastFragmentCallback;
 import com.hally.sunshine.data.WeatherContract;
 import com.hally.sunshine.sync.SunshineSyncAdapter;
@@ -76,7 +76,7 @@ public class MainForecastFragment extends Fragment implements LoaderManager
 	private boolean _showTodayItem = true;
 	private RecyclerView _recyclerViewForecast;
 
-	private IForecastAdapterOnClick _forecastAdapterOnClickHandler = new IForecastAdapterOnClick()
+	private IForecastAdapterOnCLick _forecastAdapterOnClickHandler = new IForecastAdapterOnCLick()
 	{
 		@Override
 		public void onClick(Long date, ForecastAdapterViewHolder viewHolder)

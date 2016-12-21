@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.android.tools.build:gradle:2.2.3'
         classpath 'com.google.gms:google-services:2.0.0-rc1'
         //https://bintray.com/android/android-tools/com.google.gms.google-services/ check
         // versions here
