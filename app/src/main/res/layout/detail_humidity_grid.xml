@@ -14,7 +14,7 @@
 	android:paddingTop="@dimen/abc_list_item_padding_horizontal_material"
 	app:columnCount="2">
 
-	<android.support.v7.widget.Space
+	<Space
 		app:layout_columnSpan="2"
 		app:layout_rowWeight="1"/>
 
@@ -60,7 +60,7 @@
 		android:gravity="center_vertical"
 		android:text="1014 hPa"/>
 
-	<android.support.v7.widget.Space
+	<Space
 		app:layout_columnSpan="2"
 		app:layout_rowWeight="1"/>
 
