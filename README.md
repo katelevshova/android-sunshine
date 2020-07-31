@@ -1,4 +1,4 @@
-# README #
+# Sunshine #
 
 ### Quick summary ###
 
@@ -25,7 +25,7 @@ Sunshine application for Android devices is a weather forecast app which uses Op
 ![Screenshot_20160425-122941.png](https://bitbucket.org/repo/RjKoox/images/363955799-Screenshot_20160425-122941.png)
 
 
-### SCREENSHOTS for older API versions ###
+### Screenshots for older API versions ###
 
 ![Screenshot_20160411-163652.png](https://bitbucket.org/repo/RjKoox/images/778669369-Screenshot_20160411-163652.png)
 
