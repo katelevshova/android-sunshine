@@ -4,8 +4,6 @@
 
 Sunshine application for Android devices is a weather forecast app which uses OpenWeatherMap API - http://openweathermap.org/api - to synchronize forecast data. Allows users to see forecast for 2 weeks for specific location and more detailed information for chosen day, to change settings like units, preferred weather icon pack, location, and turn On/Off notifications, share weather information and open location on Google maps. Uses SQLite data storage and such libraries as: support-v4, appcompat-v7, glide, play-services-gcm. Covered functionality by Unit tests. Provides different layouts/styles for different device sizes and API versions. Added accessibility support (sound and LTR), localization for 2 languages. 
 
-### The most recent screenshots, locale=EN ###
-
 ### Screenshots for Nexus 5 ###
 
 ![Screenshot_20160425-122505.png](https://bitbucket.org/repo/RjKoox/images/1868660671-Screenshot_20160425-122505.png)
